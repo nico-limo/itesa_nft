@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+//styles
 import form from "../styles/Form.module.css";
+//hooks
+import { useInput } from "../hooks/useInput";
 
 const Login = () => {
   const email = useInput("email");
+  const password = useInput("password");
   return (
     <div className={form.container}>
       <h2 className={form.title}>SIGN IN</h2>
@@ -17,9 +21,9 @@ const Login = () => {
           />
           <input
             className={form.input}
-            name="password"
             placeholder="Set a new password"
             type="password"
+            {...password}
           />
           <button>Sign In</button>
         </form>
