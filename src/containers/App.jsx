@@ -1,5 +1,7 @@
 import React from "react"
+//React-router-dom
 import { Route, Switch } from "react-router-dom"
+//Components
 import Login from "./Login"
 import Register from "./Register"
 import Home from "./Home"
@@ -9,8 +11,18 @@ import Artwork from "./Artwork"
 import Profile from "./Profile"
 import EditProfile from "./EditProfile"
 import NewArtwork from "./NewArtwork"
+//utils
+import { isUser } from "../utils/auth/authEmail";
+import { useEffect } from "react"
+
 
 const App = () => {
+
+  useEffect(() => {
+    isUser()
+  })
+
+
   return (
     <div>
       <NavBar />

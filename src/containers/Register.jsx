@@ -2,13 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 //styles
 import form from "../styles/Form.module.css";
-//hooks
-import { useInput } from "../hooks/useInput";
+//utils
+import { useInput } from "../utils/hooks/useInput";
+import { register } from "../utils/auth/authEmail";
 
 const Register = () => {
   const username = useInput("username");
   const email = useInput("email");
   const password = useInput("password");
+
+ 
+
   return (
     <div className={form.container}>
       <h2 className={form.title}>SIGN UP</h2>
@@ -32,7 +36,7 @@ const Register = () => {
             type="password"
             {...password}
           />
-          <button>Create an Account</button>
+          <button onClick={(event) => register(event,email.value,password.value,username.value)}>Create an Account</button>
         </form>
         <div>
           <span>
