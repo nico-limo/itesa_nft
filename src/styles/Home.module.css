@@ -1,0 +1,51 @@
+body {
+    background-color: #f4f3f4;
+}
+
+.homeTitle {
+    background-image: linear-gradient(to right,#845fa1,#34283e);
+    height: 20vw;
+    border-bottom-right-radius: 15vw;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4vw;
+}
+
+.homeGalleryContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 3% 1.5% 0 1.5%;
+}
+
+.homeSingleArtworkContainer {
+    /* background-color: rgb(255, 255, 255); */
+    width: 46%;
+    border-radius: 4%;
+    margin: 0 2% 0%;
+}
+
+.homeSingleArtworkImage {
+    width: 100%;
+    border-radius: 6%;
+}
+
+.homeSingleArtworkTitle {
+    margin-top: 0;
+    margin-left: 2%;
+    font-size: 2.5vw;
+}
+
+.homeSingleArtworkCreator {
+    display: flex;
+    flex-direction: row;
+    margin-left: 2%;
+}
+
+.homeSingleArtworkCreatorAvatar {
+    width:5vw;
+    border-radius: 100%;
+}

@@ -1,10 +1,11 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
+import styles from "../styles/NavBar.module.css"
 
 const NavBar = () => {
   const [user, setUser] = useState(false)
   return(
-    <>
+    <div className={styles.navbarContainer}>
       <Link to="/">
         <div>Home</div>
       </Link>
@@ -30,7 +31,7 @@ const NavBar = () => {
         </Link>
         </>
       )}
-    </>
+    </div>
   )
 }
 

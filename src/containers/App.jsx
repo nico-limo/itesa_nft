@@ -13,7 +13,6 @@ import NewArtwork from "./NewArtwork"
 const App = () => {
   return (
     <div>
-      <NavBar />
       <Switch>
         <Route exact path={"/"} component={Home} />
         <Route path={"/login"} component={Login} />
@@ -31,6 +30,7 @@ const App = () => {
         <Route path={"/me"} component={Profile} />
         <Route path={"/me/edit"} component={EditProfile} />
       </Switch>
+      <NavBar />
     </div>
   )
 }
