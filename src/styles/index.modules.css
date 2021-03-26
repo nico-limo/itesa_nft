@@ -1,4 +1,8 @@
-*{
+body {
     background-color: rgb(244,246,244);
+}
+
+*{
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
 }
