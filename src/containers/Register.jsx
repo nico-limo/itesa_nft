@@ -4,7 +4,7 @@ import form from "../styles/Form.module.css";
 
 const Register = () => (
   <div className={form.container}>
-    <h2 className={form.title}>REGISTER</h2>
+    <h2 className={form.title}>SIGN UP</h2>
     <div>
       <form className={form.form}>
         <input
@@ -30,10 +30,9 @@ const Register = () => (
       <div>
         <span>
           <Link className={form.link} to="/login">
-            Login
+            Already have an account? Sign In
           </Link>
         </span>
-        <span>Forgot password?</span>
       </div>
     </div>
   </div>
