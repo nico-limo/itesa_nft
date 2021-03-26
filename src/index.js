@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 //Containers
 import App from "./containers/App";
 
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +11,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-
-reportWebVitals();
