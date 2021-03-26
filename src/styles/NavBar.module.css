@@ -1,5 +1,28 @@
 .navbarContainer {
-    margin-top: 50vw;
-    display: flex;
-    flex-direction: row;
+  background-image: linear-gradient(to right, #845fa1, #34283e);
+  color: white;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 3vw 3vw 0 0;
+  width: 100%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  font-size: 2.5vw;
+  font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: white;
 }
