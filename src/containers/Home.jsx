@@ -1,13 +1,14 @@
-import React, { useState } from "react"
-import styles from "../styles/Home.module.css"
+import React, { useState } from "react";
+import styles from "../styles/Home.module.css";
 
 // .toFixed(2)
 
 const Home = () => {
-  const [showOnSale, setShowOnSale] = useState(true)
+  const [showOnSale, setShowOnSale] = useState(true);
   return (
     <>
-      <div className={styles.homeTitle}>Home</div>
+      <div className={styles.homeTitle}>Explore
+      </div>
       <div className={styles.homeOnSaleOrSold}>
         <button
           className={`${showOnSale ? styles.selected : ""}`}
@@ -85,7 +86,7 @@ const Home = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

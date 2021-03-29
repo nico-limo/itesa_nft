@@ -6,11 +6,10 @@ import form from "../styles/Form.module.css";
 import { useInput } from "../utils/hooks/useInput";
 import { UserFunctions } from "../utils/firebase/authEmail";
 
-
 const Login = () => {
   const email = useInput("email");
   const password = useInput("password");
-  const {login} =  UserFunctions();
+  const { login } = UserFunctions();
 
   return (
     <div className={form.container}>
@@ -29,8 +28,11 @@ const Login = () => {
             type="password"
             {...password}
           />
-          <button onClick={(event) => login(event,email.value,password.value)}>Sign In</button>
-         
+          <button
+            onClick={(event) => login(event, email.value, password.value)}
+          >
+            Sign In
+          </button>
         </form>
         <div>
           <span>

@@ -1,6 +1,8 @@
 //Firebase Auth
 import { auth } from "../../firebaseConfig";
-import { newUser } from "./requestFireStore";
+import { newUser } from "./requests/userRequests";
+//FireStore
+import { getUser } from '../firebase/requests/userRequests';
 //Recoil
 import { useRecoilState } from "recoil";
 import { userAtom } from "../../state/atoms";
@@ -13,11 +15,8 @@ export const UserFunctions = () => {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((userAuth) => {
-        setUser({
-          uid: userAuth.user.uid,
-          email: userAuth.user.uid,
-        });
-        console.log("User Sign In", userAuth.user.uid);
+        getUser(userAuth.user.uid)
+          .then(res => setUser({ email: res.email, uid: res.uid, username: res.username }))
       })
       .catch((e) => console.log(e.message));
   };
@@ -27,7 +26,6 @@ export const UserFunctions = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((userAuth) => {
-        console.log(userAuth)
         newUser(userAuth, username)
       })
       .catch((e) => console.log(e.message));
@@ -36,12 +34,10 @@ export const UserFunctions = () => {
   const isUser = () => {
     auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
-        setUser({
-          uid: userAuth.uid,
-          email: userAuth.uid,
-        });
+        getUser(userAuth.uid)
+          .then(res => setUser({ email: res.email, uid: res.uid, username: res.username }))
       } else {
-        console.log("No existe usuario");
+        console.log("no user logged in");
       }
     });
   };
@@ -51,5 +47,5 @@ export const UserFunctions = () => {
     auth.signOut();
   };
 
-  return { login,register,isUser,logOut };
+  return { login, register, isUser, logOut };
 };
