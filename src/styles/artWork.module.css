@@ -1,0 +1,101 @@
+body {
+    background-color: #f4f3f4;
+}
+
+.artWorkTitle {
+    height: 40vw;
+    color: black;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4vw;
+    font-weight: 600;
+}
+.singleArtworkContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 1000%;
+}
+.singleArtworkImage {
+    width: 90%;
+    border-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.divButtons {
+    margin-left: 27%;
+    margin-top: -3%;
+}
+.divButtons button {
+    background-image: linear-gradient(to right,#845fa1,#34283e);
+    border: none;
+    outline: none;
+    height: 60%;
+    border-radius: 150px;
+    font-size: 200%;
+    font-weight: 500;
+    background-color: white;
+    margin-right: 1vw;
+}
+
+.ArtFeaturesContainer {
+    background-color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0%;
+}
+
+.artDescriptionsLeft {
+    width: 50%;
+    align-items:flex-start;
+}
+.artDescriptionsRight {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: flex-start;
+}
+.artworkTitle {
+    margin-top: 3%;
+    margin-left: 6%;
+    margin-bottom: 1%;
+    font-size: 3vw;
+    font-weight: 600;
+}
+.artworkSubtitle {
+    margin-top: 3%;
+    margin-left: 6%;
+    margin-bottom: 1%;
+    font-size: 2vw;
+    font-weight: 600;
+}
+.artworkDescription {
+    margin-top: 3%;
+    margin-left: 6%;
+    margin-bottom: 1%;
+    font-size: 2vw;
+    /* font-weight: 600; */
+}
+.priceSubtitle {
+    margin-top: 3%;
+    margin-right: 6%;
+    margin-bottom: 1%;
+    font-size: 2vw;
+    font-weight: 600;
+}
+.artworkPrice {
+    margin-top: 3%;
+    margin-right: 6%;
+    margin-bottom: 1%;
+    font-size: 2vw;
+    font-weight: 600;
+}
+
