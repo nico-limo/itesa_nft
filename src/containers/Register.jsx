@@ -10,7 +10,7 @@ const Register = () => {
   const username = useInput("username");
   const email = useInput("email");
   const password = useInput("password");
-  const {register } =  UserFunctions();
+  const { register } =  UserFunctions();
 
  
 
