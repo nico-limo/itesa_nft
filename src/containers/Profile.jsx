@@ -1,10 +1,15 @@
 import React, { useState } from "react"
 import styles from "../styles/Profile.module.css"
+import { UserFunctions } from "../utils/firebase/authEmail";
+//styles
+import form from "../styles/Form.module.css";
 
 // .toFixed(2)
 
 const Profile = () => {
   const [showCreations, setShowCreations] = useState(true)
+  const { logOut } = UserFunctions();
+
   return (
     <>
       <div className={styles.creatorCoverContainer}>
@@ -54,6 +59,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <div className={form.form}>
+      <button onClick={(event) => logOut(event)}>Sign Out</button>
+    </div>
     </>
   )
 }

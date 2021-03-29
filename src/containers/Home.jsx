@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import styles from "../styles/Home.module.css"
+import React, { useState } from "react";
+import styles from "../styles/Home.module.css";
 
 // .toFixed(2)
 
 const Home = () => {
-  const [showOnSale, setShowOnSale] = useState(true)
+  const [showOnSale, setShowOnSale] = useState(true);
   return (
     <>
       <div className={styles.homeTitle}>Explore
@@ -35,6 +35,7 @@ const Home = () => {
             <img
               className={styles.homeSingleArtworkCreatorAvatar}
               src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
+              alt=""
             />
             <div>@deeple</div>
           </div>
@@ -54,6 +55,7 @@ const Home = () => {
             <img
               className={styles.homeSingleArtworkCreatorAvatar}
               src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
+              alt=""
             />
             <div>@deeple</div>
           </div>
@@ -73,6 +75,7 @@ const Home = () => {
             <img
               className={styles.homeSingleArtworkCreatorAvatar}
               src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
+              alt=""
             />
             <div>@deeple</div>
           </div>
@@ -83,7 +86,7 @@ const Home = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

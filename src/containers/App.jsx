@@ -12,15 +12,15 @@ import Profile from "./Profile"
 import EditProfile from "./EditProfile"
 import NewArtwork from "./NewArtwork"
 //utils
-import { isUser } from "../utils/auth/authEmail";
+import { UserFunctions } from "../utils/firebase/authEmail";
 import { useEffect } from "react"
 
-
 const App = () => {
-
+  const {isUser} =  UserFunctions();
+  
   useEffect(() => {
     isUser()
-  })
+  }, [])
 
 
   return (

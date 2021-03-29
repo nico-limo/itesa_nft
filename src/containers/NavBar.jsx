@@ -1,10 +1,14 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
-import styles from "../styles/NavBar.module.css"
+import React from "react";
+import { Link } from "react-router-dom";
+//CSS
+import styles from "../styles/NavBar.module.css";
+//Recoil
+import { useRecoilState } from "recoil";
+import { userAtom } from "../state/atoms";
 
 const NavBar = () => {
-  const [user, setUser] = useState(false)
-  return(
+  const [user, setuser] = useRecoilState(userAtom);
+  return (
     <div className={styles.navbarContainer}>
       <Link to="/">
         <div>Home</div>
@@ -12,27 +16,27 @@ const NavBar = () => {
       <Link to="/creators">
         <div>Creators</div>
       </Link>
-      {user ? (
-          <>
-        <Link to="/artwork/create">
-          <div>Create</div>
-        </Link>
-                <Link to="/me">
-                <div>Profile</div>
-              </Link>
-              </>
+      {user?.uid ? (
+        <>
+          <Link to="/artwork/create">
+            <div>Create</div>
+          </Link>
+          <Link to="/me">
+            <div>Profile</div>
+          </Link>
+        </>
       ) : (
-          <>
-        <Link to="/login">
-          <div>Login</div>
-        </Link>
-        <Link to="/register">
-          <div>Sign Up</div>
-        </Link>
+        <>
+          <Link to="/login">
+            <div>Login</div>
+          </Link>
+          <Link to="/register">
+            <div>Sign Up</div>
+          </Link>
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

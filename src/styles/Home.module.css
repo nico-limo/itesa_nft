@@ -14,32 +14,32 @@
 }
 
 .homeOnSaleOrSold {
-    margin-top: 3.5%;
-    margin-left: 3.5%;
-    margin-bottom: 0%;
+  margin-top: 3.5%;
+  margin-left: 3.5%;
+  margin-bottom: 0%;
 }
 
 .homeOnSaleOrSold button {
-    font-size: 2.5vw;
-    border: none;
-    outline: none;
-    border-radius: 1vw;
-    padding: 0.75vw 1.5vw;
-    font-weight: 500;
-    background-color: white;
-    margin-right: 1vw;
+  font-size: 2.5vw;
+  border: none;
+  outline: none;
+  border-radius: 1vw;
+  padding: 0.75vw 1.5vw;
+  font-weight: 500;
+  background-color: white;
+  margin-right: 1vw;
 }
 
 .homeOnSaleOrSold .selected {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 .homeGalleryContainer {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 3% 1.5% 0 1.5%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 3% 1.5% 0 1.5%;
 }
 
 .homeSingleArtworkContainer {
@@ -51,32 +51,32 @@
 }
 
 .homeSingleArtworkImage {
-    width: 100%;
-    border-radius: 5% 5% 0 0;
+  width: 100%;
+  border-radius: 5% 5% 0 0;
 }
 
 .homeSingleArtworkTitle {
-    margin-top: 3%;
-    margin-left: 6%;
-    margin-bottom: 1%;
-    font-size: 3vw;
-    font-weight: 600;
+  margin-top: 3%;
+  margin-left: 6%;
+  margin-bottom: 1%;
+  font-size: 3vw;
+  font-weight: 600;
 }
 
 .homeSingleArtworkCreator {
-    display: flex;
-    flex-direction: row;
-    margin-left: 6%;
-    align-items: center;
-    font-size: 1.8vw;
-    font-weight: 500;
-    margin-bottom: 1.5%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 6%;
+  align-items: center;
+  font-size: 1.8vw;
+  font-weight: 500;
+  margin-bottom: 1.5%;
 }
 
 .homeSingleArtworkCreatorAvatar {
-    width:3vw;
-    border-radius: 100%;
-    margin-right: 1vw;
+  width: 3vw;
+  border-radius: 100%;
+  margin-right: 1vw;
 }
 
 .homeSingleArtworkPrice {
@@ -89,5 +89,19 @@
 }
 
 .homeSingleArtworkPriceAmount {
-    font-weight: 600;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 1200px) {
+  .homeGalleryContainer {
+    flex-flow: row;
+  }
+  .homeTitle {
+    height: 11vh;
+    font-size: 3vw;
+  }
+  .homeSingleArtworkContainer {
+    width: 36%;
+    font-size: 1.5vw;
+  }
 }
