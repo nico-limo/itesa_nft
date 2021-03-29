@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import form from "../styles/Form.module.css";
 //utils
 import { useInput } from "../utils/hooks/useInput";
-import { login, logOut } from "../utils/auth/authEmail";
+import { UserFunctions } from "../utils/firebase/authEmail";
+
+
 const Login = () => {
   const email = useInput("email");
   const password = useInput("password");
+  const {login, logOut} =  UserFunctions();
 
-  
   return (
     <div className={form.container}>
       <h2 className={form.title}>SIGN IN</h2>
