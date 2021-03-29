@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import form from "../styles/Form.module.css";
 //utils
 import { useInput } from "../utils/hooks/useInput";
-import { login, logOut } from "../utils/auth/authEmail";
+import { UserFunctions } from "../utils/firebase/authEmail";
+
+
 const Login = () => {
   const email = useInput("email");
   const password = useInput("password");
+  const {login} =  UserFunctions();
 
-  
   return (
     <div className={form.container}>
       <h2 className={form.title}>SIGN IN</h2>
@@ -28,7 +30,7 @@ const Login = () => {
             {...password}
           />
           <button onClick={(event) => login(event,email.value,password.value)}>Sign In</button>
-          <button onClick={(event) => logOut(event)}>Sign Out</button>
+         
         </form>
         <div>
           <span>

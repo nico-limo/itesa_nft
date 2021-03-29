@@ -1,9 +1,13 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
+//CSS
 import styles from "../styles/NavBar.module.css"
+//Recoil
+import { useRecoilState } from "recoil";
+import { userAtom } from "../state/atoms";
 
 const NavBar = () => {
-  const [user, setUser] = useState(false)
+  const [user, setuser] = useRecoilState(userAtom)
   return(
     <div className={styles.navbarContainer}>
       <Link to="/">
@@ -12,7 +16,7 @@ const NavBar = () => {
       <Link to="/creators">
         <div>Creators</div>
       </Link>
-      {user ? (
+      {user.uid ? (
           <>
         <Link to="/artwork/create">
           <div>Create</div>
