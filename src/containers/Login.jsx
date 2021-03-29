@@ -10,7 +10,7 @@ import { UserFunctions } from "../utils/firebase/authEmail";
 const Login = () => {
   const email = useInput("email");
   const password = useInput("password");
-  const {login, logOut} =  UserFunctions();
+  const {login} =  UserFunctions();
 
   return (
     <div className={form.container}>

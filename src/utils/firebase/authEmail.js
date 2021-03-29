@@ -26,7 +26,10 @@ export const UserFunctions = () => {
     event.preventDefault();
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then((user) => {})
+      .then((userAuth) => {
+        console.log(userAuth)
+        newUser(userAuth, username)
+      })
       .catch((e) => console.log(e.message));
   };
 
