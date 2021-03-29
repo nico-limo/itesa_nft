@@ -20,12 +20,19 @@ export const ArtWorkFunctions = () => {
             console.log("Error getting documents: ", error);
         });
     }
-    const getArtWork = (id) => {
-        artWorkRef.where("id", "==", "the beholder")
+    const getArtWork = () => {
+        artWorkRef.where("authorId", "==", userId)
         .get()
-        .then(artWork => {
-            setArtWork({artWork})
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.data());
+            });
         })
+        // .then(artWork => {
+        //     setArtWork({artWork})
+        //     console.log("", artWork.data())
+        // })
 
     }
     return { artWork, getArtistsArtWork, getArtWork }

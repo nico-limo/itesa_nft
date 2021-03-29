@@ -12,8 +12,9 @@ const Artwork = ({ match }) => {
     useEffect(() => {
         getArtWork()
     }, [])
-    // console.log("id", match.url)
-    console.log(artWork)
+    // // console.log("id", match.url)
+    // console.log(artWork)
+    // ._delegate._document.objectValue.proto.mapValue.fields
 
     return (
         <>
