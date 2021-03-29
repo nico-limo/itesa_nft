@@ -21,7 +21,7 @@ export const ArtWorkFunctions = () => {
         });
     }
     const getArtWork = () => {
-        artWorkRef.where("authorId", "==", userId)
+        artWorkRef.where("authorId", "==", "userId")
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {

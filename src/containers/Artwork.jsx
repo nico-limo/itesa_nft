@@ -9,9 +9,9 @@ const Artwork = ({ match }) => {
     const [user, setUser] = useRecoilState(userAtom)
     const { artWork, getArtWork } = ArtWorkFunctions()
 
-    useEffect(() => {
-        getArtWork()
-    }, [])
+    // useEffect(() => {
+    //     getArtWork()
+    // }, [])
     // // console.log("id", match.url)
     // console.log(artWork)
     // ._delegate._document.objectValue.proto.mapValue.fields
