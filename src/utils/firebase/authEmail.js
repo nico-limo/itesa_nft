@@ -1,6 +1,6 @@
 //Firebase Auth
 import { auth } from "../../firebaseConfig";
-// import { newUser } from "./requestFireStore";
+import { newUser } from "./requestFireStore";
 //Recoil
 import { useRecoilState } from "recoil";
 import { userAtom } from "../../state/atoms";
@@ -15,7 +15,7 @@ export const UserFunctions = () => {
       .then((userAuth) => {
         setUser({
           uid: userAuth.user.uid,
-          email: userAuth.user.email,
+          email: userAuth.user.uid,
         });
         console.log("User Sign In", userAuth.user.uid);
       })
@@ -33,7 +33,10 @@ export const UserFunctions = () => {
   const isUser = () => {
     auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
-        console.log(userAuth);
+        setUser({
+          uid: userAuth.uid,
+          email: userAuth.uid,
+        });
       } else {
         console.log("No existe usuario");
       }

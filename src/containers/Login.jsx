@@ -30,7 +30,7 @@ const Login = () => {
             {...password}
           />
           <button onClick={(event) => login(event,email.value,password.value)}>Sign In</button>
-          <button onClick={(event) => logOut(event)}>Sign Out</button>
+         
         </form>
         <div>
           <span>
