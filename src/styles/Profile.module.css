@@ -1,0 +1,124 @@
+.creatorCoverContainer {
+    height: 40vw;
+    background-color: black;
+    background-image: linear-gradient(to left,#845fa1,#34283e);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: flex-start;
+    /* padding-left: 5vw; */
+    margin-bottom: 5vw;
+    position: relative;
+        box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+.creatorCover {
+    height: 30vw;
+    width: 100%;
+    object-fit: cover;
+    border-bottom: rgb(244,246,244) 1vw solid;
+    /* border-top: rgb(244,246,244) 2vw solid; */
+}
+
+.creatorAvatar {
+    width:15vw;
+    height: 15vw;
+    object-fit: cover;
+    border-radius: 100%;
+    border: rgb(244,246,244) 1vw solid;
+    /* margin-right: 1vw;
+    border-image-slice: 1;
+    border-width: 1.2vw;
+    border-radius: inherit;
+    border-image-source:  linear-gradient(to right,#845fa1,#34283e); */
+    position: absolute;
+    top: 20vw;
+    right: 4vw;
+}
+
+.creatorName {
+    color: white;
+    margin-top: 2.25vw;
+    margin-left: 4vw;
+    font-size: 3.5vw;
+    font-weight: 500;
+}
+
+.creationsOrCollection {
+    margin-top: 3.5%;
+    margin-left: 3.5%;
+    margin-bottom: 0%;
+}
+
+.creationsOrCollection button {
+    font-size: 2.5vw;
+    border: none;
+    outline: none;
+    border-radius: 1vw;
+    padding: 0.75vw 1.5vw;
+    font-weight: 500;
+    background-color: white;
+    margin-right: 1vw;
+}
+
+.creationsOrCollection .selected {
+    background-color: black;
+    color: white;
+}
+
+.galleryContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 3% 1.5% 0 1.5%;
+}
+
+.singleArtworkContainer {
+    background-color: rgb(255, 255, 255);
+    width: 46%;
+    border-radius: 4%;
+    margin: 0 2% 4%;
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.singleArtworkImage {
+    width: 100%;
+    border-radius: 5% 5% 0 0;
+}
+
+.singleArtworkTitle {
+    margin-top: 3%;
+    margin-left: 6%;
+    margin-bottom: 1%;
+    font-size: 3vw;
+    font-weight: 600;
+}
+
+.singleArtworkCreator {
+    display: flex;
+    flex-direction: row;
+    margin-left: 6%;
+    align-items: center;
+    font-size: 1.8vw;
+    font-weight: 500;
+    margin-bottom: 1.5%;
+}
+
+.singleArtworkCreatorAvatar {
+    width:3vw;
+    border-radius: 100%;
+    margin-right: 1vw;
+}
+
+.singleArtworkPrice {
+    color: #34283e;
+    font-size: 2.5vw;
+    padding: 1vw;
+    text-align: right;
+    margin-bottom: 5%;
+    margin-right: 6%;
+}
+
+.singleArtworkPriceAmount {
+    font-weight: 600;
+}

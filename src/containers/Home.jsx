@@ -7,7 +7,8 @@ const Home = () => {
   const [showOnSale, setShowOnSale] = useState(true);
   return (
     <>
-      <div className={styles.homeTitle}>Home</div>
+      <div className={styles.homeTitle}>Explore
+      </div>
       <div className={styles.homeOnSaleOrSold}>
         <button
           className={`${showOnSale ? styles.selected : ""}`}
