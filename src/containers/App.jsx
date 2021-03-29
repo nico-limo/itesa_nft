@@ -15,12 +15,12 @@ import NewArtwork from "./NewArtwork"
 import { UserFunctions } from "../utils/firebase/authEmail";
 import { useEffect } from "react"
 
-
 const App = () => {
   const {isUser} =  UserFunctions();
+  
   useEffect(() => {
     isUser()
-  })
+  }, [])
 
 
   return (
