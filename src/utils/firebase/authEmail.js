@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 import { userAtom } from "../../state/atoms";
 
 export const UserFunctions = () => {
-  const [user, setUser] = useRecoilState(userAtom);
+  const [/*user*/, setUser] = useRecoilState(userAtom);
 
   const login = (event, email, password) => {
     event.preventDefault();

@@ -7,10 +7,9 @@ import { userAtom } from "../../../state/atoms";
 
 export const ArtFunctions = () => {
     const artWorkRef = db.collection('artWork');
-    const [user, setUser] = useRecoilState(userAtom);
+    const [user, /*setUser*/] = useRecoilState(userAtom);
     const newPiece = async (e, title, imgURI, description, price) => {
         e.preventDefault()
-        const newId = title.toLowerCase()
         const res = await artWorkRef.add({
             created: new Date(),
             token: null,
@@ -23,7 +22,6 @@ export const ArtFunctions = () => {
             onSale: true,
             id: ''
         })
-        console.log(res.id)
         await artWorkRef.doc(`${res.id}`).update({ id: res.id })
     }
 
