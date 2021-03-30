@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import { useRecoilState } from "recoil";
 
 import { userAtom } from "../state/atoms";
@@ -8,13 +8,8 @@ import styles from "../styles/artWork.module.css"
 const Artwork = ({ match }) => {
     const [user, setUser] = useRecoilState(userAtom)
     const { artWork, getArtWork } = ArtWorkFunctions()
+    // lógica para agarrar la ruta del back a get Artworks según el ID.
 
-    // useEffect(() => {
-    //     getArtWork()
-    // }, [])
-    // // console.log("id", match.url)
-    // console.log(artWork)
-    // ._delegate._document.objectValue.proto.mapValue.fields
 
     return (
         <>
