@@ -29,15 +29,16 @@ const Artwork = ({ id }) => {
           called Friends? The reason for that is easy. Every day the world shows
           its ugliest sides and sometimes it's just too much to handle. There
           are so many serious artworks out there on the cryptomarket and I want
-          to give people something to smile about.{" "}
+          to give people something to smile about.
         </div>
-        <div className={styles.priceSubtitle}>Price:</div>
-        <div className={styles.artworkPrice}>5 ETH</div>
-        <button className={styles.buyButton}>Buy Now</button>
+        <div className={styles.priceAndButtonContainer}>
+          <div className={styles.artworkPrice}>Price: 5 ETH</div>
+          <button className={styles.buyButton}>Buy Now</button>
+        </div>
       </div>
-      <div className={styles.artDescriptionsLeft}>
+      {/* <div className={styles.artDescriptionsLeft}>
         <div className={styles.artworkTitle}>Creator</div>
-      </div>
+      </div> */}
     </>
   );
 };
