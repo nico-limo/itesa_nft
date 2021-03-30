@@ -15,13 +15,9 @@ const Test = () => {
   const { getAllPieces } = ArtFunctions();
 
   useEffect(() => {
-    getAllPieces().then(res => setArtWork(res)) 
-    
+    getAllPieces().then(res => setArtWork(res))
   }, []);
 
-  useEffect(() => {
-    
-  }, [])
   return (
     <>
     <div className={styles.homeTitle}>Explore

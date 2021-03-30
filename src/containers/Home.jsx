@@ -1,18 +1,29 @@
-import React, { useState } from "react";
-import styles from "../styles/Home.module.css";
+import React, { useState, useEffect } from "react"
+//CSS
+import styles from "../styles/Home.module.css"
+//Recoil
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil"
+import { artWorkAtom, artStatusAtom } from "../state/atoms"
+import { onSaleOrSoldState } from "../state/selectors"
+import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
 import ArtCard from "./ArtCard"
 
 // .toFixed(2)
 
 const Home = () => {
-  const [showOnSale, setShowOnSale] = useState(true);
+  const [showOnSale, setShowOnSale] = useRecoilState(artStatusAtom)
+  const setArtWork = useSetRecoilState(artWorkAtom)
+  const artWork = useRecoilValue(onSaleOrSoldState)
 
-    //Construir lógica para agarrar la ruta del back a get Artworks, pasarlo al atom de artworks, y utilizarlo en el componente ArtCard para mapearlos.
-    
+  const { getAllPieces } = ArtFunctions()
+
+  useEffect(() => {
+    getAllPieces().then((res) => setArtWork(res))
+  }, [])
+
   return (
     <>
-      <div className={styles.homeTitle}>Explore
-      </div>
+      <div className={styles.homeTitle}>Explore</div>
       <div className={styles.homeOnSaleOrSold}>
         <button
           className={`${showOnSale ? styles.selected : ""}`}
@@ -27,9 +38,15 @@ const Home = () => {
           Sold
         </button>
       </div>
-      <ArtCard />
+      <div className={styles.homeGalleryContainer}>
+        {artWork.length ? (
+          artWork.map((piece) => <ArtCard piece={piece} />)
+        ) : (
+          <h1>Loading...</h1>
+        )}
+      </div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
