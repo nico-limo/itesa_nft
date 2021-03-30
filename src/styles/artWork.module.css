@@ -2,16 +2,21 @@ body {
     background-color: #f4f3f4;
 }
 
-.artWorkTitle {
-    height: 40vw;
-    color: black;
-    text-align: center;
+.artworkTitle {
+    background-image: linear-gradient(to right,#845fa1,#34283e);
+    height: 17vw;
+    border-bottom-right-radius: 15vw;
+    color: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 5vw;
     font-size: 4vw;
     font-weight: 600;
+    margin-bottom: 1.5vw;
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
 }
+
 .singleArtworkContainer {
     width: 100%;
     display: flex;
@@ -24,66 +29,52 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 4vw auto 8vw;
 }
+
 .divButtons {
-    margin-left: 27%;
-    margin-top: -3%;
+    position: absolute;
+    top: -4vw;
+    left: 5vw;
 }
+
 .divButtons button {
-    background-image: linear-gradient(to right,#845fa1,#34283e);
+    background-image: white;
     border: none;
     outline: none;
     height: 60%;
     border-radius: 150px;
-    font-size: 200%;
+    font-size: 2.8vw;
+    padding: 2.2vw;
     font-weight: 500;
     background-color: white;
     margin-right: 1vw;
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
 .ArtFeaturesContainer {
+    position: relative;
     background-color: white;
     height: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 0%;
 }
 
-.artDescriptionsLeft {
-    width: 50%;
+.artDescription {
+    margin-top: 5vw;
+    margin-left: 2vw;
+    margin-right: 5vw;
+    /* width: 42vw; */
     align-items:flex-start;
-}
-.artDescriptionsRight {
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: flex-start;
-}
-.artworkTitle {
-    margin-top: 3%;
-    margin-left: 6%;
-    margin-bottom: 1%;
-    font-size: 3vw;
-    font-weight: 600;
-}
-.artworkSubtitle {
-    margin-top: 3%;
-    margin-left: 6%;
+    margin-top: 6vw;
+    margin-left: 6vw;
     margin-bottom: 1%;
     font-size: 2vw;
-    font-weight: 600;
 }
-.artworkDescription {
-    margin-top: 3%;
-    margin-left: 6%;
-    margin-bottom: 1%;
-    font-size: 2vw;
-    /* font-weight: 600; */
-}
+
 .priceSubtitle {
     margin-top: 3%;
     margin-right: 6%;
@@ -99,3 +90,8 @@ body {
     font-weight: 600;
 }
 
+.buyButton {
+    background: rgb(231, 202, 127);
+    border: none;
+    outline: none;
+}
