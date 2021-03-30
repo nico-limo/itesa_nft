@@ -1,22 +1,29 @@
 import React, { useEffect } from "react";
-import { useRecoilState } from "recoil";
 
-import { userAtom, singlePieceAtom } from "../state/atoms";
-import { ArtWorkFunctions } from "../utils/firebase/artWork";
+import { userAtom, singlePieceIdAtom, artWorkAtom } from "../state/atoms";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
+import { singleArtworkState } from "../state/selectors";
+//import { ArtWorkFunctions } from "../utils/firebase/artWork";
 import styles from "../styles/artWork.module.css";
 
 const Artwork = ({ id }) => {
   const [user, setUser] = useRecoilState(userAtom);
-  const { artWork, getArtWork } = ArtWorkFunctions();
+  const setPieceIdAtom = useSetRecoilState(singlePieceIdAtom);
+  const singleArtWork = useRecoilValue(singleArtworkState);
+  //const artwork = useRecoilValue(artWorkAtom);
+  //const { artWork, getArtWork } = ArtWorkFunctions();
   // lógica para agarrar la ruta del back a get Artworks según el ID.
-
+  useEffect(() => {
+    setPieceIdAtom(id);
+    console.log(id);
+  }, []);
   return (
     <>
-      <div className={styles.artworkTitle}>The Cube</div>
+      <div className={styles.artworkTitle}>{singleArtWork?.title}</div>
       <div className={styles.singleArtworkContainer}>
         <img
           className={styles.singleArtworkImage}
-          src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
+          src={singleArtWork?.imgURI}
           alt=""
         />
       </div>
@@ -25,14 +32,12 @@ const Artwork = ({ id }) => {
           <button>@deeple</button>
         </div>
         <div className={styles.artDescription}>
-          This little dude is part of my ongoing series of Friends. Why are they
-          called Friends? The reason for that is easy. Every day the world shows
-          its ugliest sides and sometimes it's just too much to handle. There
-          are so many serious artworks out there on the cryptomarket and I want
-          to give people something to smile about.
+          {singleArtWork?.description}
         </div>
         <div className={styles.priceAndButtonContainer}>
-          <div className={styles.artworkPrice}>Price: 5 ETH</div>
+          <div className={styles.artworkPrice}>
+            Price: {singleArtWork?.price} ETH
+          </div>
           <button className={styles.buyButton}>Buy Now</button>
         </div>
       </div>
