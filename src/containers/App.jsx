@@ -12,6 +12,7 @@ import Profile from "./Profile"
 import EditProfile from "./EditProfile"
 import NewArtwork from "./NewArtwork"
 //utils
+import Test from "./Test"
 import { UserFunctions } from "../utils/firebase/authEmail";
 import { useEffect } from "react"
 
@@ -27,6 +28,7 @@ const App = () => {
     <div>
       <Switch>
         <Route exact path={"/"} component={Home} />
+        <Route exact path={"/test"} component={Test} />
         <Route path={"/login"} component={Login} />
         <Route path={"/register"} component={Register} />
         <Route exact path={"/creators"} component={Creators} />

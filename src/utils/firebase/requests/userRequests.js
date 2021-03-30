@@ -1,6 +1,5 @@
 import { db } from "../../../firebaseConfig";
 // Collections
-//const artWorkRef = db.collection('artWork');
 const usersReference = db.collection('Users')
 //---------------- USER FUNCTIONS------------------------
 export const newUser = async (user, username) => {

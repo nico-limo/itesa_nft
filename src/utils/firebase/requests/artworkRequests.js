@@ -27,9 +27,9 @@ export const ArtFunctions = () => {
         await artWorkRef.doc(`${res.id}`).update({ id: res.id })
     }
 
-    const updatePiece = async (e, title, description, price, onSale) => {
+    const updatePiece = async (e, title, description, price,id, onSale) => {
         e.preventDefault()
-        await artWorkRef.doc('the beholder').update({
+        await artWorkRef.doc(id).update({
             title, description, price, onSale // VER Q TIPO DE VALIDACION HACER, 
             //si sos el author o no, no deberia poder cambiarlo el q no es author
         })
@@ -42,15 +42,15 @@ export const ArtFunctions = () => {
         })
     }
 
-    const getAllPieces = async (id) => {
-        const snapshot = await artWorkRef.where('onSale', '==', false).get();
+    const getAllPieces = async () => {
+        const snapshot = await artWorkRef.get();
         if (snapshot.empty) {
             console.log('artwork pieces not found in db')
             return;
         }
-        let artwork = '';
+        let artwork = [];
         snapshot.forEach(doc => {
-            artwork = doc.data()
+            artwork = [...artwork,doc.data()]
         });
         return artwork;
     }
@@ -61,9 +61,9 @@ export const ArtFunctions = () => {
             console.log('artwork pieces not found in db')
             return;
         }
-        let artwork = '';
+        let artwork = [];
         snapshot.forEach(doc => {
-            artwork = doc.data()
+            artwork = [...artwork,doc.data()]
         });
         return artwork;
     }
@@ -74,12 +74,12 @@ export const ArtFunctions = () => {
             console.log('artwork pieces not found in db')
             return;
         }
-        let artwork = '';
+        let artwork = [];
         snapshot.forEach(doc => {
-            artwork = doc.data()
+            artwork = [...artwork,doc.data()]
         });
         return artwork;
     }
 
-    return { newPiece, updatePiece, buyPiece, getSoldPieces, getOnSalePieces }
+    return { newPiece, updatePiece, buyPiece, getAllPieces, getSoldPieces, getOnSalePieces }
 }

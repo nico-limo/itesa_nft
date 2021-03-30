@@ -10,7 +10,15 @@ export const userAtom = atom({
 
 export const artWorkAtom = atom({
     key: 'artWorkAtom',
-    default: {},
+    default: [],
+    persistence_UNSTABLE:{
+        type: 'log'
+    }
+})
+
+export const artStatusAtom = atom({
+    key: 'artStatusAtom',
+    default: true,
     persistence_UNSTABLE:{
         type: 'log'
     }
