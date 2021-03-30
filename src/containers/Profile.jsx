@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styles from "../styles/Profile.module.css"
-import { UserFunctions } from "../utils/firebase/authEmail";
+import { AuthFunctions } from "../utils/firebase/authEmail";
 //styles
 import form from "../styles/Form.module.css";
 
@@ -8,7 +8,7 @@ import form from "../styles/Form.module.css";
 
 const Profile = () => {
   const [showCreations, setShowCreations] = useState(true)
-  const { logOut } = UserFunctions();
+  const { logOut } = AuthFunctions();
 
   return (
     <>

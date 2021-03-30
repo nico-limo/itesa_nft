@@ -40,7 +40,7 @@ const Home = () => {
       </div>
       <div className={styles.homeGalleryContainer}>
         {artWork.length ? (
-          artWork.map((piece) => <ArtCard piece={piece} />)
+          artWork.map((piece) => <ArtCard key={piece.id} piece={piece} />)
         ) : (
           <h1>Loading...</h1>
         )}
