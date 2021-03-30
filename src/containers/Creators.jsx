@@ -17,6 +17,7 @@ const Creators = () => {
           <img
             className={styles.singleCreatorAvatar}
             src="https://static.wixstatic.com/media/a64726_ce7a64e6ade34b549d0b3d06963bead9~mv2.jpg/v1/fill/w_360,h_400,al_c,q_80,usm_0.66_1.00_0.01/a64726_ce7a64e6ade34b549d0b3d06963bead9~mv2.webp"
+            alt=""
           />
           <div className={styles.singleCreatorName}>@beeple</div>
           <div className={styles.singleCreatorDescription}>
@@ -34,6 +35,7 @@ const Creators = () => {
           <img
             className={styles.singleCreatorAvatar}
             src="https://static.wixstatic.com/media/a64726_ce7a64e6ade34b549d0b3d06963bead9~mv2.jpg/v1/fill/w_360,h_400,al_c,q_80,usm_0.66_1.00_0.01/a64726_ce7a64e6ade34b549d0b3d06963bead9~mv2.webp"
+            alt=""
           />
           <div className={styles.singleCreatorName}>@beeple</div>
           <div className={styles.singleCreatorDescription}>
@@ -51,6 +53,7 @@ const Creators = () => {
           <img
             className={styles.singleCreatorAvatar}
             src="https://static.wixstatic.com/media/a64726_ce7a64e6ade34b549d0b3d06963bead9~mv2.jpg/v1/fill/w_360,h_400,al_c,q_80,usm_0.66_1.00_0.01/a64726_ce7a64e6ade34b549d0b3d06963bead9~mv2.webp"
+            alt=""
           />
           <div className={styles.singleCreatorName}>@beeple</div>
           <div className={styles.singleCreatorDescription}>

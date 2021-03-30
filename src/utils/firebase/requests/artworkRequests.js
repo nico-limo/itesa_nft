@@ -1,16 +1,17 @@
 import { db } from "../../../firebaseConfig";
 //Recoil
-import { useRecoilState } from "recoil";
-import { userAtom } from "../../../state/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { userAtom, artWorkAtom } from "../../../state/atoms";
 // Collections
 //---------------- ARTWORK FUNCTIONS------------------------
 
 export const ArtFunctions = () => {
     const artWorkRef = db.collection('artWork');
-    const [user, setUser] = useRecoilState(userAtom);
+    const user = useRecoilValue(userAtom);
+    const setArtWork = useSetRecoilState(artWorkAtom)
+
     const newPiece = async (e, title, imgURI, description, price) => {
         e.preventDefault()
-        const newId = title.toLowerCase()
         const res = await artWorkRef.add({
             created: new Date(),
             token: null,
@@ -23,7 +24,6 @@ export const ArtFunctions = () => {
             onSale: true,
             id: ''
         })
-        console.log(res.id)
         await artWorkRef.doc(`${res.id}`).update({ id: res.id })
     }
 
@@ -40,6 +40,19 @@ export const ArtFunctions = () => {
             ownerId,
             onSale: false
         })
+    }
+
+    const getAllPieces = async (id) => {
+        const snapshot = await artWorkRef.where('onSale', '==', false).get();
+        if (snapshot.empty) {
+            console.log('artwork pieces not found in db')
+            return;
+        }
+        let artwork = '';
+        snapshot.forEach(doc => {
+            artwork = doc.data()
+        });
+        return artwork;
     }
 
     const getSoldPieces = async (id) => {
