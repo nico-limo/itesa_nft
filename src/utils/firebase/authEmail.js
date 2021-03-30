@@ -4,11 +4,11 @@ import { newUser } from "./requests/userRequests";
 //FireStore
 import { getUser } from '../firebase/requests/userRequests';
 //Recoil
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { userAtom } from "../../state/atoms";
 
 export const UserFunctions = () => {
-  const [user, setUser] = useRecoilState(userAtom);
+  const setUser = useSetRecoilState(userAtom);
 
   const login = (event, email, password) => {
     event.preventDefault();
