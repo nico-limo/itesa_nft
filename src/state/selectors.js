@@ -11,3 +11,12 @@ export const onSaleOrSoldState = selector({
     }
 })
 
+/* export const sigleArtworkState = selector({
+    key: 'sigleArtworkState',
+    get: ({ get }) => {
+        const artWorkList = get(artWorkAtom);
+        // const artWorksFilter = artWorkList.filter(piece => piece.id == id);
+        return artWorksFilter;
+    }
+})
+ */
