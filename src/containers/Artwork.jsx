@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { useRecoilState } from "recoil"
+import React, { useEffect } from "react"
+import { useRecoilState } from "recoil";
 
 import { userAtom } from "../state/atoms"
 import { ArtWorkFunctions } from "../utils/firebase/artWork"
@@ -8,6 +8,7 @@ import styles from "../styles/artWork.module.css"
 const Artwork = ({ match }) => {
   const [user, setUser] = useRecoilState(userAtom)
   const { artWork, getArtWork } = ArtWorkFunctions()
+  // lógica para agarrar la ruta del back a get Artworks según el ID.
 
   return (
     <>
