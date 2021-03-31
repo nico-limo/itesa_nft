@@ -1,10 +1,11 @@
 import { db } from "../../../firebaseConfig";
 //Recoil
-import {userAtom} from "../../../state/atoms";
+import { userAtom } from "../../../state/atoms";
 import { useRecoilValue } from "recoil";
 
 export const UserFunctions = () => {
   const user = useRecoilValue(userAtom);
+
   const artWorkRef = db.collection('artWork');
   const usersReference = db.collection("Users");
 

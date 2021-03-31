@@ -61,13 +61,13 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 0%;
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
 .artDescription {
     margin-top: 5vw;
     margin-left: 2vw;
     margin-right: 5vw;
-    /* width: 42vw; */
     align-items:flex-start;
     margin-top: 6vw;
     margin-left: 6vw;
@@ -82,11 +82,22 @@ body {
     font-size: 2vw;
     font-weight: 600;
 }
+
+.priceAndButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 6vw;
+    margin-right: 6vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}
+
 .artworkPrice {
     margin-top: 3%;
     margin-right: 6%;
     margin-bottom: 1%;
-    font-size: 2vw;
+    font-size: 3vw;
     font-weight: 600;
 }
 
@@ -94,4 +105,9 @@ body {
     background: rgb(231, 202, 127);
     border: none;
     outline: none;
+    width: 30vw;
+    height: 7vw;
+    font-size: 2vw;
+    font-weight: 400;
+    border-radius: 1vw;
 }
