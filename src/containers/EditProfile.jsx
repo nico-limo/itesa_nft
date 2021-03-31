@@ -21,7 +21,7 @@ const EditProfile = () => {
               e,
               description.value,
               photo_picture.value,
-              main_picture
+              main_picture.value
             )
           }
         >
