@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 //React-router-dom
 import { Route, Switch } from "react-router-dom";
 //Components
@@ -14,14 +14,16 @@ import NewArtwork from "./NewArtwork";
 //utils
 import Test from "./Test";
 import { AuthFunctions } from "../utils/firebase/authEmail";
-import { useEffect } from "react";
+import { useRecoilValue } from "recoil"
+import { userAtom } from "../state/atoms";
 
 const App = () => {
   const { isUser } = AuthFunctions();
+  const user = useRecoilValue(userAtom);
 
-  useEffect(() => {
-    isUser();
-  }, []);
+  useEffect(() => isUser(), []);
+
+  useEffect(() => {console.log("test");}, [user])
 
   return (
     <div>

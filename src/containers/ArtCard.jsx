@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 const ArtCard = ({ piece }) => {
   return (
     <div key={piece.id} className={styles.homeSingleArtworkContainer}>
-      <Link to={`/artwork/${piece.id}`}>
+      <Link className={styles.link} to={`/artwork/${piece.id}`}>
         <img
           className={styles.homeSingleArtworkImage}
           src={piece.imgURI}
