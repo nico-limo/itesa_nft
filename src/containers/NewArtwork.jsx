@@ -14,8 +14,8 @@ const NewArtwork = () => {
   const { updatePiece } = ArtFunctions();
   return (
     <div>
+      <div className={form.title}>Create new art piece</div>
       <div className={form.container}>
-        <h2>Create new art piece:</h2>
         <form className={form.form}>
           <input
             className={form.input}

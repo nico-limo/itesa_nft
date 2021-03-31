@@ -1,19 +1,19 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 //styles
-import form from "../styles/Form.module.css"
+import form from "../styles/Form.module.css";
 //utils
-import { useInput } from "../utils/hooks/useInput"
-import { AuthFunctions } from "../utils/firebase/authEmail"
+import { useInput } from "../utils/hooks/useInput";
+import { AuthFunctions } from "../utils/firebase/authEmail";
 
 const Login = () => {
-  const email = useInput("email")
-  const password = useInput("password")
-  const { login } = AuthFunctions()
+  const email = useInput("email");
+  const password = useInput("password");
+  const { login } = AuthFunctions();
 
   return (
-    <>
-      <div className={form.title}>Log In</div>
+    <div>
+      <div className={form.title}>Log in</div>
       <div className={form.container}>
         <div>
           <form className={form.form}>
@@ -45,8 +45,8 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default Login
+export default Login;
