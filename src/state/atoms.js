@@ -8,6 +8,14 @@ export const userAtom = atom({
     }
 })
 
+export const userUid = atom({
+    key: 'userUid',
+    default: '',
+    persistence_UNSTABLE: {
+        type: 'log'
+    }
+})
+
 export const usersArrAtom = atom({
     key: 'usersArrAtom',
     default: [],

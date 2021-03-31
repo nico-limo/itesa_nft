@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { artWorkAtom, artStatusAtom, singlePieceIdAtom } from "./atoms";
+import { artWorkAtom, artStatusAtom, singlePieceIdAtom, userUid, usersArrAtom } from "./atoms";
 import { ArtFunctions } from '../utils/firebase/requests/artworkRequests';
 
 export const onSaleOrSoldState = selector({
@@ -9,6 +9,16 @@ export const onSaleOrSoldState = selector({
         const artWorkList = get(artWorkAtom);
         const artWorksFilter = artWorkList.filter(piece => piece.onSale == status);
         return artWorksFilter;
+    }
+})
+
+export const BuyerOrSeller = selector({
+    key: "BuyerOrSeller",
+    get: ({ get }) => {
+        const uid = get(userUid)
+        const users = get(usersArrAtom)
+        const userProfile = users.filter(user => user.uid == uid);
+        return userProfile[0].uid
     }
 })
 

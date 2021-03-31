@@ -1,5 +1,7 @@
 import React from "react"
 import styles from "../styles/Creators.module.css"
+import style from "../styles/Home.module.css"
+import { Link } from "react-router-dom"
 
 // .toFixed(2)
 
@@ -18,7 +20,9 @@ const CreatorsCard = ({ user }) => {
             src={user.photo_profile}
             alt=""
           />
-          <div className={styles.singleCreatorName}>{user.username}</div>
+          <Link className={style.link} to={`/creator/${user.uid}`}>
+            <div className={styles.singleCreatorName}>@{user.username}</div>
+          </Link>
           <div className={styles.singleCreatorDescription}>
             {user.description}
           </div>

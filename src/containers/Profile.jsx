@@ -1,14 +1,31 @@
-import React, { useState } from "react"
-import styles from "../styles/Profile.module.css"
+import React, { useEffect, useState } from "react"
 import { AuthFunctions } from "../utils/firebase/authEmail";
+import { userAtom, userUid } from "../state/atoms"
+import { BuyerOrSeller } from "../state/selectors"
+
 //styles
-import form from "../styles/Form.module.css";
+import styles from "../styles/Profile.module.css"
+import { useRecoilState, useRecoilValue } from "recoil";
+
 
 // .toFixed(2)
 
-const Profile = () => {
+const Profile = ({ match }) => {
   const [showCreations, setShowCreations] = useState(true)
   const { logOut } = AuthFunctions();
+
+  const user = useRecoilValue(userAtom)
+  const [userId, setUserId] = useRecoilState(userUid)
+  const userProfile = useRecoilValue(BuyerOrSeller)
+
+  console.log("user", user)
+  
+  useEffect(() => {
+    let url = match.params.id
+      setUserId(url)
+      if (url) profile = userProfile
+      profile = user
+  }, [])
 
   return (
     <>
