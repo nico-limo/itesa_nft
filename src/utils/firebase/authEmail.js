@@ -1,14 +1,14 @@
 //Firebase Auth
 import { auth } from "../../firebaseConfig";
-import { newUser } from "./requests/userRequests";
 //FireStore
-import { getUser } from '../firebase/requests/userRequests';
+import { UserFunctions } from '../firebase/requests/userRequests';
 //Recoil
 import { useSetRecoilState } from "recoil";
 import { userAtom } from "../../state/atoms";
 
-export const UserFunctions = () => {
+export const AuthFunctions = () => {
   const setUser = useSetRecoilState(userAtom);
+  const {getUser, newUser  } = UserFunctions();
 
   const login = (event, email, password) => {
     event.preventDefault();
@@ -16,7 +16,7 @@ export const UserFunctions = () => {
       .signInWithEmailAndPassword(email, password)
       .then((userAuth) => {
         getUser(userAuth.user.uid)
-          .then(res => setUser({ email: res.email, uid: res.uid, username: res.username }))
+          .then(res => setUser({ email: res.email, uid: res.uid, username: res.username, photo_profile: res.photo_profile }))
       })
       .catch((e) => console.log(e.message));
   };
@@ -35,7 +35,7 @@ export const UserFunctions = () => {
     auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
         getUser(userAuth.uid)
-          .then(res => setUser({ email: res.email, uid: res.uid, username: res.username }))
+          .then(res => setUser({ email: res.email, uid: res.uid, username: res.username, photo_profile: res.photo_profile }))
       } else {
         console.log("no user logged in");
       }

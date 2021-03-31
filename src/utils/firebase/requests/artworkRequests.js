@@ -1,14 +1,13 @@
 import { db } from "../../../firebaseConfig";
 //Recoil
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { userAtom, artWorkAtom } from "../../../state/atoms";
-// Collections
-//---------------- ARTWORK FUNCTIONS------------------------
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../../../state/atoms";
+
+
 
 export const ArtFunctions = () => {
     const artWorkRef = db.collection('artWork');
     const user = useRecoilValue(userAtom);
-    const setArtWork = useSetRecoilState(artWorkAtom)
 
     const newPiece = async (e, title, imgURI, description, price) => {
         e.preventDefault()
@@ -22,7 +21,9 @@ export const ArtFunctions = () => {
             description,
             price,
             onSale: true,
-            id: ''
+            id: '',
+            username: user.username,
+            photo_profile: user.photo_profile
         })
         await artWorkRef.doc(`${res.id}`).update({ id: res.id })
     }
@@ -34,6 +35,7 @@ export const ArtFunctions = () => {
             //si sos el author o no, no deberia poder cambiarlo el q no es author
         })
     }
+
 
     const buyPiece = async (ownerId) => {
         await artWorkRef.doc().update({
