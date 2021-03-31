@@ -1,10 +1,11 @@
 import { db } from "../../../firebaseConfig";
 //Recoil
-import {userAtom} from "../../../state/atoms";
+import { userAtom } from "../../../state/atoms";
 import { useRecoilValue } from "recoil";
 
 export const UserFunctions = () => {
   const user = useRecoilValue(userAtom);
+
   const artWorkRef = db.collection('artWork');
   const usersReference = db.collection("Users");
 
@@ -15,7 +16,7 @@ export const UserFunctions = () => {
       username: username,
       description: "",
       photo_profile:
-        "https://firebasestorage.googleapis.com/v0/b/itesa-nft.appspot.com/o/profile.png?alt=media&token=af72068f-1386-4f6f-96be-4dd99d2e9870",
+        "https://firebasestorage.googleapis.com/v0/b/itesa-nft.appspot.com/o/profile.jpg?alt=media&token=b4f3f50c-2f31-434f-8ab1-1e2135b2f3b8",
       uid: user.user.uid,
       created: new Date(),
     });
