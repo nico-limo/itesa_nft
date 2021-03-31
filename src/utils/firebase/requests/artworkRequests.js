@@ -28,7 +28,7 @@ export const ArtFunctions = () => {
         await artWorkRef.doc(`${res.id}`).update({ id: res.id })
     }
 
-    const updatePiece = async (e, title, description, price,id, onSale) => {
+    const updatePiece = async (e, title, description, price, id, onSale) => {
         e.preventDefault()
         await artWorkRef.doc(id).update({
             title, description, price, onSale // VER Q TIPO DE VALIDACION HACER, 
@@ -52,7 +52,7 @@ export const ArtFunctions = () => {
         }
         let artwork = [];
         snapshot.forEach(doc => {
-            artwork = [...artwork,doc.data()]
+            artwork = [...artwork, doc.data()]
         });
         return artwork;
     }
@@ -65,7 +65,7 @@ export const ArtFunctions = () => {
         }
         let artwork = [];
         snapshot.forEach(doc => {
-            artwork = [...artwork,doc.data()]
+            artwork = [...artwork, doc.data()]
         });
         return artwork;
     }
@@ -78,10 +78,22 @@ export const ArtFunctions = () => {
         }
         let artwork = [];
         snapshot.forEach(doc => {
-            artwork = [...artwork,doc.data()]
+            artwork = [...artwork, doc.data()]
         });
         return artwork;
     }
 
-    return { newPiece, updatePiece, buyPiece, getAllPieces, getSoldPieces, getOnSalePieces }
+    const getSinglePiece = async (id) => {
+        const snapshot = await artWorkRef.where('id', '==', `${id}`).get();
+        if (snapshot.empty) {
+            console.log('piece not found in db')
+            return;
+        }
+        let piece = '';
+        snapshot.forEach(doc => {
+            piece = doc.data()
+        });
+        return piece;
+    }
+    return { newPiece, updatePiece, buyPiece, getAllPieces, getSoldPieces, getOnSalePieces, getSinglePiece }
 }

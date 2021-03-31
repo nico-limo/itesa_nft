@@ -1,28 +1,27 @@
-import React from "react"
+import React from "react";
 //React-router-dom
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch } from "react-router-dom";
 //Components
-import Login from "./Login"
-import Register from "./Register"
-import Home from "./Home"
-import NavBar from "./NavBar"
-import Creators from "./Creators"
-import Artwork from "./Artwork"
-import Profile from "./Profile"
-import EditProfile from "./EditProfile"
-import NewArtwork from "./NewArtwork"
+import Login from "./Login";
+import Register from "./Register";
+import Home from "./Home";
+import NavBar from "./NavBar";
+import Creators from "./Creators";
+import Artwork from "./Artwork";
+import Profile from "./Profile";
+import EditProfile from "./EditProfile";
+import NewArtwork from "./NewArtwork";
 //utils
-import Test from "./Test"
+import Test from "./Test";
 import { AuthFunctions } from "../utils/firebase/authEmail";
-import { useEffect } from "react"
+import { useEffect } from "react";
 
 const App = () => {
-  const {isUser} =  AuthFunctions();
-  
-  useEffect(() => {
-    isUser()
-  }, [])
+  const { isUser } = AuthFunctions();
 
+  useEffect(() => {
+    isUser();
+  }, []);
 
   return (
     <div>
@@ -39,14 +38,14 @@ const App = () => {
         <Route path={"/artwork/create"} component={NewArtwork} />
         <Route
           path={"/artwork/:id"}
-          render={({ match }) => <Artwork match={match} />}
+          render={({ match }) => <Artwork id={match.params.id} />}
         />
         <Route exact path={"/me"} component={Profile} />
         <Route exact path={"/me/edit"} component={EditProfile} />
       </Switch>
       <NavBar />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

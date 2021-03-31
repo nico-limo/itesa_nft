@@ -3,7 +3,7 @@ import { atom } from "recoil";
 export const userAtom = atom({
     key: 'userAtom',
     default: {},
-    persistence_UNSTABLE:{
+    persistence_UNSTABLE: {
         type: 'log'
     }
 })
@@ -19,7 +19,7 @@ export const usersArrAtom = atom({
 export const artWorkAtom = atom({
     key: 'artWorkAtom',
     default: [],
-    persistence_UNSTABLE:{
+    persistence_UNSTABLE: {
         type: 'log'
     }
 })
@@ -27,7 +27,14 @@ export const artWorkAtom = atom({
 export const artStatusAtom = atom({
     key: 'artStatusAtom',
     default: true,
-    persistence_UNSTABLE:{
+    persistence_UNSTABLE: {
+        type: 'log'
+    }
+})
+export const singlePieceAtom = atom({
+    key: 'singlePieceAtom',
+    default: '',
+    persistence_UNSTABLE: {
         type: 'log'
     }
 })
