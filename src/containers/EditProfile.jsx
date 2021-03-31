@@ -1,26 +1,27 @@
 import React from "react";
 import { UserFunctions } from "../utils/firebase/requests/userRequests";
-import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
 import { useInput } from "../utils/hooks/useInput";
 const EditProfile = () => {
-    const { userAndPieceUpdate } = ArtFunctions();
     const {updateUser } = UserFunctions();
-    const imgURI = useInput("imgURI");
+    const photo_picture = useInput("photo_picture");
     const description = useInput("description");
+    const main_picture = useInput("main_picture");
 
   return (
     <div>
       <h2>Edit your profile</h2>
       <form>
         <input type="text" {...description} placeholder="description" />
-        <input type="text" {...imgURI} placeholder="profile image" />
+        <input type="text" {...photo_picture} placeholder="profile image" />
+        <input type="text" {...main_picture} placeholder="main image" />
         <button
           type="submit"
           onClick={(e) =>
             updateUser(
               e,
               description.value,
-              imgURI.value
+              photo_picture.value,
+              main_picture
             )
           }
         >

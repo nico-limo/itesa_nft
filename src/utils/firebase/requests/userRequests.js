@@ -13,19 +13,20 @@ export const UserFunctions = () => {
     await usersReference.doc().set({
       email: user.user.email,
       username: username,
-      description: "",
+      description: null,
       photo_profile:
         "https://firebasestorage.googleapis.com/v0/b/itesa-nft.appspot.com/o/profile.png?alt=media&token=af72068f-1386-4f6f-96be-4dd99d2e9870",
+      main_picture: null,
       uid: user.user.uid,
       created: new Date(),
     });
   };
-  const updateUser = async (e, description, photo_profile) => {
+  const updateUser = async (e, description, photo_profile, main_picture) => {
     e.preventDefault();
     const snapshot = await usersReference.where("uid", "==", user.uid).get();
     snapshot.forEach((doc) => {
         doc.ref.update({
-          description,photo_profile
+          description,photo_profile,main_picture
       });
     });
     const snapshot2 = await artWorkRef.where("authorId", "==", user.uid).get();
