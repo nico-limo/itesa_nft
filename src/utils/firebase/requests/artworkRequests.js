@@ -1,14 +1,13 @@
 import { db } from "../../../firebaseConfig";
 //Recoil
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { userAtom, artWorkAtom } from "../../../state/atoms";
-// Collections
-//---------------- ARTWORK FUNCTIONS------------------------
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../../../state/atoms";
+
+
 
 export const ArtFunctions = () => {
     const artWorkRef = db.collection('artWork');
     const user = useRecoilValue(userAtom);
-    const setArtWork = useSetRecoilState(artWorkAtom)
 
     const newPiece = async (e, title, imgURI, description, price) => {
         e.preventDefault()
@@ -22,18 +21,21 @@ export const ArtFunctions = () => {
             description,
             price,
             onSale: true,
-            id: ''
+            id: '',
+            username: user.username,
+            photo_profile: user.photo_profile
         })
         await artWorkRef.doc(`${res.id}`).update({ id: res.id })
     }
 
-    const updatePiece = async (e, title, description, price,id, onSale) => {
+    const updatePiece = async (e, title, description, price, id, onSale) => {
         e.preventDefault()
         await artWorkRef.doc(id).update({
             title, description, price, onSale // VER Q TIPO DE VALIDACION HACER, 
             //si sos el author o no, no deberia poder cambiarlo el q no es author
         })
     }
+
 
     const buyPiece = async (ownerId) => {
         await artWorkRef.doc().update({
@@ -50,7 +52,7 @@ export const ArtFunctions = () => {
         }
         let artwork = [];
         snapshot.forEach(doc => {
-            artwork = [...artwork,doc.data()]
+            artwork = [...artwork, doc.data()]
         });
         return artwork;
     }
@@ -63,7 +65,7 @@ export const ArtFunctions = () => {
         }
         let artwork = [];
         snapshot.forEach(doc => {
-            artwork = [...artwork,doc.data()]
+            artwork = [...artwork, doc.data()]
         });
         return artwork;
     }
@@ -76,10 +78,22 @@ export const ArtFunctions = () => {
         }
         let artwork = [];
         snapshot.forEach(doc => {
-            artwork = [...artwork,doc.data()]
+            artwork = [...artwork, doc.data()]
         });
         return artwork;
     }
 
-    return { newPiece, updatePiece, buyPiece, getAllPieces, getSoldPieces, getOnSalePieces }
+    const getSinglePiece = async (id) => {
+        const snapshot = await artWorkRef.where('id', '==', `${id}`).get();
+        if (snapshot.empty) {
+            console.log('piece not found in db')
+            return;
+        }
+        let piece = '';
+        snapshot.forEach(doc => {
+            piece = doc.data()
+        });
+        return piece;
+    }
+    return { newPiece, updatePiece, buyPiece, getAllPieces, getSoldPieces, getOnSalePieces, getSinglePiece }
 }

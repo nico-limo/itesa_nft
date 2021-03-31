@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
+
 //CSS
 import styles from "../styles/Home.module.css"
+import spinners from "../styles/Spinners.module.css"
 //Recoil
 import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil"
 import { artWorkAtom, artStatusAtom } from "../state/atoms"
@@ -40,9 +42,13 @@ const Home = () => {
       </div>
       <div className={styles.homeGalleryContainer}>
         {artWork.length ? (
-          artWork.map((piece) => <ArtCard piece={piece} />)
+          artWork.map((piece) => <ArtCard key={piece.id} piece={piece} />)
         ) : (
-          <h1>Loading...</h1>
+          <div className={spinners.spinnerBox}>
+            <div className={spinners.circleBorder}>
+              <div className={spinners.circleCore}></div>
+            </div>
+          </div>
         )}
       </div>
     </>

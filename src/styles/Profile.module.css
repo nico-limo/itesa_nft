@@ -25,6 +25,7 @@
   height: 15vw;
   object-fit: cover;
   border-radius: 100%;
+  background-color: rgb(244, 246, 244);
   border: rgb(244, 246, 244) 1vw solid;
   /* margin-right: 1vw;
     border-image-slice: 1;

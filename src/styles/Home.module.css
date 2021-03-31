@@ -53,6 +53,14 @@
     justify-content: space-between;
 }
 
+.homeSingleArtworkContainer:link {
+  color:black
+}
+
+.homeSingleArtworkContainer:visited {
+  color:black
+}
+
 .homeSingleArtworkImage {
   width: 100%;
   height: 50vw;
