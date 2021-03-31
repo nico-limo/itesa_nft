@@ -61,9 +61,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className={form.form}>
+      {/* <div className={form.form}>
       <button onClick={(event) => logOut(event)}>Sign Out</button>
-    </div>
+    </div> */}
     </>
   )
 }

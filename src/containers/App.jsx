@@ -12,7 +12,6 @@ import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import NewArtwork from "./NewArtwork";
 //utils
-import Test from "./Test";
 import { AuthFunctions } from "../utils/firebase/authEmail";
 import { useRecoilValue } from "recoil"
 import { userAtom } from "../state/atoms";
@@ -29,7 +28,6 @@ const App = () => {
     <div>
       <Switch>
         <Route exact path={"/"} component={Home} />
-        <Route exact path={"/test"} component={Test} />
         <Route path={"/login"} component={Login} />
         <Route path={"/register"} component={Register} />
         <Route exact path={"/creators"} component={Creators} />

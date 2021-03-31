@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 
 //CSS
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home.module.css"
+import spinners from "../styles/Spinners.module.css"
 //Recoil
-import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
-import { artWorkAtom, artStatusAtom } from "../state/atoms";
-import { onSaleOrSoldState } from "../state/selectors";
-import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
-import ArtCard from "./ArtCard";
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil"
+import { artWorkAtom, artStatusAtom } from "../state/atoms"
+import { onSaleOrSoldState } from "../state/selectors"
+import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
+import ArtCard from "./ArtCard"
 
 // .toFixed(2)
 
 const Home = () => {
-  const [showOnSale, setShowOnSale] = useRecoilState(artStatusAtom);
-  const setArtWork = useSetRecoilState(artWorkAtom);
-  const artWork = useRecoilValue(onSaleOrSoldState);
+  const [showOnSale, setShowOnSale] = useRecoilState(artStatusAtom)
+  const setArtWork = useSetRecoilState(artWorkAtom)
+  const artWork = useRecoilValue(onSaleOrSoldState)
 
-  const { getAllPieces } = ArtFunctions();
+  const { getAllPieces } = ArtFunctions()
 
   useEffect(() => {
-    getAllPieces().then((res) => setArtWork(res));
-  }, []);
+    getAllPieces().then((res) => setArtWork(res))
+  }, [])
 
   return (
     <>
@@ -43,11 +44,15 @@ const Home = () => {
         {artWork.length ? (
           artWork.map((piece) => <ArtCard key={piece.id} piece={piece} />)
         ) : (
-          <h1>Loading...</h1>
+          <div className={spinners.spinnerBox}>
+            <div className={spinners.circleBorder}>
+              <div className={spinners.circleCore}></div>
+            </div>
+          </div>
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

@@ -38,3 +38,11 @@ export const singlePieceAtom = atom({
         type: 'log'
     }
 })
+
+export const formErrorAtom = atom({
+    key: 'formErrorAtom',
+    default: '',
+    persistence_UNSTABLE: {
+        type: 'log'
+    }
+})

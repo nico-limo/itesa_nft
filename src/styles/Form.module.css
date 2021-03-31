@@ -10,7 +10,7 @@
   font-size: 4vw;
   font-weight: 600;
   margin-bottom: 1.5vw;
-  box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
 }
 
 .container {
@@ -19,6 +19,7 @@
   flex-direction: column;
   align-items: center;
   /* justify-content: start; */
+  /* width: 80vw; */
 }
 
 .form {
@@ -35,7 +36,7 @@
   color: #000;
   background-color: #e8eaf6;
   border: none;
-  border-radius: 5px;
+  border-radius: 0.5vw;
 }
 .form input:hover {
   transition: 0.5s ease;
@@ -49,7 +50,7 @@
   -moz-appearance: none;
   cursor: pointer;
   padding: 2.5vw 5vw 2.5vw 5vw;
-  border-radius: 5px;
+  border-radius: 0.5vw;
   color: #fff;
   font-size: 1rem;
   font-weight: 700;
@@ -57,6 +58,7 @@
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.13);
   transition: all 0.2s ease;
   font-size: 2.5vw;
+  width: 90vw;
 }
 .form button:hover {
   background: darken(rgb(231, 202, 127), 2%);
@@ -78,12 +80,46 @@
 }
 .link {
   text-decoration: none;
-  color: inherit;
+  color: black;
+  font-size: 2.5vw;
 }
 .link:hover {
   cursor: pointer;
 }
 
+.link:visited {
+  color: black;
+}
+
+.link:link {
+  color: black;
+}
+
+.error {
+  margin-top: 3vw;
+  color: #cc0033;
+  font-size: 2.5vw;
+  text-align: center;
+  align-self: center;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  background-color: #fce4e4;
+  border: 0.2vw solid #fcc2c3;
+  border-radius: 0.5vw;
+  padding: 3vw 5vw;
+  width: 80vw;
+}
+
 .forgotPassword {
-  font-size: 1.75vw;
+  font-size: 2.5vw;
+  text-align: left;
+  /* margin-right: 5vw; */
+}
+
+.forgotAndSignUpContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90vw;
+  margin-top: 1vw;
 }

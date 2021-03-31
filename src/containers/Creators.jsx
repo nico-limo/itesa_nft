@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import styles from "../styles/Creators.module.css"
+import spinners from "../styles/Spinners.module.css"
 import CreatorsCard from "./CreatorsCard"
 
 import { usersArrAtom } from "../state/atoms"
@@ -22,7 +23,11 @@ const Creators = () => {
       {creators.length ? (
           creators.map((user) => <CreatorsCard key={user.uid} user={user} />)
         ) : (
-          <h1>Loading...</h1>
+          <div className={spinners.spinnerBox}>
+          <div className={spinners.circleBorder}>
+            <div className={spinners.circleCore}></div>
+          </div>
+        </div>
         )}
       </div>
     </>

@@ -1,13 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 //CSS
-import styles from "../styles/NavBar.module.css";
+import styles from "../styles/NavBar.module.css"
 //Recoil
-import { useRecoilState } from "recoil";
-import { userAtom } from "../state/atoms";
+import { useRecoilState } from "recoil"
+import { userAtom } from "../state/atoms"
+
+import { AuthFunctions } from "../utils/firebase/authEmail";
 
 const NavBar = () => {
-  const [user, setuser] = useRecoilState(userAtom);
+  const [user, setuser] = useRecoilState(userAtom)
+  const { logOut } = AuthFunctions();
+
   return (
     <div className={styles.navbarContainer}>
       <Link to="/">
@@ -24,6 +28,7 @@ const NavBar = () => {
           <Link to="/me">
             <div>Profile</div>
           </Link>
+            <div onClick={(event) => logOut(event)}>Sign Out</div>
         </>
       ) : (
         <>
@@ -36,7 +41,7 @@ const NavBar = () => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar
