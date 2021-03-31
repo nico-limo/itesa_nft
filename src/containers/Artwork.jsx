@@ -1,29 +1,26 @@
 import React, { useEffect } from "react";
 
-import { userAtom, singlePieceIdAtom, artWorkAtom } from "../state/atoms";
+import { userAtom, singlePieceAtom, artWorkAtom } from "../state/atoms";
 import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
-import { singleArtworkState } from "../state/selectors";
-//import { ArtWorkFunctions } from "../utils/firebase/artWork";
+import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
 import styles from "../styles/artWork.module.css";
 
 const Artwork = ({ id }) => {
-  const [user, setUser] = useRecoilState(userAtom);
-  const setPieceIdAtom = useSetRecoilState(singlePieceIdAtom);
-  const singleArtWork = useRecoilValue(singleArtworkState);
-  //const artwork = useRecoilValue(artWorkAtom);
-  //const { artWork, getArtWork } = ArtWorkFunctions();
-  // lógica para agarrar la ruta del back a get Artworks según el ID.
+  const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom);
+  const { getSinglePiece } = ArtFunctions();
+
   useEffect(() => {
-    setPieceIdAtom(id);
-    console.log(id);
+    getSinglePiece(id).then((res) => {
+      setSinglePieceAtom(res);
+    });
   }, []);
   return (
     <>
-      <div className={styles.artworkTitle}>{singleArtWork?.title}</div>
+      <div className={styles.artworkTitle}>{singlePiece?.title}</div>
       <div className={styles.singleArtworkContainer}>
         <img
           className={styles.singleArtworkImage}
-          src={singleArtWork?.imgURI}
+          src={singlePiece?.imgURI}
           alt=""
         />
       </div>
@@ -31,12 +28,10 @@ const Artwork = ({ id }) => {
         <div className={styles.divButtons}>
           <button>@deeple</button>
         </div>
-        <div className={styles.artDescription}>
-          {singleArtWork?.description}
-        </div>
+        <div className={styles.artDescription}>{singlePiece?.description}</div>
         <div className={styles.priceAndButtonContainer}>
           <div className={styles.artworkPrice}>
-            Price: {singleArtWork?.price} ETH
+            Price: {singlePiece?.price} ETH
           </div>
           <button className={styles.buyButton}>Buy Now</button>
         </div>

@@ -12,18 +12,8 @@ export const onSaleOrSoldState = selector({
     }
 })
 
-/* export const singleArtworkState = selector({
-    key: 'singleArtworkState',
-    get: async ({ get }) => {
-        const singleId = get(singlePieceIdAtom);
-        const { getSinglePiece } = ArtFunctions(); //ESTO HAY QUE VERLO
-        console.log(singleId)
-        const piece = await getSinglePiece(singleId)
-        return piece;
-    }
-}) */
 
-export const singleArtworkState = selector({
+/* export const singleArtworkState = selector({
     key: 'singleArtworkState',
     get: ({ get }) => {
         const artWorkList = get(artWorkAtom);
@@ -32,4 +22,4 @@ export const singleArtworkState = selector({
         console.log(pieceFilter[0])
         return pieceFilter[0];
     }
-})
+}) */

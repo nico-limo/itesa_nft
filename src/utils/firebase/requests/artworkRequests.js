@@ -91,7 +91,6 @@ export const ArtFunctions = () => {
         snapshot.forEach(doc => {
             piece = doc.data()
         });
-        console.log('DE FIREBASE', piece)
         return piece;
     }
     return { newPiece, updatePiece, buyPiece, getAllPieces, getSoldPieces, getOnSalePieces, getSinglePiece }

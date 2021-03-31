@@ -23,8 +23,8 @@ export const artStatusAtom = atom({
         type: 'log'
     }
 })
-export const singlePieceIdAtom = atom({
-    key: 'singleArtPieceAtom',
+export const singlePieceAtom = atom({
+    key: 'singlePieceAtom',
     default: '',
     persistence_UNSTABLE: {
         type: 'log'
