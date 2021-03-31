@@ -5,10 +5,12 @@ import { UserFunctions } from '../firebase/requests/userRequests';
 //Recoil
 import { useSetRecoilState } from "recoil";
 import { userAtom } from "../../state/atoms";
-
+// React Router Dom
+import { useHistory } from "react-router-dom"
 export const AuthFunctions = () => {
   const setUser = useSetRecoilState(userAtom);
   const {getUser, newUser  } = UserFunctions();
+  const history = useHistory();
 
   const login = (event, email, password) => {
     event.preventDefault();
@@ -42,9 +44,10 @@ export const AuthFunctions = () => {
     });
   };
 
-  const logOut = (event) => {
-    event.preventDefault();
+  const logOut = () => {
     auth.signOut();
+    setUser({});
+    history.push("/")
   };
 
   return { login, register, isUser, logOut };
