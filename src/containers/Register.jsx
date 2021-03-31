@@ -4,13 +4,13 @@ import { Link } from "react-router-dom"
 import form from "../styles/Form.module.css"
 //utils
 import { useInput } from "../utils/hooks/useInput"
-import { UserFunctions } from "../utils/firebase/authEmail"
+import { AuthFunctions } from "../utils/firebase/authEmail"
 
 const Register = () => {
   const username = useInput("username")
   const email = useInput("email")
   const password = useInput("password")
-  const { register } = UserFunctions()
+  const { register } = AuthFunctions()
 
   return (
     <>
