@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
-import { userAtom, singlePieceAtom, artWorkAtom } from "../state/atoms";
-import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
+import { singlePieceAtom } from "../state/atoms";
+import { useRecoilState } from "recoil";
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
 import styles from "../styles/artWork.module.css";
 
@@ -26,7 +26,7 @@ const Artwork = ({ id }) => {
       </div>
       <div className={styles.ArtFeaturesContainer}>
         <div className={styles.divButtons}>
-          <button>@deeple</button>
+          <button>@{singlePiece.username}</button>
         </div>
         <div className={styles.artDescription}>{singlePiece?.description}</div>
         <div className={styles.priceAndButtonContainer}>

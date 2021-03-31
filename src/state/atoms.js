@@ -8,6 +8,14 @@ export const userAtom = atom({
     }
 })
 
+export const usersArrAtom = atom({
+    key: 'usersArrAtom',
+    default: [],
+    persistence_UNSTABLE:{
+        type: 'log'
+    }
+})
+
 export const artWorkAtom = atom({
     key: 'artWorkAtom',
     default: [],

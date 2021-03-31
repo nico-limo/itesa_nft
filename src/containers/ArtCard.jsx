@@ -10,16 +10,16 @@ const ArtCard = ({ piece }) => {
         <img
           className={styles.homeSingleArtworkImage}
           src={piece.imgURI}
-          alt=""
+          alt={piece.title}
         />
         <div className={styles.homeSingleArtworkTitle}>{piece.title}</div>
         <div className={styles.homeSingleArtworkCreator}>
           <img
             className={styles.homeSingleArtworkCreatorAvatar}
-            src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
-            alt=""
+            src={piece.photo_profile}
+            alt={`username picture from ${piece.username}`}
           />
-          <div>@deeple</div>
+          <div>{piece.username}</div>
         </div>
         <div className={styles.homeSingleArtworkPrice}>
           {piece.onSale ? "Price" : "Sold For"}

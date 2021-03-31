@@ -13,11 +13,11 @@ import EditProfile from "./EditProfile";
 import NewArtwork from "./NewArtwork";
 //utils
 import Test from "./Test";
-import { UserFunctions } from "../utils/firebase/authEmail";
+import { AuthFunctions } from "../utils/firebase/authEmail";
 import { useEffect } from "react";
 
 const App = () => {
-  const { isUser } = UserFunctions();
+  const { isUser } = AuthFunctions();
 
   useEffect(() => {
     isUser();
@@ -40,8 +40,8 @@ const App = () => {
           path={"/artwork/:id"}
           render={({ match }) => <Artwork id={match.params.id} />}
         />
-        <Route path={"/me"} component={Profile} />
-        <Route path={"/me/edit"} component={EditProfile} />
+        <Route exact path={"/me"} component={Profile} />
+        <Route exact path={"/me/edit"} component={EditProfile} />
       </Switch>
       <NavBar />
     </div>
