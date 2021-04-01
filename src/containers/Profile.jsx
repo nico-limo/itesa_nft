@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react"
 import { AuthFunctions } from "../utils/firebase/authEmail";
-import { userAtom, userUid } from "../state/atoms"
+import ArtCard from "./ArtCard"
+
+import { userAtom, userUrl, userProfile } from "../state/atoms"
 import { BuyerOrSeller } from "../state/selectors"
+import { Creations, Collections, CollectionOrCreation } from "../state/selectors"
 
 //styles
 import styles from "../styles/Profile.module.css"
-import { useRecoilState, useRecoilValue } from "recoil";
+import spinners from "../styles/Spinners.module.css"
 
+
+import { useRecoilState, useRecoilValue } from "recoil";
 
 // .toFixed(2)
 
@@ -14,73 +19,93 @@ const Profile = ({ match }) => {
   const [showCreations, setShowCreations] = useState(true)
   const { logOut } = AuthFunctions();
 
-  const user = useRecoilValue(userAtom)
-  const [userId, setUserId] = useRecoilState(userUid)
-  const userProfile = useRecoilValue(BuyerOrSeller)
+  // Collections - Creations
+  const userArtWork = useRecoilValue(CollectionOrCreation)
+  // const userCreation = useRecoilValue(Creations)
+  // const userCollections = useRecoilValue(Collections)
 
-  console.log("user", user)
+  const user = useRecoilValue(userAtom) // usuario logueado
+  const [url, setUrl] = useRecoilState(userUrl) // url pasada por Props
+  const [urlUser, setUrlUser] = useRecoilState(userProfile) // variable usuario clickeado o logueado 
+  const clickedUser = useRecoilValue(BuyerOrSeller)
   
   useEffect(() => {
-    let url = match.params.id
-      setUserId(url)
-      if (url) profile = userProfile
-      profile = user
-  }, [])
+    let link = match.params.id
+      setUrl(link)
+  }, [urlUser])
+    
+    if (match.params.id) setUrlUser(clickedUser)
+    else setUrlUser(user) 
 
+
+    console.log(user)
   return (
     <>
-      <div className={styles.creatorCoverContainer}>
-        <img
-          className={styles.creatorCover}
-          src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
-          alt=""
-        />
-        <img
-          className={styles.creatorAvatar}
-          src="https://static.wixstatic.com/media/a64726_ce7a64e6ade34b549d0b3d06963bead9~mv2.jpg/v1/fill/w_360,h_400,al_c,q_80,usm_0.66_1.00_0.01/a64726_ce7a64e6ade34b549d0b3d06963bead9~mv2.webp"
-          alt=""
-        />
-        <div className={styles.creatorName}>@beeple</div>
-      </div>
-      <div className={styles.creationsOrCollection}>
-        <button
-          className={`${showCreations ? styles.selected : ""}`}
-          onClick={() => setShowCreations(true)}
-        >
-          Creations
-        </button>
-        <button
-          className={`${showCreations ? "" : styles.selected}`}
-          onClick={() => setShowCreations(false)}
-        >
-          Collection
-        </button>
-      </div>
-      <div className={styles.galleryContainer}>
-        <div className={styles.singleArtworkContainer}>
-          <img
-            className={styles.singleArtworkImage}
-            src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
-            alt=""
-          />
-          <div className={styles.singleArtworkTitle}>The Cube</div>
-          <div className={styles.singleArtworkCreator}>
+    { urlUser ? ( <>
+        <div className={styles.creatorCoverContainer}>
             <img
-              className={styles.singleArtworkCreatorAvatar}
-              src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
+              className={styles.creatorCover}
+              src={urlUser.main_picture}
               alt=""
             />
-            <div>@deeple</div>
+            <img
+              className={styles.creatorAvatar}
+              src={urlUser.photo_profile}
+              alt=""
+            />
+            <div className={styles.creatorName}>@{urlUser.username}</div>
           </div>
-          <div className={styles.singleArtworkPrice}>
-            Sold For
-            <div className={styles.singleArtworkPriceAmount}>2.50 ETH</div>
+          <div className={styles.creationsOrCollection}>
+            <button
+              className={`${showCreations ? styles.selected : ""}`}
+              onClick={() => setShowCreations(true)}
+            >
+              Creations
+            </button>
+            <button
+              className={`${showCreations ? "" : styles.selected}`}
+              onClick={() => setShowCreations(false)}
+            >
+              Collection
+            </button>
           </div>
-        </div>
-      </div>
-      {/* <div className={form.form}>
-      <button onClick={(event) => logOut(event)}>Sign Out</button>
-    </div> */}
+          <div className={styles.galleryContainer}>
+          {userArtWork.length ? (
+              userArtWork.map((piece) => <ArtCard key={piece.id} piece={piece} />)
+          ) : (
+              <div className={spinners.spinnerBox}>
+                <div className={spinners.circleBorder}>
+                  <div className={spinners.circleCore}></div>
+                </div>
+              </div>
+            )}
+            {/* <div className={styles.singleArtworkContainer}>
+              <img
+                className={styles.singleArtworkImage}
+                src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
+                alt=""
+                />
+              <div className={styles.singleArtworkTitle}>The Cube</div>
+              <div className={styles.singleArtworkCreator}>
+                <img
+                  className={styles.singleArtworkCreatorAvatar}
+                  src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
+                  alt=""
+                />
+                <div>@deeple</div>
+              </div>
+              <div className={styles.singleArtworkPrice}>
+                Sold For
+                <div className={styles.singleArtworkPriceAmount}>2.50 ETH</div>
+              </div>
+            </div> */}
+          </div>
+          {/* <div className={form.form}>
+          <button onClick={(event) => logOut(event)}>Sign Out</button>
+        </div> */}
+    </>) 
+    : <h1>Loading..</h1>
+    }
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { artWorkAtom, artStatusAtom, singlePieceIdAtom, userUid, usersArrAtom } from "./atoms";
+import { artWorkAtom, artStatusAtom, singlePieceIdAtom, userUrl, usersArrAtom, userProfile } from "./atoms";
 import { ArtFunctions } from '../utils/firebase/requests/artworkRequests';
 
 export const onSaleOrSoldState = selector({
@@ -7,7 +7,7 @@ export const onSaleOrSoldState = selector({
     get: ({ get }) => {
         const status = get(artStatusAtom);
         const artWorkList = get(artWorkAtom);
-        const artWorksFilter = artWorkList.filter(piece => piece.onSale == status);
+        const artWorksFilter = artWorkList.filter(piece => piece.onSale === status);
         return artWorksFilter;
     }
 })
@@ -15,13 +15,46 @@ export const onSaleOrSoldState = selector({
 export const BuyerOrSeller = selector({
     key: "BuyerOrSeller",
     get: ({ get }) => {
-        const uid = get(userUid)
+        const uid = get(userUrl)
         const users = get(usersArrAtom)
-        const userProfile = users.filter(user => user.uid == uid);
-        return userProfile[0].uid
+        const user = users.filter(user => user.uid === uid);
+        return user[0]
     }
 })
 
+// export const Creations = selector({
+//     key: "Creations",
+//     get: ({ get }) => {
+//         const user = get(userProfile)
+//         const artWorkList = get(artWorkAtom)
+//         const Creation = artWorkList.filter(art => art.authorId === user.id)
+//         return Creation
+//     }
+// })
+// export const Collections = selector({
+//     key: "Collections",
+//     get: ({ get }) => {
+//         const user = get(userProfile)
+//         const artWorkList = get(artWorkAtom)
+//         const Collection = artWorkList.filter(art => art.ownerId === user.id)
+//         return Collection
+//     }
+// })
+export const CollectionOrCreation = selector({
+    key: "CollectionOrCreation",
+    get: ({ get }) => {
+        const user = get(userProfile)
+        const artWorkList = get(artWorkAtom)
+        const status = get(artStatusAtom);
+        let CollectionOrCreation;
+        if (status === true) {
+            CollectionOrCreation = artWorkList.filter(art => art.ownerId === user.id)
+        } else {
+            CollectionOrCreation = artWorkList.filter(art => art.authorId === user.id)
+        }
+        return CollectionOrCreation
+    }
+})
 
 /* export const singleArtworkState = selector({
     key: 'singleArtworkState',
