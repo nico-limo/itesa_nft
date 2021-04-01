@@ -36,3 +36,33 @@
     background-color:  rgb(244,246,244);
     border-radius: 50%;
   }
+
+  .smallSpinnerBox {
+    width: 8vw;
+    height: 8vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    margin: 0.7vw auto 0.7vw ;
+  }
+  
+  .smallCircleBorder {
+    width: 6vw;
+    height: 6vw;
+    padding: 0.4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgb(201, 201, 201);
+    background: linear-gradient(0deg, #dabfee 33%, rgb(255, 255, 255) 100%);
+    animation: spin .8s linear 0s infinite;
+  }
+  
+  .smallCircleCore {
+    width: 100%;
+    height: 100%;
+    background-color:  rgb(231, 202, 127);
+    border-radius: 50%;
+  }
