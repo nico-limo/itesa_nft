@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react"
 import { AuthFunctions } from "../utils/firebase/authEmail";
 import ArtCard from "./ArtCard"
 
-import { userAtom, userUrl, userProfile } from "../state/atoms"
-import { BuyerOrSeller } from "../state/selectors"
-import { Creations, Collections, CollectionOrCreation } from "../state/selectors"
+import { userAtom, userUrl, userProfile, artStatusAtom } from "../state/atoms"
+import { BuyerOrSeller, Creations, Collections, CollectionOrCreation } from "../state/selectors"
 
 //styles
 import styles from "../styles/Profile.module.css"
@@ -16,18 +15,12 @@ import { useRecoilState, useRecoilValue } from "recoil";
 // .toFixed(2)
 
 const Profile = ({ match }) => {
-  const [showCreations, setShowCreations] = useState(true)
-  const { logOut } = AuthFunctions();
-
-  // Collections - Creations
-  const userArtWork = useRecoilValue(CollectionOrCreation)
-  // const userCreation = useRecoilValue(Creations)
-  // const userCollections = useRecoilValue(Collections)
-
-  const user = useRecoilValue(userAtom) // usuario logueado
+  const [showArt, setShowArt] = useRecoilState(artStatusAtom)
   const [url, setUrl] = useRecoilState(userUrl) // url pasada por Props
   const [urlUser, setUrlUser] = useRecoilState(userProfile) // variable usuario clickeado o logueado 
+  const user = useRecoilValue(userAtom) // usuario logueado
   const clickedUser = useRecoilValue(BuyerOrSeller)
+  const { logOut } = AuthFunctions();
   
   useEffect(() => {
     let link = match.params.id
@@ -37,8 +30,15 @@ const Profile = ({ match }) => {
     if (match.params.id) setUrlUser(clickedUser)
     else setUrlUser(user) 
 
+  // Collections - Creations
+  const userArtWork = useRecoilValue(CollectionOrCreation)
+  // const userCreation = useRecoilValue(Creations)
+  // const userCollections = useRecoilValue(Collections)
 
-    console.log(user)
+
+    // console.log("user", urlUser)
+    // console.log("showCreations", showCreations)
+    // console.log("userArtWork", userArtWork)
   return (
     <>
     { urlUser ? ( <>
@@ -57,14 +57,14 @@ const Profile = ({ match }) => {
           </div>
           <div className={styles.creationsOrCollection}>
             <button
-              className={`${showCreations ? styles.selected : ""}`}
-              onClick={() => setShowCreations(true)}
+              className={`${showArt ? styles.selected : ""}`}
+              onClick={() => setShowArt(true)}
             >
               Creations
             </button>
             <button
-              className={`${showCreations ? "" : styles.selected}`}
-              onClick={() => setShowCreations(false)}
+              className={`${showArt ? "" : styles.selected}`}
+              onClick={() => setShowArt(false)}
             >
               Collection
             </button>

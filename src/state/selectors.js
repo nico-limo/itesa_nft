@@ -21,25 +21,6 @@ export const BuyerOrSeller = selector({
         return user[0]
     }
 })
-
-// export const Creations = selector({
-//     key: "Creations",
-//     get: ({ get }) => {
-//         const user = get(userProfile)
-//         const artWorkList = get(artWorkAtom)
-//         const Creation = artWorkList.filter(art => art.authorId === user.id)
-//         return Creation
-//     }
-// })
-// export const Collections = selector({
-//     key: "Collections",
-//     get: ({ get }) => {
-//         const user = get(userProfile)
-//         const artWorkList = get(artWorkAtom)
-//         const Collection = artWorkList.filter(art => art.ownerId === user.id)
-//         return Collection
-//     }
-// })
 export const CollectionOrCreation = selector({
     key: "CollectionOrCreation",
     get: ({ get }) => {
@@ -48,10 +29,14 @@ export const CollectionOrCreation = selector({
         const status = get(artStatusAtom);
         let CollectionOrCreation;
         if (status === true) {
-            CollectionOrCreation = artWorkList.filter(art => art.ownerId === user.id)
+            CollectionOrCreation = artWorkList.filter(art => art.ownerId === user.uid)
         } else {
-            CollectionOrCreation = artWorkList.filter(art => art.authorId === user.id)
+            CollectionOrCreation = artWorkList.filter(art => art.authorId === user.uid)
         }
+        
+        // console.log("user selector", user.uid)
+        // console.log("art selector", artWorkList)
+        // console.log("CollectionOrCreation", CollectionOrCreation)
         return CollectionOrCreation
     }
 })
