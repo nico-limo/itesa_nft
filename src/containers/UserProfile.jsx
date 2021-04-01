@@ -12,7 +12,7 @@ import spinners from "../styles/Spinners.module.css"
 
 import { useRecoilState, useRecoilValue } from "recoil";
 
-const Profile = ({ match }) => {
+const UserProfile = ({ match }) => {
   const user = useRecoilValue(userAtom) // usuario logueado
   const { getUser } = UserFunctions() // busca usuario de la url
   const { getUserCreations, getUserCollections } = UserFunctions() // busca creations y collections
@@ -99,4 +99,4 @@ const Profile = ({ match }) => {
   )
 }
 
-export default Profile
+export default UserProfile

@@ -12,42 +12,28 @@ import spinners from "../styles/Spinners.module.css"
 
 import { useRecoilState, useRecoilValue } from "recoil";
 
-const Profile = ({ match }) => {
+const MeProfile = () => {
   const user = useRecoilValue(userAtom) // usuario logueado
-  const { getUser } = UserFunctions() // busca usuario de la url
   const { getUserCreations, getUserCollections } = UserFunctions() // busca creations y collections
 
-  const [urlUser, setUrlUser] = useState("") // variable usuario clickeado o logueado 
   const [showArt, setShowArt] = useRecoilState(artStatusAtom) // click art true or false
   const [profileCreation, setProfileCreation] = useRecoilState(userCreation) // creation del usuario
   const [profileCollection, setProfileCollection] = useRecoilState(userCollection) // collection del usuario
   const { logOut } = AuthFunctions();
   
-  useEffect(() => {
-    if (match.params.id) {
-      getUser(match.params.id).then(user => setUrlUser(user))
-    }
-    else {
-      setUrlUser(user)
-    }
-  }, [])
 
-  if (urlUser.uid) {
-      let id = urlUser.uid
-      getUserCreations(id).then((creation) => {
-          getUserCollections(id).then(collection => {
+    getUserCreations(user.uid).then((creation) => {
+        getUserCollections(user.uid).then(collection => {
             setProfileCreation(creation)
             setProfileCollection(collection)
-          })
-      })
-  }
+        })
+    })
 
   // Collections - Creations
   const [userArtWork, setUserArtWork] = useState("")
   if (showArt === true) setUserArtWork([profileCreation])
   else setUserArtWork([profileCollection])
 
-  // console.log("userArtWork", userArtWork)
   return (
     <>
     { urlUser ? ( <>
@@ -79,7 +65,7 @@ const Profile = ({ match }) => {
             </button>
           </div>
           <div className={styles.galleryContainer}>
-          {/* {userArtWork ? (
+          {userArtWork ? (
               userArtWork.map((piece) => <ArtCard key={piece.id} piece={piece} />)
           ) : (
               <div className={spinners.spinnerBox}>
@@ -87,7 +73,7 @@ const Profile = ({ match }) => {
                   <div className={spinners.circleCore}></div>
                 </div>
               </div>
-            )} */}
+            )}
           </div>
           {/* <div className={form.form}>
           <button onClick={(event) => logOut(event)}>Sign Out</button>
@@ -99,4 +85,4 @@ const Profile = ({ match }) => {
   )
 }
 
-export default Profile
+export default MeProfile

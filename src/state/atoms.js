@@ -25,21 +25,21 @@ export const userProfile = atom({
 })
 export const userCreation = atom({
     key: 'profileCreation',
-    default: {},
+    default: [],
     persistence_UNSTABLE: {
         type: 'log'
     }
 })
 export const userCollection = atom({
     key: 'profileCollection',
-    default: {},
+    default: [],
     persistence_UNSTABLE: {
         type: 'log'
     }
 })
 export const CreationOrCollection = atom({
     key: 'CreationOrCollection',
-    default: {},
+    default: [],
     persistence_UNSTABLE: {
         type: 'log'
     }
