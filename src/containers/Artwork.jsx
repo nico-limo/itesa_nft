@@ -17,13 +17,11 @@ const Artwork = ({ id }) => {
   return (
     <>
       <div className={styles.artworkTitle}>{singlePiece?.title}</div>
-      <div className={styles.singleArtworkContainer}>
         <img
           className={styles.singleArtworkImage}
           src={singlePiece?.imgURI}
           alt=""
         />
-      </div>
       <div className={styles.ArtFeaturesContainer}>
         <div className={styles.divButtons}>
           <button>@{singlePiece.username}</button>

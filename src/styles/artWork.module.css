@@ -14,22 +14,14 @@ body {
     font-size: 4vw;
     font-weight: 600;
     margin-bottom: 1.5vw;
-    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
 }
 
-.singleArtworkContainer {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    font-size: 1000%;
-}
 .singleArtworkImage {
-    width: 90%;
-    border-radius: 5%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 4vw auto 8vw;
+    width: 90vw;
+    height: auto;
+    border-radius: 5vw;
+    margin: 4vw 5vw 8vw 5vw;
 }
 
 .divButtons {
@@ -49,19 +41,17 @@ body {
     font-weight: 500;
     background-color: white;
     margin-right: 1vw;
-    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
 }
 
 .ArtFeaturesContainer {
     position: relative;
     background-color: white;
-    height: 100%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 0%;
-    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
 }
 
 .artDescription {
