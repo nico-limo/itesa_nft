@@ -5,12 +5,15 @@
   bottom: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   background-color: white;
   border-radius: 3vw 3vw 0 0;
-  width: 100%;
+  width: 87%;
   padding-top: 3%;
   padding-bottom: 3%;
+  padding-left: 8vw;
+  padding-right: 5vw;
   font-size: 2.5vw;
   font-weight: 500;
   outline: rgba(255, 255, 255, 0.2) 2px solid;
@@ -27,6 +30,46 @@ a:link {
 a:visited {
   color: white;
 }
+
+.profilePicture {
+  border-radius: 100%;
+  width: 7vw;
+  border: 0.3vw solid white;
+}
+
+.hiddenDropdown {
+  display: none;
+}
+
+.visibleDropdown {
+  display: block;
+  position: fixed;
+  bottom: 14.5vw;
+  right: 1.5vw;
+  background-image: linear-gradient(to top left, #845fa1, #34283e);
+  /* color: white; */
+  /* background-image: linear-gradient(to top left, #c5b0d4, #efe7f5);
+  color: black; */
+  padding: 1vw 0;
+  width: 25vw;
+  /* height: 10vw; */
+  border-radius: 2vw;
+  box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
+}
+
+.visibleDropdown hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid white;
+}
+
+.dropdownOptions {
+  padding: 1vw 3vw;
+  color: white;
+  font-size: 2.2vw;
+  font-weight: 500;
+}
+
 
 @media screen and (min-width: 1200px) {
   .navbarContainer {
