@@ -1,16 +1,16 @@
 .homeTitle {
-    background-image: linear-gradient(to right,#845fa1,#34283e);
-    height: 17vw;
-    border-bottom-right-radius: 15vw;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 5vw;
-    font-size: 4vw;
-    font-weight: 600;
-    margin-bottom: 1.5vw;
-    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(to right, #845fa1, #34283e);
+  height: 17vw;
+  border-bottom-right-radius: 15vw;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 5vw;
+  font-size: 4vw;
+  font-weight: 600;
+  margin-bottom: 1.5vw;
+  box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
 }
 
 .homeOnSaleOrSold {
@@ -43,22 +43,22 @@
 }
 
 .homeSingleArtworkContainer {
-    background-color: rgb(255, 255, 255);
-    width: 46%;
-    border-radius: 4%;
-    margin: 0 2% 4%;
-    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  width: 46%;
+  border-radius: 4%;
+  margin: 0 2% 4%;
+  box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .homeSingleArtworkContainer:link {
-  color:black
+  color: black;
 }
 
 .homeSingleArtworkContainer:visited {
-  color:black
+  color: black;
 }
 
 .homeSingleArtworkImage {
@@ -96,12 +96,12 @@
 }
 
 .homeSingleArtworkPrice {
-    color: #34283e;
-    font-size: 2.5vw;
-    padding: 1vw;
-    text-align: right;
-    margin-bottom: 5%;
-    margin-right: 6%;
+  color: #34283e;
+  font-size: 2.5vw;
+  padding: 1vw;
+  text-align: right;
+  margin-bottom: 5%;
+  margin-right: 6%;
 }
 
 .homeSingleArtworkPriceAmount {

@@ -2,7 +2,7 @@ import React from "react";
 import { UserFunctions } from "../utils/firebase/requests/userRequests";
 import { useInput } from "../utils/hooks/useInput";
 //styles
-import form from "../styles/Form.module.css";
+import styles from "../styles/EditProfile.module.css";
 
 const EditProfile = () => {
   const { updateUser } = UserFunctions();
@@ -12,27 +12,42 @@ const EditProfile = () => {
 
   return (
     <>
-      <div className={form.title}>Edit your profile</div>
-      <div className={form.container}>
-        <form className={form.form}>
-          <input
-            className={form.input}
-            type="text"
-            {...description}
-            placeholder="description"
-          />
-          <input
-            className={form.input}
-            type="text"
-            {...photo_picture}
-            placeholder="profile image"
-          />
-          <input
-            className={form.input}
-            type="text"
-            {...main_picture}
-            placeholder="main image"
-          />
+      <div className={styles.title}>Edit your profile</div>
+      <div className={styles.editProfileContainer}>
+        <form className={styles.form}>
+          <div className={styles.inputContainer}>
+            <label className={styles.label} htmlFor="description">
+              Add a short description:
+            </label>
+            <textarea
+              className={`${styles.input} ${styles.description}`}
+              type="text"
+              {...description}
+              placeholder="Your description"
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.label} htmlFor="photo_picture">
+              Add a profile picture:
+            </label>
+            <input
+              className={`${styles.input}`}
+              type="file"
+              {...photo_picture}
+              placeholder="Profile Picture"
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.label} htmlFor="main_picture">
+              Add a background picture:
+            </label>
+            <input
+              className={styles.input}
+              type="text"
+              {...main_picture}
+              placeholder="Background image"
+            />
+          </div>
           <button
             type="submit"
             onClick={(e) =>
@@ -44,7 +59,7 @@ const EditProfile = () => {
               )
             }
           >
-            Save
+            Save Changes
           </button>
         </form>
       </div>
