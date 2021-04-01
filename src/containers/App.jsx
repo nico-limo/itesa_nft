@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 //React-router-dom
 import { Route, Switch } from "react-router-dom";
 //Components
@@ -15,7 +15,7 @@ import ResetPassword from "./ResetPassword";
 import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
 //utils
 import { AuthFunctions } from "../utils/firebase/authEmail";
-import { useRecoilValue } from "recoil"
+import { useRecoilValue } from "recoil";
 import { userAtom } from "../state/atoms";
 
 const App = () => {
@@ -24,7 +24,9 @@ const App = () => {
 
   useEffect(() => isUser(), []);
 
-  useEffect(() => {console.log("test");}, [user])
+  useEffect(() => {
+    console.log("test");
+  }, [user]);
 
   return (
     <div>
