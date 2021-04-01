@@ -9,7 +9,7 @@ export const UserFunctions = () => {
   const artWorkRef = db.collection('artWork');
   const usersReference = db.collection("Users");
 
-
+  
   const newUser = async (user, username) => {
     await usersReference.doc().set({
       email: user.user.email,
@@ -63,6 +63,34 @@ export const UserFunctions = () => {
     return users;
   };
 
-  return {newUser, getUser, updateUser, getAllUsers};
+  const getUserCreations = async (id) => {
+    const snapshot = await artWorkRef.where("authorId", "==", id).get();
+
+    if (snapshot.empty) {
+      console.log("The is no Creation in db for this user");
+      return;
+    }
+    let userCreation = ""
+    snapshot.forEach((doc) => {
+      userCreation = doc.data()
+    });
+    return userCreation;
+  };
+  const getUserCollections = async (id) => {
+    const snapshot = await artWorkRef.where("ownerId", "==", id).get();
+
+    if (snapshot.empty) {
+      console.log("The is no Collection in db for this user");
+      return;
+    }
+    let userCollection = ""
+    snapshot.forEach((doc) => {
+      userCollection = doc.data()
+    });
+    return userCollection;
+  };
+
+
+  return { newUser, getUser, updateUser, getAllUsers, getUserCreations, getUserCollections };
 
 };

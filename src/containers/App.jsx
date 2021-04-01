@@ -22,7 +22,7 @@ const App = () => {
 
   useEffect(() => isUser(), []);
 
-  useEffect(() => {console.log("test");}, [user])
+  useEffect(() => {}, [user])
 
   return (
     <div>

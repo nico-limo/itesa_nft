@@ -1,40 +1,56 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { AuthFunctions } from "../utils/firebase/authEmail";
 import ArtCard from "./ArtCard"
 
-import { userAtom, userUrl, userProfile, artStatusAtom } from "../state/atoms"
-import { BuyerOrSeller, Creations, Collections, CollectionOrCreation } from "../state/selectors"
+import { userAtom, userProfile, artStatusAtom, userCreation, userCollection, CreationOrCollection } from "../state/atoms"
+// import { BuyerOrSeller, Creations, Collections, CollectionOrCreation } from "../state/selectors"
+import { UserFunctions, getUserCreations, getUserCollections } from "../utils/firebase/requests/userRequests";
 
 //styles
 import styles from "../styles/Profile.module.css"
 import spinners from "../styles/Spinners.module.css"
 
-
 import { useRecoilState, useRecoilValue } from "recoil";
 
-// .toFixed(2)
-
 const Profile = ({ match }) => {
-  const [showArt, setShowArt] = useRecoilState(artStatusAtom)
-  const [url, setUrl] = useRecoilState(userUrl) // url pasada por Props
-  const [urlUser, setUrlUser] = useRecoilState(userProfile) // variable usuario clickeado o logueado 
   const user = useRecoilValue(userAtom) // usuario logueado
-  const clickedUser = useRecoilValue(BuyerOrSeller)
+  const { getUser } = UserFunctions() // busca usuario de la url
+  const { getUserCreations, getUserCollections } = UserFunctions() // busca creations y collections
+
+  const [urlUser, setUrlUser] = useRecoilState(userProfile) // variable usuario clickeado o logueado 
+  const [showArt, setShowArt] = useRecoilState(artStatusAtom) // click art true or false
+  const [profileCreation, setProfileCreation] = useRecoilState(userCreation) // creation del usuario
+  const [profileCollection, setProfileCollection] = useRecoilState(userCollection) // collection del usuario
   const { logOut } = AuthFunctions();
   
   useEffect(() => {
-      setUrl(match.params.id)
-      if (match.params.id) setUrlUser(clickedUser)
-      else setUrlUser(user) 
-  }, [urlUser, url])
-    
+    if (match.params.id) {
+      getUser(match.params.id).then(user => setUrlUser(user))
+        console.log("url user", urlUser)
+        getUserCreations(match.params.id).then((creation) => {
+          getUserCollections(match.params.id).then(collection => {
+            setProfileCreation(creation)
+            setProfileCollection(collection)
+          })
+        })
+    } else {
+      setUrlUser(user)
+      console.log("atom user", urlUser)
+        getUserCreations(user.uid).then((creation) => {
+          getUserCollections(user.uid).then(collection => {
+            setProfileCreation(creation)
+            setProfileCollection(collection)
+          })
+        })
+    } 
+  }, [])
+
 
   // Collections - Creations
-  const userArtWork = useRecoilValue(CollectionOrCreation)
+  const [userArtWork, setUserArtWork] = useRecoilState(CreationOrCollection)
+  if (showArt === true) setUserArtWork(profileCreation)
+  else setUserArtWork(profileCollection)
 
-    // console.log("user", urlUser)
-    // console.log("showCreations", showCreations)
-    // console.log("userArtWork", userArtWork)
   return (
     <>
     { urlUser ? ( <>
@@ -66,7 +82,7 @@ const Profile = ({ match }) => {
             </button>
           </div>
           <div className={styles.galleryContainer}>
-          {userArtWork.length ? (
+          {userArtWork && userArtWork.length ? (
               userArtWork.map((piece) => <ArtCard key={piece.id} piece={piece} />)
           ) : (
               <div className={spinners.spinnerBox}>
@@ -75,26 +91,6 @@ const Profile = ({ match }) => {
                 </div>
               </div>
             )}
-            {/* <div className={styles.singleArtworkContainer}>
-              <img
-                className={styles.singleArtworkImage}
-                src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
-                alt=""
-                />
-              <div className={styles.singleArtworkTitle}>The Cube</div>
-              <div className={styles.singleArtworkCreator}>
-                <img
-                  className={styles.singleArtworkCreatorAvatar}
-                  src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
-                  alt=""
-                />
-                <div>@deeple</div>
-              </div>
-              <div className={styles.singleArtworkPrice}>
-                Sold For
-                <div className={styles.singleArtworkPriceAmount}>2.50 ETH</div>
-              </div>
-            </div> */}
           </div>
           {/* <div className={form.form}>
           <button onClick={(event) => logOut(event)}>Sign Out</button>
