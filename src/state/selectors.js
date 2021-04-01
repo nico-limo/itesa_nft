@@ -28,12 +28,11 @@ export const CollectionOrCreation = selector({
         const artWorkList = get(artWorkAtom)
         const status = get(artStatusAtom);
         let CollectionOrCreation;
-        if (status === true) {
+        if (user && status === true) {
             CollectionOrCreation = artWorkList.filter(art => art.ownerId === user.uid)
-        } else {
+        } else if (user && status === false) {
             CollectionOrCreation = artWorkList.filter(art => art.authorId === user.uid)
         }
-        
         // console.log("user selector", user.uid)
         // console.log("art selector", artWorkList)
         // console.log("CollectionOrCreation", CollectionOrCreation)

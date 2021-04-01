@@ -23,18 +23,14 @@ const Profile = ({ match }) => {
   const { logOut } = AuthFunctions();
   
   useEffect(() => {
-    let link = match.params.id
-      setUrl(link)
-  }, [urlUser])
+      setUrl(match.params.id)
+      if (match.params.id) setUrlUser(clickedUser)
+      else setUrlUser(user) 
+  }, [urlUser, url])
     
-    if (match.params.id) setUrlUser(clickedUser)
-    else setUrlUser(user) 
 
   // Collections - Creations
   const userArtWork = useRecoilValue(CollectionOrCreation)
-  // const userCreation = useRecoilValue(Creations)
-  // const userCollections = useRecoilValue(Collections)
-
 
     // console.log("user", urlUser)
     // console.log("showCreations", showCreations)
