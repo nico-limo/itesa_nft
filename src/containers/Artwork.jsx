@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-
-import { singlePieceAtom } from "../state/atoms";
+//Recoil
 import { useRecoilState } from "recoil";
+import { singlePieceAtom } from "../state/atoms";
+//Utils
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
+//CSS
 import styles from "../styles/artWork.module.css";
 
 const Artwork = ({ id }) => {

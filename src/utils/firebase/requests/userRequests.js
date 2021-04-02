@@ -3,11 +3,14 @@ import { db } from "../../../firebaseConfig";
 import { userAtom } from "../../../state/atoms";
 import { useRecoilValue } from "recoil";
 
+
+
 export const UserFunctions = () => {
   const user = useRecoilValue(userAtom);
 
   const artWorkRef = db.collection('artWork');
   const usersReference = db.collection("Users");
+
 
 
   const newUser = async (user, username) => {
@@ -22,20 +25,23 @@ export const UserFunctions = () => {
       created: new Date(),
     });
   };
-  const updateUser = async (e, description, photo_profile, main_picture) => {
-    e.preventDefault();
+  const updateUser = async (data) => {
+    let key = Object.keys(data)[0];
+    let value = Object.values(data)[0];
     const snapshot = await usersReference.where("uid", "==", user.uid).get();
     snapshot.forEach((doc) => {
         doc.ref.update({
-          description,photo_profile,main_picture
+          [key]: value,
       });
     });
     const snapshot2 = await artWorkRef.where("authorId", "==", user.uid).get();
-    snapshot2.forEach((doc) => {
-      doc.ref.update({
-        description,photo_profile
-     });
-    });
+    if(key === 'photo_profile') {
+      snapshot2.forEach((doc) => {
+        doc.ref.update({
+          [key]: value,
+       });
+      });
+    } 
   };
   const getUser = async (id) => {
     const snapshot = await usersReference.where("uid", "==", id).get();
