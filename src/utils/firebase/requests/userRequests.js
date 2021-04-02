@@ -69,6 +69,34 @@ export const UserFunctions = () => {
     return users;
   };
 
-  return {newUser, getUser, updateUser, getAllUsers};
+  const getUserCreations = async (id) => {
+    const snapshot = await artWorkRef.where("authorId", "==", id).get();
+
+    if (snapshot.empty) {
+      console.log("The is no Creation in db for this user");
+      return;
+    }
+    let userCreation = []
+    snapshot.forEach((doc) => {
+      userCreation = [...userCreation, doc.data()]
+    });
+    return userCreation;
+  };
+  const getUserCollections = async (id) => {
+    const snapshot = await artWorkRef.where("ownerId", "==", id).get();
+
+    if (snapshot.empty) {
+      console.log("The is no Collection in db for this user");
+      return;
+    }
+    let userCollection = []
+    snapshot.forEach((doc) => {
+      userCollection = [...userCollection, doc.data()]
+    });
+    return userCollection;
+  };
+
+
+  return { newUser, getUser, updateUser, getAllUsers, getUserCreations, getUserCollections };
 
 };
