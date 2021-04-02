@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { AuthFunctions } from "../utils/firebase/authEmail";
-import ArtCard from "./ArtCard";
+import { AuthFunctions } from "../utils/firebase/auth/authEmail";
+import ArtCard from "../components/ArtCard";
 
 import {
   userAtom,
