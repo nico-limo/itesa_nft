@@ -1,12 +1,12 @@
 import { db } from "../../../firebaseConfig";
 //Recoil
 import { userAtom } from "../../../state/atoms";
-import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 
 
 
 export const UserFunctions = () => {
-  const user = useRecoilValue(userAtom);
+  const [user, setUser] = useRecoilState(userAtom);
 
   const artWorkRef = db.collection('artWork');
   const usersReference = db.collection("Users");
@@ -33,6 +33,13 @@ export const UserFunctions = () => {
         doc.ref.update({
           [key]: value,
       });
+      if(key === "photo_profile"){
+        setUser({
+          ...user,
+          [key]: value,
+        })
+      }
+      
     });
     const snapshot2 = await artWorkRef.where("authorId", "==", user.uid).get();
     if(key === 'photo_profile') {

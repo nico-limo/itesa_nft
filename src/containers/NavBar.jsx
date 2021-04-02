@@ -13,6 +13,7 @@ const NavBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const { logOut } = AuthFunctions();
 
+
   const toggleDropdown = () => setShowDropdown(!showDropdown);
 
   return (

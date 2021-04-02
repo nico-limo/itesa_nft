@@ -13,7 +13,6 @@ export const useHandleFile = (name) => {
     const [file, setFile] = useState("");
 
     const onChange = ({ target: { files } }) => {
-        console.log("PRODUCTS",files)
         setFile(files[0])};
 
     return { file, onChange, name };
