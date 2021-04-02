@@ -22,7 +22,12 @@ const Register = () => {
     <>
       <div className={form.title}>Sign Up</div>
       <div className={form.container}>
-        <form className={form.form}>
+        <form
+          onSubmit={(event) =>
+            register(event, email.value, password.value, username.value)
+          }
+          className={form.form}
+        >
           <input
             className={form.input}
             placeholder="Enter a username"
@@ -41,13 +46,7 @@ const Register = () => {
             type="password"
             {...password}
           />
-          <button
-            onClick={(event) =>
-              register(event, email.value, password.value, username.value)
-            }
-          >
-            Create an Account
-          </button>
+          <button type="submit">Create an Account</button>
         </form>
         {formError && <div className={form.error}>{formError}</div>}
         <div className={form.forgotAndSignUpContainer}>

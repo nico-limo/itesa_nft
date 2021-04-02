@@ -9,7 +9,6 @@ import { AuthFunctions } from "../utils/firebase/auth/authEmail";
 import { useRecoilState } from "recoil";
 import { formErrorAtom } from "../state/atoms";
 
-
 const Login = () => {
   const email = useInput("email");
   const password = useInput("password");
@@ -22,7 +21,10 @@ const Login = () => {
     <>
       <div className={form.title}>Log in</div>
       <div className={form.container}>
-        <form className={form.form}>
+        <form
+          onSubmit={(event) => login(event, email.value, password.value)}
+          className={form.form}
+        >
           <input
             className={form.input}
             placeholder="Enter your email"
@@ -35,11 +37,7 @@ const Login = () => {
             type="password"
             {...password}
           />
-          <button
-            onClick={(event) => login(event, email.value, password.value)}
-          >
-            Sign In
-          </button>
+          <button type="submit">Sign In</button>
         </form>
         {formError && <div className={form.error}>{formError}</div>}
         <div className={form.forgotAndSignUpContainer}>
