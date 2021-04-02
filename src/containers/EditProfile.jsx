@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 //Utils
 import { UserFunctions } from "../utils/firebase/requests/userRequests";
 import { useInput, useHandleFile } from "../utils/hooks/useInput";
 import { UserUpdateFunctions } from "../utils/firebase/storage/profileUpdate";
 //styles
 import styles from "../styles/EditProfile.module.css";
-
 
 const EditProfile = () => {
   const { updateUser } = UserFunctions();
@@ -14,11 +13,14 @@ const EditProfile = () => {
   const main_picture = useHandleFile('main_picture');
   const {profileFileUpload} = UserUpdateFunctions();
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-     profileFileUpload(avatar.file,"photo_profile");
-     profileFileUpload(main_picture.file,"main_picture");
+    profileFileUpload(main_picture.file,"main_picture");
     await updateUser({description:description.value});
+    profileFileUpload(avatar.file,"photo_profile");
+
   };
 
   return (

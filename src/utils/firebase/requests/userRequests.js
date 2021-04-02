@@ -33,10 +33,13 @@ export const UserFunctions = () => {
         doc.ref.update({
           [key]: value,
       });
-      setUser({
-        ...user,
-        [key]: value,
-      })
+      if(key === "photo_profile"){
+        setUser({
+          ...user,
+          [key]: value,
+        })
+      }
+      
     });
     const snapshot2 = await artWorkRef.where("authorId", "==", user.uid).get();
     if(key === 'photo_profile') {
