@@ -1,20 +1,20 @@
-import React, {useEffect} from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 //styles
-import form from "../styles/Form.module.css"
+import form from "../styles/Form.module.css";
 //utils
-import { useInput } from "../utils/hooks/useInput"
-import { AuthFunctions } from "../utils/firebase/authEmail"
+import { useInput } from "../utils/hooks/useInput";
+import { AuthFunctions } from "../utils/firebase/authEmail";
 
-import { formErrorAtom } from "../state/atoms"
+import { formErrorAtom } from "../state/atoms";
 
-import { useRecoilState } from "recoil"
+import { useRecoilState } from "recoil";
 
 const Login = () => {
-  const email = useInput("email")
-  const password = useInput("password")
-  const { login } = AuthFunctions()
-  const [formError, setFormError] = useRecoilState(formErrorAtom)
+  const email = useInput("email");
+  const password = useInput("password");
+  const { login } = AuthFunctions();
+  const [formError, setFormError] = useRecoilState(formErrorAtom);
 
   useEffect(() => setFormError(""), []);
 
@@ -22,7 +22,10 @@ const Login = () => {
     <>
       <div className={form.title}>Log in</div>
       <div className={form.container}>
-        <form className={form.form}>
+        <form
+          onSubmit={(event) => login(event, email.value, password.value)}
+          className={form.form}
+        >
           <input
             className={form.input}
             placeholder="Enter your email"
@@ -35,11 +38,7 @@ const Login = () => {
             type="password"
             {...password}
           />
-          <button
-            onClick={(event) => login(event, email.value, password.value)}
-          >
-            Sign In
-          </button>
+          <button type="submit">Sign In</button>
         </form>
         {formError && <div className={form.error}>{formError}</div>}
         <div className={form.forgotAndSignUpContainer}>
@@ -52,7 +51,7 @@ const Login = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
