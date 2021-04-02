@@ -12,29 +12,22 @@
 
 // import { useRecoilState, useRecoilValue } from "recoil";
 
-// const UserProfile = ({ match }) => {
-//   const { getUser } = UserFunctions() // busca usuario de la url
+// const Me = () => {
+//   const user = useRecoilValue(userAtom) // usuario logueado
 //   const { getUserCreations, getUserCollections } = UserFunctions() // busca creations y collections
 
-//   const [urlUser, setUrlUser] = useState("") // variable usuario clickeado o logueado 
 //   const [showArt, setShowArt] = useRecoilState(artStatusAtom) // click art true or false
 //   const [profileCreation, setProfileCreation] = useRecoilState(userCreation) // creation del usuario
 //   const [profileCollection, setProfileCollection] = useRecoilState(userCollection) // collection del usuario
 //   const { logOut } = AuthFunctions();
   
-//   useEffect(() => {
-//     getUser(match.params.id).then(user => setUrlUser(user))
-//   }, [])
 
-//   if (urlUser.uid) {
-//       let id = urlUser.uid
-//       getUserCreations(id).then((creation) => {
-//           getUserCollections(id).then(collection => {
-//             setProfileCreation(creation)
-//             setProfileCollection(collection)
-//           })
-//       })
-//   }
+//     // getUserCreations(user.uid).then((creation) => {
+//     //     getUserCollections(user.uid).then(collection => {
+//     //         setProfileCreation(creation)
+//     //         setProfileCollection(collection)
+//     //     })
+//     // })
 
 //   // Collections - Creations
 //   const [userArtWork, setUserArtWork] = useState("")
@@ -43,19 +36,19 @@
 
 //   return (
 //     <>
-//     { urlUser ? ( <>
+//     { user ? ( <>
 //         <div className={styles.creatorCoverContainer}>
 //             <img
 //               className={styles.creatorCover}
-//               src={urlUser.main_picture}
+//               src={user.main_picture}
 //               alt=""
 //             />
 //             <img
 //               className={styles.creatorAvatar}
-//               src={urlUser.photo_profile}
+//               src={user.photo_profile}
 //               alt=""
 //             />
-//             <div className={styles.creatorName}>@{urlUser.username}</div>
+//             <div className={styles.creatorName}>@{user.username}</div>
 //           </div>
 //           <div className={styles.creationsOrCollection}>
 //             <button
@@ -72,7 +65,7 @@
 //             </button>
 //           </div>
 //           <div className={styles.galleryContainer}>
-//           {/* {userArtWork ? (
+//           {userArtWork ? (
 //               userArtWork.map((piece) => <ArtCard key={piece.id} piece={piece} />)
 //           ) : (
 //               <div className={spinners.spinnerBox}>
@@ -80,7 +73,7 @@
 //                   <div className={spinners.circleCore}></div>
 //                 </div>
 //               </div>
-//             )} */}
+//             )}
 //           </div>
 //           {/* <div className={form.form}>
 //           <button onClick={(event) => logOut(event)}>Sign Out</button>
@@ -92,4 +85,4 @@
 //   )
 // }
 
-// export default UserProfile
+// export default Me

@@ -9,7 +9,7 @@ export const UserFunctions = () => {
   const artWorkRef = db.collection('artWork');
   const usersReference = db.collection("Users");
 
-  
+
   const newUser = async (user, username) => {
     await usersReference.doc().set({
       email: user.user.email,
@@ -70,9 +70,9 @@ export const UserFunctions = () => {
       console.log("The is no Creation in db for this user");
       return;
     }
-    let userCreation = ""
+    let userCreation = []
     snapshot.forEach((doc) => {
-      userCreation = doc.data()
+      userCreation = [...userCreation, doc.data()]
     });
     return userCreation;
   };
@@ -83,9 +83,9 @@ export const UserFunctions = () => {
       console.log("The is no Collection in db for this user");
       return;
     }
-    let userCollection = ""
+    let userCollection = []
     snapshot.forEach((doc) => {
-      userCollection = doc.data()
+      userCollection = [...userCollection, doc.data()]
     });
     return userCollection;
   };

@@ -9,6 +9,8 @@ import NavBar from "./NavBar";
 import Creators from "./Creators";
 import Artwork from "./Artwork";
 import Profile from "./Profile";
+// import Me from "./Me";
+// import UserProfile from "./UserProfile"
 import EditProfile from "./EditProfile";
 import NewArtwork from "./NewArtwork";
 //utils
