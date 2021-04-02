@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //CSS
 import styles from "../styles/NavBar.module.css";
@@ -12,6 +12,7 @@ const NavBar = () => {
   const user = useRecoilValue(userAtom);
   const [showDropdown, setShowDropdown] = useState(false);
   const { logOut } = AuthFunctions();
+
 
   const toggleDropdown = () => setShowDropdown(!showDropdown);
 
