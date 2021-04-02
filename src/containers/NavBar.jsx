@@ -1,19 +1,19 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 //CSS
-import styles from "../styles/NavBar.module.css"
+import styles from "../styles/NavBar.module.css";
 //Recoil
-import { useRecoilState } from "recoil"
-import { userAtom } from "../state/atoms"
-
-import { AuthFunctions } from "../utils/firebase/authEmail"
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../state/atoms";
+//Utils
+import { AuthFunctions } from "../utils/firebase/auth/authEmail";
 
 const NavBar = () => {
-  const [user, setuser] = useRecoilState(userAtom)
-  const [showDropdown, setShowDropdown] = useState(false)
-  const { logOut } = AuthFunctions()
+  const user = useRecoilValue(userAtom);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const { logOut } = AuthFunctions();
 
-  const toggleDropdown = () => setShowDropdown(!showDropdown)
+  const toggleDropdown = () => setShowDropdown(!showDropdown);
 
   return (
     <div className={styles.navbarContainer}>
@@ -70,15 +70,15 @@ const NavBar = () => {
         <div
           className={styles.dropdownOptions}
           onClick={(event) => {
-            toggleDropdown()
-            logOut(event)
+            toggleDropdown();
+            logOut(event);
           }}
         >
           Sign Out
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

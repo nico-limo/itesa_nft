@@ -1,21 +1,20 @@
-import React, {useEffect} from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 //styles
-import form from "../styles/Form.module.css"
+import form from "../styles/Form.module.css";
 //utils
-import { useInput } from "../utils/hooks/useInput"
-import { AuthFunctions } from "../utils/firebase/authEmail"
-
-import { formErrorAtom } from "../state/atoms"
-
-import { useRecoilState } from "recoil"
+import { useInput } from "../utils/hooks/useInput";
+import { AuthFunctions } from "../utils/firebase/auth/authEmail";
+//Recoil
+import { useRecoilState } from "recoil";
+import { formErrorAtom } from "../state/atoms";
 
 const Register = () => {
-  const username = useInput("username")
-  const email = useInput("email")
-  const password = useInput("password")
-  const { register } = AuthFunctions()
-  const [formError, setFormError] = useRecoilState(formErrorAtom)
+  const username = useInput("username");
+  const email = useInput("email");
+  const password = useInput("password");
+  const { register } = AuthFunctions();
+  const [formError, setFormError] = useRecoilState(formErrorAtom);
 
   useEffect(() => setFormError(""), []);
 
@@ -60,7 +59,7 @@ const Register = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

@@ -1,10 +1,10 @@
 //Firebase Auth
-import { auth } from "../../firebaseConfig"
+import { auth } from "../../../firebaseConfig"
 //FireStore
-import { UserFunctions } from "../firebase/requests/userRequests"
+import { UserFunctions } from "../requests/userRequests"
 //Recoil
 import { useSetRecoilState } from "recoil"
-import { userAtom, formErrorAtom } from "../../state/atoms"
+import { userAtom, formErrorAtom } from "../../../state/atoms"
 // React Router Dom
 import { useHistory } from "react-router-dom"
 export const AuthFunctions = () => {
