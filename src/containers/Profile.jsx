@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react"
-import { AuthFunctions } from "../utils/firebase/authEmail";
-import ArtCard from "./ArtCard"
-
-import { userAtom, userProfile, artStatusAtom, CreationOrCollection } from "../state/atoms"
-import { UserFunctions, getUserCreations, getUserCollections } from "../utils/firebase/requests/userRequests";
-
+import React, { useEffect, useState } from "react";
+//Components
+import ArtCard from "../components/ArtCard";
+//Utils
+import { AuthFunctions } from "../utils/firebase/auth/authEmail";
+//Recoil
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userAtom, artStatusAtom } from "../state/atoms";
+import { UserFunctions } from "../utils/firebase/requests/userRequests";
 //styles
 import styles from "../styles/Profile.module.css"
 import form from "../styles/Form.module.css"
 import spinners from "../styles/Spinners.module.css"
-import { useRecoilState, useRecoilValue } from "recoil";
 
 const Profile = ({ match }) => {
   const user = useRecoilValue(userAtom) // usuario logueado
@@ -37,8 +38,7 @@ const Profile = ({ match }) => {
     }
     }, [showArt, urlUser])
 
-    console.log("userArtWork", userArtWork)
-    console.log("user atom", user)
+
   return (
     <>
     { urlUser ? ( <>
