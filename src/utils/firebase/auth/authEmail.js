@@ -1,10 +1,10 @@
 //Firebase Auth
-import { auth } from "../../firebaseConfig"
+import { auth } from "../../../firebaseConfig"
 //FireStore
-import { UserFunctions } from "../firebase/requests/userRequests"
+import { UserFunctions } from "../requests/userRequests"
 //Recoil
 import { useSetRecoilState } from "recoil"
-import { userAtom, formErrorAtom } from "../../state/atoms"
+import { userAtom, formErrorAtom } from "../../../state/atoms"
 // React Router Dom
 import { useHistory } from "react-router-dom"
 export const AuthFunctions = () => {
@@ -68,5 +68,15 @@ export const AuthFunctions = () => {
     history.push("/")
   }
 
-  return { login, register, isUser, logOut }
+  const forgotPassword = (event, emailAddress) => {
+    event.preventDefault()
+    auth
+      .sendPasswordResetEmail(emailAddress)
+      .then(function () {
+        history.push("/reset/confirmation")
+      })
+      .catch((e) => setFormError(e.message))
+  }
+
+  return { login, register, isUser, logOut, forgotPassword }
 }

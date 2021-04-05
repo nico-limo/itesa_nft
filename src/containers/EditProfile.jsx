@@ -1,51 +1,65 @@
 import React from "react";
+//Utils
 import { UserFunctions } from "../utils/firebase/requests/userRequests";
-import { useInput } from "../utils/hooks/useInput";
+import { useInput, useHandleFile } from "../utils/hooks/useInput";
+import { UserUpdateFunctions } from "../utils/firebase/storage/profileUpdate";
 //styles
-import form from "../styles/Form.module.css";
+import styles from "../styles/EditProfile.module.css";
 
 const EditProfile = () => {
   const { updateUser } = UserFunctions();
-  const photo_picture = useInput("photo_picture");
   const description = useInput("description");
-  const main_picture = useInput("main_picture");
+  const avatar = useHandleFile('avatar');
+  const main_picture = useHandleFile('main_picture');
+  const {profileFileUpload} = UserUpdateFunctions();
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    profileFileUpload(main_picture.file,"main_picture");
+    await updateUser({description:description.value});
+    profileFileUpload(avatar.file,"photo_profile");
+
+  };
 
   return (
     <>
-      <div className={form.title}>Edit your profile</div>
-      <div className={form.container}>
-        <form className={form.form}>
-          <input
-            className={form.input}
-            type="text"
-            {...description}
-            placeholder="description"
-          />
-          <input
-            className={form.input}
-            type="text"
-            {...photo_picture}
-            placeholder="profile image"
-          />
-          <input
-            className={form.input}
-            type="text"
-            {...main_picture}
-            placeholder="main image"
-          />
-          <button
-            type="submit"
-            onClick={(e) =>
-              updateUser(
-                e,
-                description.value,
-                photo_picture.value,
-                main_picture.value
-              )
-            }
-          >
-            Save
-          </button>
+      <div className={styles.title}>Edit your profile</div>
+      <div className={styles.editProfileContainer}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.inputContainer}>
+            <label className={styles.label} htmlFor="description">
+              Add a short description:
+            </label>
+            <textarea
+              className={`${styles.input} ${styles.description}`}
+              type="text"
+              {...description}
+              placeholder="Your description"
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.label} htmlFor="photo_picture">
+              Add a profile picture:
+            </label>
+            <input
+              className={`${styles.input}`}
+              type="file"
+              {...avatar}
+            />
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.label} htmlFor="main_picture">
+              Add a background picture:
+            </label>
+            <input
+              className={styles.input}
+              type="file"
+              {...main_picture}
+            />
+          </div>
+          <button type="submit">Save Changes</button>
         </form>
       </div>
     </>

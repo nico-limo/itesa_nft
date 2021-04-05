@@ -11,7 +11,6 @@ const NewArtwork = () => {
   const imgURI = useInput("imgURI");
   const price = useInput("price");
   const { newPiece } = ArtFunctions();
-  const { updatePiece } = ArtFunctions();
   return (
     <div>
       <div className={form.title}>Create new art piece</div>

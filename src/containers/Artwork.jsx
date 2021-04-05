@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-
-import { singlePieceAtom } from "../state/atoms";
+//Recoil
 import { useRecoilState } from "recoil";
+import { singlePieceAtom } from "../state/atoms";
+//Utils
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
+//CSS
 import styles from "../styles/artWork.module.css";
 
 const Artwork = ({ id }) => {
@@ -17,13 +19,11 @@ const Artwork = ({ id }) => {
   return (
     <>
       <div className={styles.artworkTitle}>{singlePiece?.title}</div>
-      <div className={styles.singleArtworkContainer}>
         <img
           className={styles.singleArtworkImage}
           src={singlePiece?.imgURI}
           alt=""
         />
-      </div>
       <div className={styles.ArtFeaturesContainer}>
         <div className={styles.divButtons}>
           <button>@{singlePiece.username}</button>
