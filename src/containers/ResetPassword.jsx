@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 //styles
-import form from "../styles/Form.module.css";
+import form from "../styles/Form.module.css"
 //utils
 import { useInput } from "../utils/hooks/useInput"
-import { AuthFunctions } from "../utils/firebase/auth/authEmail"
+import { AuthFunctions } from "../utils/firebase/authEmail"
 
 import { formErrorAtom } from "../state/atoms"
 
@@ -12,10 +12,9 @@ import FormButtonSpinner from "./FormButtonSpinner"
 
 import { useRecoilState } from "recoil"
 
-const Login = () => {
+const ResetPassword = () => {
   const email = useInput("email")
-  const password = useInput("password")
-  const { login } = AuthFunctions()
+  const { forgotPassword } = AuthFunctions()
   const [formError, setFormError] = useRecoilState(formErrorAtom)
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false)
 
@@ -27,54 +26,34 @@ const Login = () => {
 
   return (
     <>
-      <div className={form.title}>Log in</div>
+      <div className={form.title}>Trouble Logging In?</div>
       <div className={form.container}>
-        <form
-          onSubmit={(event) => login(event, email.value, password.value)}
-          className={form.form}
-        >
+          <div className={form.instructions}>Enter your email and we'll send you a link to reset your password and get back into your account.</div>
+        <form className={form.form}>
           <input
             className={form.input}
             placeholder="Enter your email"
             type="email"
             {...email}
           />
-          <input
-            className={form.input}
-            placeholder="Set a new password"
-            type="password"
-            {...password}
-          />
           <button
             onClick={(event) => {
               event.preventDefault()
               setShowLoadingSpinner(true)
-              login(event, email.value, password.value)
+              forgotPassword(event, email.value)
             }}
           >
             {showLoadingSpinner ? (
               <FormButtonSpinner />
             ) : (
-              <div>Sign In</div>
+              <div className={form.buttonText}>Send Password Reset Link</div>
             )}
           </button>
         </form>
         {formError && <div className={form.error}>{formError}</div>}
-        <div className={form.forgotAndSignUpContainer}>
-          <div>
-            <Link className={form.link} to="/register">
-              Don't have an account? Sign up
-            </Link>
-          </div>
-          <div className={form.forgotPassword}>
-            <Link className={form.link} to="/reset">
-              Forgot password?
-            </Link>
-          </div>
-        </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default ResetPassword

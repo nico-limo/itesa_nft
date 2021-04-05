@@ -68,5 +68,15 @@ export const AuthFunctions = () => {
     history.push("/")
   }
 
-  return { login, register, isUser, logOut }
+  const forgotPassword = (event, emailAddress) => {
+    event.preventDefault()
+    auth
+      .sendPasswordResetEmail(emailAddress)
+      .then(function () {
+        history.push("/reset/confirmation")
+      })
+      .catch((e) => setFormError(e.message))
+  }
+
+  return { login, register, isUser, logOut, forgotPassword }
 }
