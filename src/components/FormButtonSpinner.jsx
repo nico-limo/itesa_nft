@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 //styles
-import spinners from "../styles/Spinners.module.css"
+import spinners from "../styles/Spinners.module.css";
 
 const FormButtonSpinner = () => {
   return (
@@ -9,7 +9,7 @@ const FormButtonSpinner = () => {
         <div className={spinners.smallCircleCore}></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FormButtonSpinner
+export default FormButtonSpinner;
