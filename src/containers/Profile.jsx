@@ -48,7 +48,7 @@ const Profile = () => {
               src="http://www.fubiz.net/wp-content/uploads/2018/03/beeple-crap-art-renders-03.jpg"
               alt=""
             />
-            <div>@deeple</div>
+            <div>@</div>
           </div>
           <div className={styles.singleArtworkPrice}>
             Sold For

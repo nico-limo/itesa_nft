@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import form from "../styles/Form.module.css"
 //utils
 import { useInput } from "../utils/hooks/useInput"
-import { AuthFunctions } from "../utils/firebase/authEmail"
+import { AuthFunctions } from "../utils/firebase/auth/authEmail"
 
 import { formErrorAtom } from "../state/atoms"
 

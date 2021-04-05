@@ -30,7 +30,11 @@ const Login = () => {
       <div className={form.title}>Log in</div>
       <div className={form.container}>
         <form
-          onSubmit={(event) => login(event, email.value, password.value)}
+          onSubmit={(event)  => {
+            setShowLoadingSpinner(true)
+            setFormError("")
+            login(event, email.value, password.value)
+          }}
           className={form.form}
         >
           <input
@@ -46,11 +50,7 @@ const Login = () => {
             {...password}
           />
           <button
-            onClick={(event) => {
-              event.preventDefault()
-              setShowLoadingSpinner(true)
-              login(event, email.value, password.value)
-            }}
+            type="submit"
           >
             {showLoadingSpinner ? (
               <FormButtonSpinner />
