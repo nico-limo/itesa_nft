@@ -8,6 +8,29 @@ export const userAtom = atom({
     }
 })
 
+export const userUrl = atom({
+    key: 'userUrl',
+    default: {},
+    persistence_UNSTABLE: {
+        type: 'log'
+    }
+})
+
+export const userProfile = atom({
+    key: 'userProfile',
+    default: {},
+    persistence_UNSTABLE: {
+        type: 'log'
+    }
+})
+export const CreationOrCollection = atom({
+    key: 'CreationOrCollection',
+    default: [],
+    persistence_UNSTABLE: {
+        type: 'log'
+    }
+})
+
 export const usersArrAtom = atom({
     key: 'usersArrAtom',
     default: [],

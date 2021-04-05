@@ -24,8 +24,7 @@ const App = () => {
 
   useEffect(() => isUser(), []);
 
-  useEffect(() => {
-  }, [user]);
+  useEffect(() => {}, [user])
 
   return (
     <div>
@@ -35,7 +34,7 @@ const App = () => {
         <Route path={"/register"} component={Register} />
         <Route exact path={"/creators"} component={Creators} />
         <Route
-          path={"/creators/:id"}
+          path={"/creator/:id"}
           render={({ match }) => <Profile match={match} />}
         />
         <Route path={"/artwork/create"} component={NewArtwork} />
