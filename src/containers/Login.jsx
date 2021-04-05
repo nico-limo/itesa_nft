@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 //styles
-import form from "../styles/Form.module.css"
+import form from "../styles/Form.module.css";
 //utils
 import { useInput } from "../utils/hooks/useInput"
-import { AuthFunctions } from "../utils/firebase/authEmail"
+import { AuthFunctions } from "../utils/firebase/auth/authEmail"
 
 import { formErrorAtom } from "../state/atoms"
 
@@ -29,7 +29,10 @@ const Login = () => {
     <>
       <div className={form.title}>Log in</div>
       <div className={form.container}>
-        <form className={form.form}>
+        <form
+          onSubmit={(event) => login(event, email.value, password.value)}
+          className={form.form}
+        >
           <input
             className={form.input}
             placeholder="Enter your email"
@@ -71,7 +74,7 @@ const Login = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

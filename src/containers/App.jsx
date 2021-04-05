@@ -14,7 +14,7 @@ import NewArtwork from "./NewArtwork";
 import ResetPassword from "./ResetPassword";
 import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
 //utils
-import { AuthFunctions } from "../utils/firebase/authEmail";
+import { AuthFunctions } from "../utils/firebase/auth/authEmail";
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../state/atoms";
 
@@ -25,7 +25,6 @@ const App = () => {
   useEffect(() => isUser(), []);
 
   useEffect(() => {
-    console.log("test");
   }, [user]);
 
   return (

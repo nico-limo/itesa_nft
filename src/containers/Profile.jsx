@@ -1,14 +1,9 @@
-import React, { useState } from "react"
-import styles from "../styles/Profile.module.css"
-import { AuthFunctions } from "../utils/firebase/authEmail";
+import React, { useState } from "react";
 //styles
-import form from "../styles/Form.module.css";
-
-// .toFixed(2)
+import styles from "../styles/Profile.module.css";
 
 const Profile = () => {
-  const [showCreations, setShowCreations] = useState(true)
-  const { logOut } = AuthFunctions();
+  const [showCreations, setShowCreations] = useState(true);
 
   return (
     <>
@@ -61,11 +56,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      {/* <div className={form.form}>
-      <button onClick={(event) => logOut(event)}>Sign Out</button>
-    </div> */}
     </>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
