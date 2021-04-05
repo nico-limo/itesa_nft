@@ -15,6 +15,7 @@ const Artwork = ({ id }) => {
     getSinglePiece(id).then((res) => {
       setSinglePieceAtom(res);
     });
+    return setSinglePieceAtom("");
   }, []);
   return (
     <>
