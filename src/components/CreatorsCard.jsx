@@ -6,12 +6,10 @@ import styles from "../styles/Creators.module.css";
 import index from "../styles/index.modules.css";
 const CreatorsCard = ({ user }) => {
   return (
-    <>
       <Link
         to={`/creator/${user.uid}`}
         className={`${styles.singleCreatorContainer} ${index.link}`}
       >
-        <div>
           <img
             className={styles.singleCreatorArtwork}
             src={user.main_picture}
@@ -26,9 +24,7 @@ const CreatorsCard = ({ user }) => {
           <div className={styles.singleCreatorDescription}>
             {user.description}
           </div>
-        </div>
       </Link>
-    </>
   );
 };
 

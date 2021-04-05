@@ -1,39 +1,39 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 //styles
 import form from "../styles/Form.module.css";
 //utils
-import { useInput } from "../utils/hooks/useInput"
-import { AuthFunctions } from "../utils/firebase/auth/authEmail"
+import { useInput } from "../utils/hooks/useInput";
+import { AuthFunctions } from "../utils/firebase/auth/authEmail";
 
-import { formErrorAtom } from "../state/atoms"
+import { formErrorAtom } from "../state/atoms";
 
-import FormButtonSpinner from "./FormButtonSpinner"
+import FormButtonSpinner from "../components/FormButtonSpinner";
 
-import { useRecoilState } from "recoil"
+import { useRecoilState } from "recoil";
 
 const Login = () => {
-  const email = useInput("email")
-  const password = useInput("password")
-  const { login } = AuthFunctions()
-  const [formError, setFormError] = useRecoilState(formErrorAtom)
-  const [showLoadingSpinner, setShowLoadingSpinner] = useState(false)
+  const email = useInput("email");
+  const password = useInput("password");
+  const { login } = AuthFunctions();
+  const [formError, setFormError] = useRecoilState(formErrorAtom);
+  const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
 
-  useEffect(() => setFormError(""), [])
+  useEffect(() => setFormError(""), []);
 
   useEffect(() => {
-    if (formError) setShowLoadingSpinner(false)
-  }, [formError])
+    if (formError) setShowLoadingSpinner(false);
+  }, [formError]);
 
   return (
     <>
       <div className={form.title}>Log in</div>
       <div className={form.container}>
         <form
-          onSubmit={(event)  => {
-            setShowLoadingSpinner(true)
-            setFormError("")
-            login(event, email.value, password.value)
+          onSubmit={(event) => {
+            setShowLoadingSpinner(true);
+            setFormError("");
+            login(event, email.value, password.value);
           }}
           className={form.form}
         >
@@ -49,14 +49,8 @@ const Login = () => {
             type="password"
             {...password}
           />
-          <button
-            type="submit"
-          >
-            {showLoadingSpinner ? (
-              <FormButtonSpinner />
-            ) : (
-              <div>Sign In</div>
-            )}
+          <button type="submit">
+            {showLoadingSpinner ? <FormButtonSpinner /> : <div>Sign In</div>}
           </button>
         </form>
         {formError && <div className={form.error}>{formError}</div>}
