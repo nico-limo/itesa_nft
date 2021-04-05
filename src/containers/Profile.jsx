@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { AuthFunctions } from "../utils/firebase/auth/authEmail";
-import ArtCard from "../components/ArtCard";
+import React, { useEffect, useState } from "react"
+import { AuthFunctions } from "../utils/firebase/authEmail";
+import ArtCard from "./ArtCard"
 
 import {
   userAtom,
@@ -49,10 +49,17 @@ const Profile = ({ match }) => {
           setUserArtWork(collection)
         );
     }
+<<<<<<< HEAD
   }, [showArt, urlUser]);
 
   console.log("userArtWork", userArtWork);
   console.log("user atom", user);
+=======
+    }, [showArt, urlUser])
+
+    console.log("userArtWork", userArtWork)
+    console.log("user atom", user)
+>>>>>>> 2750416a4ad2c5dc87c20f2e172fd7e533fcc79a
   return (
     <>
       {urlUser ? (
@@ -109,7 +116,13 @@ const Profile = ({ match }) => {
             <div className={spinners.circleCore}></div>
           </div>
         </div>
+<<<<<<< HEAD
       )}
+=======
+      </div>
+    )
+    }
+>>>>>>> 2750416a4ad2c5dc87c20f2e172fd7e533fcc79a
     </>
   );
 };

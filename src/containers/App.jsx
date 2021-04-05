@@ -11,6 +11,8 @@ import Artwork from "./Artwork";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
 import NewArtwork from "./NewArtwork";
+import ResetPassword from "./ResetPassword";
+import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
 //utils
 import { AuthFunctions } from "../utils/firebase/auth/authEmail";
 import { useRecoilValue } from "recoil";
@@ -22,7 +24,7 @@ const App = () => {
 
   useEffect(() => isUser(), []);
 
-  useEffect(() => {}, [user]);
+  useEffect(() => {}, [user])
 
   return (
     <div>
@@ -42,6 +44,8 @@ const App = () => {
         />
         <Route exact path={"/me"} component={Profile} />
         <Route exact path={"/me/edit"} component={EditProfile} />
+        <Route exact path={"/reset"} component={ResetPassword} />
+        <Route exact path={"/reset/confirmation"} component={ResetPasswordConfirmation} />
       </Switch>
       <NavBar />
     </div>

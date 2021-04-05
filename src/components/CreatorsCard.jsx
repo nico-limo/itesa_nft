@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 //CSS
 import styles from "../styles/Creators.module.css";
-
+import index from "../styles/index.modules.css";
 const CreatorsCard = ({ user }) => {
   return (
     <>
       <Link
         to={`/creator/${user.uid}`}
-        className={styles.singleCreatorContainer}
+        className={`${styles.singleCreatorContainer} ${index.link}`}
       >
         <div>
           <img
@@ -21,7 +21,7 @@ const CreatorsCard = ({ user }) => {
             src={user.photo_profile}
             alt=""
           />
-          <div className={styles.singleCreatorName}>{user.username}</div>
+          <div className={styles.singleCreatorName}>@{user.username}</div>
           <div className={styles.singleCreatorDescription}>
             {user.description}
           </div>
