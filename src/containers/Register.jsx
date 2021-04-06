@@ -32,19 +32,25 @@ const Register = () => {
             className={form.input}
             placeholder="Enter a username"
             type="text"
-            {...username}
+            name={username.name}
+            value={username.value}
+            onChange={username.onChange}
           />
           <input
             className={form.input}
             placeholder="Enter your email"
             type="email"
-            {...email}
+            name={email.name}
+            value={email.value}
+            onChange={email.onChange}
           />
           <input
             className={form.input}
             placeholder="Set a new password"
             type="password"
-            {...password}
+            name={password.name}
+            value={password.value}
+            onChange={password.onChange}
           />
           <button type="submit">Create an Account</button>
         </form>

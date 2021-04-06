@@ -41,13 +41,17 @@ const Login = () => {
             className={form.input}
             placeholder="Enter your email"
             type="email"
-            {...email}
+            name={email.name}
+            value={email.value}
+            onChange={email.onChange}
           />
           <input
             className={form.input}
             placeholder="Set a new password"
             type="password"
-            {...password}
+            name={password.name}
+            value={password.value}
+            onChange={password.onChange}
           />
           <button type="submit">
             {showLoadingSpinner ? <FormButtonSpinner /> : <div>Sign In</div>}

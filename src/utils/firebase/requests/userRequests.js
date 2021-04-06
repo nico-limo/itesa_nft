@@ -33,11 +33,8 @@ export const UserFunctions = () => {
         doc.ref.update({
           [key]: value,
       });
-      if(key === "photo_profile"){
-        setUser({
-          ...user,
-          [key]: value,
-        })
+      if (key === "photo_profile" || key === "description") {
+        getUser(user.uid).then((user) => setUser(user))
       }
       
     });
