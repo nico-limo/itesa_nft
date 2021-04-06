@@ -9,7 +9,7 @@ export const ArtFunctions = () => {
     const artWorkRef = db.collection('artWork');
     const user = useRecoilValue(userAtom);
 
-    const newPiece = async (e, title, imgURI, description, price) => {
+    const newPiece = async (e, title, description, price) => {
         e.preventDefault()
         const res = await artWorkRef.add({
             created: new Date(),
@@ -17,7 +17,7 @@ export const ArtFunctions = () => {
             ownerId: user.uid,
             authorId: user.uid,
             title,
-            imgURI,
+            imgURI: null,
             description,
             price,
             onSale: true,
@@ -26,16 +26,19 @@ export const ArtFunctions = () => {
             photo_profile: user.photo_profile
         })
         await artWorkRef.doc(`${res.id}`).update({ id: res.id })
+        return res.id;
     }
 
     const updatePiece = async (e, title, description, price, id, onSale) => {
         e.preventDefault()
         await artWorkRef.doc(id).update({
-            title, description, price, onSale // VER Q TIPO DE VALIDACION HACER, 
-            //si sos el author o no, no deberia poder cambiarlo el q no es author
+            title, description, price, onSale
         })
     }
 
+    const updateImgURI = async (imgURI, id) => {
+        await artWorkRef.doc(id).update({imgURI})
+    }
 
     const buyPiece = async (ownerId) => {
         await artWorkRef.doc().update({
@@ -95,5 +98,5 @@ export const ArtFunctions = () => {
         });
         return piece;
     }
-    return { newPiece, updatePiece, buyPiece, getAllPieces, getSoldPieces, getOnSalePieces, getSinglePiece }
+    return { newPiece, updatePiece, buyPiece, getAllPieces, getSoldPieces, getOnSalePieces, getSinglePiece, updateImgURI }
 }
