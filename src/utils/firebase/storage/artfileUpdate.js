@@ -1,18 +1,10 @@
 import { storage } from "../../../firebaseConfig";
-import { userAtom } from "../../../state/atoms";
-import { useRecoilValue } from "recoil";
+export const ArtUpdateFunctions = () => {
 
-import { UserFunctions } from "../requests/userRequests";
-
-
-export const UserUpdateFunctions = () => {
-  const user = useRecoilValue(userAtom);
-  const { updateUser } = UserFunctions();
-
-  const profileFileUpload = (imgFile, key) => {
+  const artWorkFileUpload = (imgFile, key, id) => {
     return new Promise((resolve, reject) => {
       if (imgFile !== "") {
-        const uploadTask = storage.ref(`/${key}/${user.uid}.jpg`).put(imgFile);
+        const uploadTask = storage.ref(`/${key}/${id}.jpg`).put(imgFile);
         uploadTask.on(
           "state_changed",
           (snapshot) => {
@@ -24,10 +16,10 @@ export const UserUpdateFunctions = () => {
           () => {
             storage
               .ref(key)
-              .child(`${user.uid}.jpg`)
+              .child(`${id}.jpg`)
               .getDownloadURL()
               .then((url) => {
-                updateUser({ [key]: url }).then(() => resolve(url));
+                resolve(url)
               });
           }
         );
@@ -35,5 +27,5 @@ export const UserUpdateFunctions = () => {
     });
   };
 
-  return { profileFileUpload };
+  return { artWorkFileUpload };
 };
