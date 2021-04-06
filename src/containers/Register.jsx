@@ -1,31 +1,39 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 //styles
-import form from "../styles/Form.module.css";
+import form from "../styles/Form.module.css"
 //utils
-import { useInput } from "../utils/hooks/useInput";
-import { AuthFunctions } from "../utils/firebase/auth/authEmail";
+import { useInput } from "../utils/hooks/useInput"
+import { AuthFunctions } from "../utils/firebase/auth/authEmail"
 //Recoil
-import { useRecoilState } from "recoil";
-import { formErrorAtom } from "../state/atoms";
+import { useRecoilState } from "recoil"
+import { formErrorAtom } from "../state/atoms"
+
+import FormButtonSpinner from "../components/FormButtonSpinner"
 
 const Register = () => {
-  const username = useInput("username");
-  const email = useInput("email");
-  const password = useInput("password");
-  const { register } = AuthFunctions();
-  const [formError, setFormError] = useRecoilState(formErrorAtom);
+  const username = useInput("username")
+  const email = useInput("email")
+  const password = useInput("password")
+  const { register } = AuthFunctions()
+  const [formError, setFormError] = useRecoilState(formErrorAtom)
+  const [showLoadingSpinner, setShowLoadingSpinner] = useState(false)
 
-  useEffect(() => setFormError(""), []);
+  useEffect(() => setFormError(""), [])
+
+  useEffect(() => {
+    if (formError) setShowLoadingSpinner(false);
+  }, [formError]);
 
   return (
     <>
       <div className={form.title}>Sign Up</div>
       <div className={form.container}>
         <form
-          onSubmit={(event) =>
+          onSubmit={(event) => {
+            setShowLoadingSpinner(true)
             register(event, email.value, password.value, username.value)
-          }
+          }}
           className={form.form}
         >
           <input
@@ -52,7 +60,13 @@ const Register = () => {
             value={password.value}
             onChange={password.onChange}
           />
-          <button type="submit">Create an Account</button>
+          <button type="submit">
+            {showLoadingSpinner ? (
+              <FormButtonSpinner />
+            ) : (
+              <div>Create an Account</div>
+            )}
+          </button>
         </form>
         {formError && <div className={form.error}>{formError}</div>}
         <div className={form.forgotAndSignUpContainer}>
@@ -64,7 +78,7 @@ const Register = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
