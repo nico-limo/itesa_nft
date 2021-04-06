@@ -47,8 +47,7 @@ const NavBar = () => {
         </>
       )}
       <div
-        className={
-          showDropdown ? styles.visibleDropdown : styles.hiddenDropdown
+        className={`${styles.dropdown} ${showDropdown ? null : styles.hidden}`
         }
       >
         <Link to="/me">

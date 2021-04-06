@@ -26,6 +26,7 @@ export const AuthFunctions = () => {
               username: res.username,
               photo_profile: res.photo_profile,
               main_picture: res.main_picture,
+              description: res.description,
             })
           })
           .then(() => history.push("/"))
@@ -54,6 +55,7 @@ export const AuthFunctions = () => {
             username: res.username,
             photo_profile: res.photo_profile,
             main_picture: res.main_picture,
+            description: res.description,
           })
         )
       } else {

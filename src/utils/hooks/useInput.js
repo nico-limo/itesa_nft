@@ -2,17 +2,17 @@ import { useState } from "react";
 import { useSetRecoilState } from "recoil"
 import { formErrorAtom } from "../../state/atoms"
 
-export const useInput = (name) => {
+export const useInput = (name, incomingValue = "") => {
     const setFormError = useSetRecoilState(formErrorAtom)
 
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState(incomingValue);
 
     const onChange = ({ target: { value } }) => {
         setFormError("")
         setValue(value)
     };
 
-    return { value, onChange, name };
+    return { value, onChange, name, setValue };
 };
 
 

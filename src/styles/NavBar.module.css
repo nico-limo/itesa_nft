@@ -15,8 +15,8 @@
   padding-bottom: 3%;
   padding-left: 8vw;
   padding-right: 5vw;
-  font-size: 2.8vw;
-  font-weight: 500;
+  font-size: 3.2vw;
+  font-weight: 300;
   outline: rgba(255, 255, 255, 0.2) 2px solid;
 }
 
@@ -41,31 +41,29 @@ a:visited {
   border-radius: 100%;
   width: 7vw;
   height: 7vw;
-  border: 0.2vw solid white;
+  border: 0.3vw solid white;
 }
 
-.hiddenDropdown {
-  display: none;
-}
-
-.visibleDropdown {
+.dropdown {
   display: block;
   position: fixed;
   bottom: 14.5vw;
   right: 1.5vw;
   background-image: linear-gradient(to top left, #845fa1, #34283e);
-  /* color: white; */
-  /* background-image: linear-gradient(to top left, #c5b0d4, #efe7f5);
-  color: black; */
-  padding-top: 2vw;
+  padding-top: 2.25vw;
   padding-bottom: 2.5vw;
-  width: 25vw;
-  /* height: 10vw; */
+  width: 30vw;
   border-radius: 2vw;
   box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
+  transition: all 350ms ease;
 }
 
-.visibleDropdown hr {
+.hidden {
+  bottom: 14.5vw;
+  right: -30.5vw;
+}
+
+.dropdown hr {
   margin-top: 0.5vw;
   width: 100%;
   border: none;
@@ -73,9 +71,9 @@ a:visited {
 }
 
 .dropdownOptions {
-  padding: 0.5vw 3.5vw;
+  padding: 0.25vw 4vw;
   color: white;
-  font-size: 2.5vw;
+  font-size: 3vw;
   font-weight: 400;
 }
 

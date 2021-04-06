@@ -4,6 +4,7 @@ import styles from "../styles/Creators.module.css";
 import spinners from "../styles/Spinners.module.css";
 //Components
 import CreatorsCard from "../components/CreatorsCard";
+import BigSpinner from "../components/BigSpinner";
 //Recoil
 import { useRecoilState } from "recoil";
 import { usersArrAtom } from "../state/atoms";
@@ -26,11 +27,7 @@ const Creators = () => {
         {creators.length ? (
           creators.map((user) => <CreatorsCard key={user.uid} user={user} />)
         ) : (
-          <div className={spinners.spinnerBox}>
-            <div className={spinners.circleBorder}>
-              <div className={spinners.circleCore}></div>
-            </div>
-          </div>
+          <BigSpinner />
         )}
       </div>
     </>
