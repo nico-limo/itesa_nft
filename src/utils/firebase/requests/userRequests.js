@@ -19,7 +19,7 @@ export const UserFunctions = () => {
       username: username,
       description: null,
       photo_profile:
-        "",
+        "https://firebasestorage.googleapis.com/v0/b/itesa-nft.appspot.com/o/photo_profile%2Fnew_user.png?alt=media&token=efac9524-1dab-4c0b-945e-d7bd388f4539",
       main_picture: null,
       uid: user.user.uid,
       created: new Date(),
