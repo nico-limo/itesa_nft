@@ -19,8 +19,8 @@ export const UserFunctions = () => {
       username: username,
       description: null,
       photo_profile:
-        "https://firebasestorage.googleapis.com/v0/b/itesa-nft.appspot.com/o/profile.jpg?alt=media&token=b4f3f50c-2f31-434f-8ab1-1e2135b2f3b8",
-      main_picture: null,
+        "https://firebasestorage.googleapis.com/v0/b/itesa-nft.appspot.com/o/photo_profile%2Fnew_user.png?alt=media&token=efac9524-1dab-4c0b-945e-d7bd388f4539",
+      main_picture: "https://firebasestorage.googleapis.com/v0/b/itesa-nft.appspot.com/o/main_picture%2Funnamed.jpg?alt=media&token=5bb814ce-4cd2-45df-8811-a20e6941a6ca",
       uid: user.user.uid,
       created: new Date(),
     });

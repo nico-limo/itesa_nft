@@ -18,12 +18,13 @@ const Login = () => {
   const { login } = AuthFunctions();
   const [formError, setFormError] = useRecoilState(formErrorAtom);
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
+  const [click, setClick] = useState(false)
 
   useEffect(() => setFormError(""), []);
 
   useEffect(() => {
-    if (formError) setShowLoadingSpinner(false);
-  }, [formError]);
+    setShowLoadingSpinner(false);
+  }, [formError, click]);
 
   return (
     <>
@@ -32,7 +33,7 @@ const Login = () => {
         <form
           onSubmit={(event) => {
             setShowLoadingSpinner(true);
-            setFormError("");
+            if (formError) setClick(!click)
             login(event, email.value, password.value);
           }}
           className={form.form}

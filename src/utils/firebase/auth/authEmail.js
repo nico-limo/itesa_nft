@@ -3,13 +3,13 @@ import { auth } from "../../../firebaseConfig"
 //FireStore
 import { UserFunctions } from "../requests/userRequests"
 //Recoil
-import { useSetRecoilState } from "recoil"
+import { useSetRecoilState, useRecoilState } from "recoil"
 import { userAtom, formErrorAtom } from "../../../state/atoms"
 // React Router Dom
 import { useHistory } from "react-router-dom"
 export const AuthFunctions = () => {
   const setUser = useSetRecoilState(userAtom)
-  const setFormError = useSetRecoilState(formErrorAtom)
+  const [formError, setFormError] = useRecoilState(formErrorAtom);
   const { getUser, newUser } = UserFunctions()
   const history = useHistory()
 
@@ -31,7 +31,10 @@ export const AuthFunctions = () => {
           })
           .then(() => history.push("/"))
       })
-      .catch((e) => setFormError(e.message))
+      .catch((e) => {
+        if (!formError) setFormError(e.message)
+      })
+      
   }
 
   const register = (event, email, password, username) => {
