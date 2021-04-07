@@ -12,45 +12,46 @@ const NavBar = () => {
   const user = useRecoilValue(userAtom);
   const [showDropdown, setShowDropdown] = useState(false);
   const { logOut } = AuthFunctions();
-
-
+  const local = JSON.parse(localStorage.getItem("logged"));
+  console.log(local?.photo_profile);
   const toggleDropdown = () => setShowDropdown(!showDropdown);
-
   return (
     <div className={styles.navbarContainer}>
-      <Link to="/">
+      <Link className={styles.navbarLink} to="/">
         <div>Home</div>
       </Link>
-      <Link to="/creators">
+      <Link className={styles.navbarLink} to="/creators">
         <div>Creators</div>
       </Link>
-      {user?.uid ? (
+      {local?.uid ? (
         <>
-          <Link to="/artwork/create">
+          <Link className={styles.navbarLink} to="/artwork/create">
             <div>Create</div>
           </Link>
           <img
             onClick={() => toggleDropdown()}
             className={styles.profilePicture}
-            src={user.photo_profile}
+            src={local?.photo_profile}
             alt={user.username}
           />
         </>
       ) : (
         <>
-          <Link to="/login">
+          <Link className={styles.navbarLink} to="/login">
             <div>Login</div>
           </Link>
-          <Link className={styles.lastButton} to="/register">
+          <Link
+            className={`${styles.navbarLink} ${styles.lastButton}`}
+            to="/register"
+          >
             <div>Sign Up</div>
           </Link>
         </>
       )}
       <div
-        className={`${styles.dropdown} ${showDropdown ? null : styles.hidden}`
-        }
+        className={`${styles.dropdown} ${showDropdown ? null : styles.hidden}`}
       >
-        <Link to="/me">
+        <Link className={styles.navbarLink} to="/me">
           <div
             onClick={() => toggleDropdown()}
             className={styles.dropdownOptions}
@@ -58,7 +59,7 @@ const NavBar = () => {
             View Profile
           </div>
         </Link>
-        <Link to="/me/edit">
+        <Link classaName={styles.navbarLink} to="/me/edit">
           <div
             onClick={() => toggleDropdown()}
             className={styles.dropdownOptions}

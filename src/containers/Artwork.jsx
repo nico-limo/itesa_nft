@@ -1,24 +1,27 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
+//React-router
+import { Link } from "react-router-dom";
 //Recoil
-import { useRecoilState } from "recoil"
-import { singlePieceAtom } from "../state/atoms"
+import { useRecoilState } from "recoil";
+import { singlePieceAtom } from "../state/atoms";
 //Utils
-import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
+import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
 //CSS
-import styles from "../styles/artWork.module.css"
+import styles from "../styles/artWork.module.css";
+import index from "../styles/index.module.css";
 
-import BigSpinner from "../components/BigSpinner"
+import BigSpinner from "../components/BigSpinner";
 
 const Artwork = ({ id }) => {
-  const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)
-  const { getSinglePiece } = ArtFunctions()
+  const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom);
+  const { getSinglePiece } = ArtFunctions();
 
   useEffect(() => {
     getSinglePiece(id).then((res) => {
-      setSinglePieceAtom(res)
-    })
-    return setSinglePieceAtom("")
-  }, [])
+      setSinglePieceAtom(res);
+    });
+    return setSinglePieceAtom("");
+  }, []);
   return singlePiece ? (
     <>
       <div className={styles.artworkTitle}>{singlePiece?.title}</div>
@@ -29,7 +32,14 @@ const Artwork = ({ id }) => {
       />
       <div className={styles.ArtFeaturesContainer}>
         <div className={styles.divButtons}>
-          <button>@{singlePiece.username}</button>
+          <button>
+            <Link
+              to={`/creator/${singlePiece.authorId}`}
+              className={index.link}
+            >
+              @{singlePiece.username}
+            </Link>
+          </button>
         </div>
         <div className={styles.artDescription}>{singlePiece?.description}</div>
         <div className={styles.priceAndButtonContainer}>
@@ -45,7 +55,7 @@ const Artwork = ({ id }) => {
     </>
   ) : (
     <BigSpinner />
-  )
-}
+  );
+};
 
-export default Artwork
+export default Artwork;

@@ -15,12 +15,12 @@ export const useInput = (name, incomingValue = "") => {
     return { value, onChange, name, setValue };
 };
 
-
 export const useHandleFile = (name) => {
     const [file, setFile] = useState("");
 
     const onChange = ({ target: { files } }) => {
-        setFile(files[0])};
+        setFile(files[0])
+    };
 
     return { file, onChange, name };
 };

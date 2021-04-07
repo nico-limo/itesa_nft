@@ -24,11 +24,11 @@ a {
   text-decoration: none;
 }
 
-a:link {
+.navbarLink:link {
   color: white;
 }
 
-a:visited {
+.navbarLink:visited {
   color: white;
 }
 
