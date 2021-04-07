@@ -12,7 +12,7 @@ import { useRecoilValue } from "recoil";
 // Spinner
 import FormButtonSpinner from "../components/FormButtonSpinner";
 
-const EditProfile = ({id}) => {
+const EditProfile = ({ id }) => {
   const { updateUser } = UserFunctions();
   const user = useRecoilValue(userAtom);
   const description = useInput("description", user.description);
@@ -86,15 +86,17 @@ const EditProfile = ({id}) => {
                 onChange={avatar.onChange}
                 key={cancelAvatar}
               />
-              <a
-                name="avatar"
-                className={styles.clear}
-                href="#"
-                onClick={clearFile}
-                id="clear"
-              >
-                cancel
-              </a>
+              {avatar.file ? (
+                <a
+                  name="avatar"
+                  className={styles.clear}
+                  href="#"
+                  onClick={clearFile}
+                  id="clear"
+                >
+                  cancel
+                </a>
+              ) : null}
             </div>
           </div>
           <div className={styles.inputContainer}>
@@ -110,15 +112,17 @@ const EditProfile = ({id}) => {
                 onChange={main_picture.onChange}
                 key={cancelMain}
               />
-              <a
-                className={styles.clear}
-                name="main_picture"
-                href="#"
-                onClick={clearFile}
-                id="clear"
-              >
-                cancel
-              </a>
+              {main_picture.file ? (
+                <a
+                  className={styles.clear}
+                  name="main_picture"
+                  href="#"
+                  onClick={clearFile}
+                  id="clear"
+                >
+                  cancel
+                </a>
+              ) : null}
             </div>
           </div>
           <button className={styles.submit} type="submit">
