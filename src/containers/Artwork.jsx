@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 //React-router
 import { Link } from "react-router-dom";
 //Recoil
-import { useRecoilState } from "recoil";
-import { singlePieceAtom } from "../state/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { singlePieceAtom, userAtom } from "../state/atoms";
 //Utils
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
 //CSS
@@ -14,6 +14,7 @@ import BigSpinner from "../components/BigSpinner";
 
 const Artwork = ({ id }) => {
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom);
+  const user = useRecoilValue(userAtom);
   const { getSinglePiece } = ArtFunctions();
 
   useEffect(() => {
@@ -47,6 +48,8 @@ const Artwork = ({ id }) => {
             Price: {singlePiece?.price} ETH
           </div>
           <button className={styles.buyButton}>Buy Now</button>
+          { user.uid === singlePiece.authorId && user.uid === singlePiece.ownerId ?  <Link to={`/artwork/${id}/edit`} ><button className={styles.buyButton}>Edit</button> </Link>  : null }
+         
         </div>
       </div>
       {/* <div className={styles.artDescriptionsLeft}>

@@ -13,7 +13,6 @@ const NavBar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const { logOut } = AuthFunctions();
   const local = JSON.parse(localStorage.getItem("logged"));
-  console.log(local?.photo_profile);
   const toggleDropdown = () => setShowDropdown(!showDropdown);
   return (
     <div className={styles.navbarContainer}>
@@ -59,7 +58,7 @@ const NavBar = () => {
             View Profile
           </div>
         </Link>
-        <Link classaName={styles.navbarLink} to="/me/edit">
+        <Link className={styles.navbarLink} to="/me/edit">
           <div
             onClick={() => toggleDropdown()}
             className={styles.dropdownOptions}
