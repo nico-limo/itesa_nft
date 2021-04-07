@@ -52,6 +52,8 @@ const Artwork = ({ id }) => {
             Price: {singlePiece?.price} ETH
           </div>
           <button className={styles.buyButton}>Buy Now</button>
+          { user.uid === singlePiece.authorId && user.uid === singlePiece.ownerId ?  <Link to={`/artwork/${id}/edit`} ><button className={styles.buyButton}>Edit</button> </Link>  : null }
+         
         </div>
       </div>
       <div className={styles.artDescriptionsLeft}>

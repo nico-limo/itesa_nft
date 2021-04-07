@@ -12,7 +12,7 @@ import { useRecoilValue } from "recoil";
 // Spinner
 import FormButtonSpinner from "../components/FormButtonSpinner";
 
-const EditProfile = () => {
+const EditProfile = ({id}) => {
   const { updateUser } = UserFunctions();
   const user = useRecoilValue(userAtom);
   const description = useInput("description", user.description);
@@ -21,10 +21,11 @@ const EditProfile = () => {
   const { profileFileUpload } = UserUpdateFunctions();
   const history = useHistory();
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
+  const [cancelMain, setCancelMain] = useState(false);
+  const [cancelAvatar, setCancelAvatar] = useState(false);
 
   useEffect(() => {
     description.setValue(user.description);
-    console.log(description.value);
   }, [user]);
 
   const handleSubmit = (e) => {
@@ -42,6 +43,16 @@ const EditProfile = () => {
       .then(() => Promise.all([mainPicturePromise, profilePicturePromise]))
       .then(() => history.push("/me"))
       .catch(() => setShowLoadingSpinner(false));
+  };
+  const clearFile = (e) => {
+    if (e.target.name === "avatar") {
+      setCancelAvatar(!cancelAvatar);
+      avatar.setFile(null);
+    } else {
+      setCancelMain(!cancelMain);
+      main_picture.setFile(null);
+    }
+    console.log(e.target.name);
   };
 
   return (
@@ -66,15 +77,51 @@ const EditProfile = () => {
             <label className={styles.label} htmlFor="photo_picture">
               Add a profile picture:
             </label>
-            <input className={`${styles.input}`} type="file" {...avatar} />
+            <div className={styles.uploadContainer}>
+              <input
+                className={`${styles.input}`}
+                type="file"
+                name={avatar.name}
+                file={avatar.file}
+                onChange={avatar.onChange}
+                key={cancelAvatar}
+              />
+              <a
+                name="avatar"
+                className={styles.clear}
+                href="#"
+                onClick={clearFile}
+                id="clear"
+              >
+                cancel
+              </a>
+            </div>
           </div>
           <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="main_picture">
               Add a background picture:
             </label>
-            <input className={styles.input} type="file" {...main_picture} />
+            <div className={styles.uploadContainer}>
+              <input
+                className={styles.input}
+                type="file"
+                name={main_picture.name}
+                file={main_picture.file}
+                onChange={main_picture.onChange}
+                key={cancelMain}
+              />
+              <a
+                className={styles.clear}
+                name="main_picture"
+                href="#"
+                onClick={clearFile}
+                id="clear"
+              >
+                cancel
+              </a>
+            </div>
           </div>
-          <button type="submit">
+          <button className={styles.submit} type="submit">
             {showLoadingSpinner ? (
               <FormButtonSpinner />
             ) : (
