@@ -3,9 +3,10 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 //Recoil
 import { useRecoilState } from "recoil";
-import { singlePieceAtom } from "../state/atoms";
+import { singlePieceAtom, userProfile } from "../state/atoms";
 //Utils
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
+import { UserFunctions } from "../utils/firebase/requests/userRequests"
 //CSS
 import styles from "../styles/artWork.module.css";
 import index from "../styles/index.module.css";
@@ -14,14 +15,18 @@ import BigSpinner from "../components/BigSpinner";
 
 const Artwork = ({ id }) => {
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom);
+  const [user, setUser] = useRecoilState(userProfile)
   const { getSinglePiece } = ArtFunctions();
+  const { getUser } = UserFunctions();
 
   useEffect(() => {
     getSinglePiece(id).then((res) => {
-      setSinglePieceAtom(res);
-    });
+      setSinglePieceAtom(res)
+      getUser(res.authorId).then((res) => setUser(res))
+    })
     return setSinglePieceAtom("");
-  }, []);
+  }, [])
+  
   return singlePiece ? (
     <>
       <div className={styles.artworkTitle}>{singlePiece?.title}</div>
@@ -49,9 +54,10 @@ const Artwork = ({ id }) => {
           <button className={styles.buyButton}>Buy Now</button>
         </div>
       </div>
-      {/* <div className={styles.artDescriptionsLeft}>
-        <div className={styles.artworkTitle}>Creator</div>
-      </div> */}
+      <div className={styles.artDescriptionsLeft}>
+        <div className={styles.artworkTitle}>About Author:</div>
+        <div>{user.description}</div>
+      </div>
     </>
   ) : (
     <BigSpinner />
