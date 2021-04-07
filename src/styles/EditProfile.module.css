@@ -52,9 +52,7 @@
   border-radius: 0.5vw;
   resize: none;
 }
-.form input {
-  width: 50vw;
-}
+
 .uploadContainer {
   border-radius: 0.5vw;
   margin-top: 2vw;

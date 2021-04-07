@@ -56,7 +56,7 @@ const EditArtWork = ({ id }) => {
       <div className={styles.title}>Edit your profile</div>
       <div className={styles.editProfileContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.inputContainer}>
+          <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="title">
               Edit your Title:
             </label>
@@ -117,7 +117,7 @@ const EditArtWork = ({ id }) => {
               Not Sale
             </label>
           </div>
-          <button type="submit">
+          <button className={styles.submit} type="submit">
             {showLoadingSpinner ? (
               <FormButtonSpinner />
             ) : (
