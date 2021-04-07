@@ -8,15 +8,15 @@ import RecoilLogger from "recoil-logger";
 //Containers
 import App from "./containers/App";
 //gral styles
-import "../src/styles/index.modules.css";
+import "../src/styles/index.module.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-        <Router>
-      <RecoilLogger/>
-          <App />
-        </Router>
+      <Router>
+        <RecoilLogger />
+        <App />
+      </Router>
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root")

@@ -28,13 +28,14 @@ export const AuthFunctions = () => {
               main_picture: res.main_picture,
               description: res.description,
             })
+            localStorage.setItem('logged', JSON.stringify({ "uid": res.uid, "photo_profile": res.photo_profile }))
           })
           .then(() => history.push("/"))
       })
       .catch((e) => {
         if (!formError) setFormError(e.message)
       })
-      
+
   }
 
   const register = (event, email, password, username) => {
@@ -70,6 +71,7 @@ export const AuthFunctions = () => {
   const logOut = () => {
     auth.signOut()
     setUser({})
+    localStorage.removeItem('logged')
     history.push("/")
   }
 
