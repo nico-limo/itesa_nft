@@ -10,6 +10,8 @@ import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
 import styles from "../styles/artWork.module.css";
 import index from "../styles/index.module.css";
 
+import BigSpinner from "../components/BigSpinner";
+
 const Artwork = ({ id }) => {
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom);
   const { getSinglePiece } = ArtFunctions();
@@ -20,7 +22,7 @@ const Artwork = ({ id }) => {
     });
     return setSinglePieceAtom("");
   }, []);
-  return (
+  return singlePiece ? (
     <>
       <div className={styles.artworkTitle}>{singlePiece?.title}</div>
       <img
@@ -51,6 +53,8 @@ const Artwork = ({ id }) => {
         <div className={styles.artworkTitle}>Creator</div>
       </div> */}
     </>
+  ) : (
+    <BigSpinner />
   );
 };
 
