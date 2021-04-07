@@ -21,6 +21,8 @@ export const useHandleFile = (name) => {
     const onChange = ({ target: { files } }) => {
         setFile(files[0])
     };
-
-    return { file, onChange, name };
+    const key = name
+    return { file, onChange, name, setFile };
 };
+
+
