@@ -12,7 +12,7 @@ import { useRecoilValue } from "recoil";
 // Spinner
 import FormButtonSpinner from "../components/FormButtonSpinner";
 
-const EditProfile = () => {
+const EditProfile = ({id}) => {
   const { updateUser } = UserFunctions();
   const user = useRecoilValue(userAtom);
   const description = useInput("description", user.description);
@@ -26,7 +26,6 @@ const EditProfile = () => {
 
   useEffect(() => {
     description.setValue(user.description);
-    console.log(description.value);
   }, [user]);
 
   const handleSubmit = (e) => {
