@@ -10,6 +10,7 @@ import Creators from "./Creators";
 import Artwork from "./Artwork";
 import Profile from "./Profile";
 import EditProfile from "./EditProfile";
+import EditArtWork from "./EditArtWork";
 import NewArtwork from "./NewArtwork";
 import ResetPassword from "./ResetPassword";
 import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
@@ -38,6 +39,9 @@ const App = () => {
           render={({ match }) => <Profile match={match} />}
         />
         <Route path={"/artwork/create"} component={NewArtwork} />
+        <Route path={"/artwork/:id/edit"} 
+         render={({ match }) => <EditArtWork id={match.params.id} />}
+        />
         <Route
           path={"/artwork/:id"}
           render={({ match }) => <Artwork id={match.params.id} />}
