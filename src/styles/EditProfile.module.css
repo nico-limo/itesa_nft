@@ -39,6 +39,23 @@
   flex-direction: column;
   align-items: space-around;
 }
+
+.radioContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.radioContainer input[type=radio] {
+  margin-right: 1.5vw;
+  margin-bottom: 0.5vw;
+  width: 3vw;
+  height: 3vw;
+}
+
+.radioContainer label {
+  margin-right: 1.5vw;
+}
+
 .form input,
 .form textarea {
   margin-top: 2vw;
@@ -156,4 +173,9 @@
   justify-content: space-between;
   width: 90vw;
   margin-top: 1vw;
+}
+
+.deniedIcon {
+  height: 30vw;
+  margin: 20vw 35vw;
 }

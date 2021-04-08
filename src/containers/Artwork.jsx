@@ -2,8 +2,8 @@ import React, { useEffect } from "react"
 //React-router
 import { Link } from "react-router-dom"
 //Recoil
-import { useRecoilState } from "recoil"
-import { singlePieceAtom, userProfile } from "../state/atoms"
+import { useRecoilState, useRecoilValue } from "recoil"
+import { singlePieceAtom, userProfile, userAtom } from "../state/atoms"
 //Utils
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
 import { UserFunctions } from "../utils/firebase/requests/userRequests"
@@ -15,21 +15,30 @@ import BigSpinner from "../components/BigSpinner"
 
 const Artwork = ({ id }) => {
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)
-  const [user, setUser] = useRecoilState(userProfile)
+  const [author, setAuthor] = useRecoilState(userProfile)
+  const user = useRecoilValue(userAtom)
   const { getSinglePiece } = ArtFunctions()
   const { getUser } = UserFunctions()
 
   useEffect(() => {
     getSinglePiece(id).then((res) => {
       setSinglePieceAtom(res)
-      getUser(res.authorId).then((res) => setUser(res))
+      getUser(res.authorId).then((res) => setAuthor(res))
     })
     return setSinglePieceAtom("")
   }, [])
 
   return singlePiece ? (
     <>
-      <div className={styles.artworkTitle}>{singlePiece?.title}</div>
+      <div className={styles.artworkTitle}>
+        {singlePiece?.title}
+        {user.uid === singlePiece.authorId &&
+          user.uid === singlePiece.ownerId ? (
+            <Link to={`/artwork/${id}/edit`}>
+              <img className={styles.editIcon} src="/edit.png" alt="Edit Icon" />
+            </Link>
+          ) : null}
+      </div>
       <img
         className={styles.singleArtworkImage}
         src={singlePiece?.imgURI}
@@ -52,25 +61,19 @@ const Artwork = ({ id }) => {
             Price: {singlePiece?.price} ETH
           </div>
           <button className={styles.buyButton}>Buy Now</button>
-          {user.uid === singlePiece.authorId &&
-          user.uid === singlePiece.ownerId ? (
-            <Link to={`/artwork/${id}/edit`}>
-              <button className={styles.buyButton}>Edit</button>{" "}
-            </Link>
-          ) : null}
         </div>
       </div>
       <div className={styles.artistTitle}>Creator</div>
       <hr className={styles.artistHr} />
       <div className={styles.artistContainer}>
-          <img
-            className={styles.profilePicture}
-            src={user?.photo_profile}
-            alt=""
-          />
+        <img
+          className={styles.profilePicture}
+          src={author?.photo_profile}
+          alt=""
+        />
         <div>
           <div className={styles.artistName}>{singlePiece.username}</div>
-          <div className={styles.artistDescription}>{user.description}</div>
+          <div className={styles.artistDescription}>{author.description}</div>
         </div>
       </div>
     </>
