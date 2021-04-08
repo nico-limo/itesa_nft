@@ -129,3 +129,14 @@
   width: 90vw;
   margin-top: 1vw;
 }
+
+.emailIcon {
+  height: 30vw;
+  margin: 15vw 35vw 8vw;
+}
+
+.emailMessage {
+  font-size: 3.5vw;
+  text-align: center;
+  width: 70vw;
+}
