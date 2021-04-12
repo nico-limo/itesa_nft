@@ -1,6 +1,7 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 const fs = require('fs');
+
 const mnemonic = fs.readFileSync(".secret").toString().trim();
 if (!mnemonic || mnemonic.split(' ').length !== 12) {
   throw new Error('unable to retrieve mnemonic from .secret');
@@ -19,15 +20,15 @@ module.exports = {
   networks: {
     development: {
       host: "127.0.0.1",
-      port: 3000,
+      port: 9545,
       network_id: "*"
-    },
+    },//para conectar con una red local: truffle console --network development
     testnet: {
       provider: () => new HDWalletProvider(mnemonic, 'https://public-node.testnet.rsk.co/'),
       network_id: 31,
       gasPrice: Math.floor(gasPriceTestnet * 1.1),
       networkCheckTimeout: 1e9
-    },
+    },//para conectar con la testnet : truffle console --network testnet
   },
 
   contracts_build_directory: path.join(__dirname, "/truffle/contracts"),
@@ -39,7 +40,7 @@ module.exports = {
   }
 }
 
-/*
+/* comando para saber el gas-price-testnet.json
 curl https://public-node.testnet.rsk.co/ \
   -X POST -H "Content-Type: application/json" \
   --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' */

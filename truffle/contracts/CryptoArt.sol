@@ -7,7 +7,7 @@ contract CryptoArt is ERC721 {
     constructor() ERC721("CryptoArt", "CRA") {
     }
 }
-/* contract Color is ERC721Full {
+contract Color is ERC721Full {
 
   bytes3[] public colors;
   mapping(bytes3 => bool) private _colorExists;
@@ -20,4 +20,4 @@ contract CryptoArt is ERC721 {
     _mint(msg.sender, _id);
     _colorExists[_color] = true;
   }
-} */
+}
