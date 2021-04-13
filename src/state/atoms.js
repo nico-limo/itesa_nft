@@ -69,4 +69,11 @@ export const formErrorAtom = atom({
         type: 'log'
     }
 })
-
+// --------------- Meta Mask
+export const metaMaskUserAccount = atom({
+    key: 'metaMaskUserAccount',
+    default: {},
+    persistence_UNSTABLE: {
+        type: 'log'
+    }
+})
