@@ -17,14 +17,19 @@ import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
 //utils
 import { AuthFunctions } from "../utils/firebase/auth/authEmail";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { userAtom, metaMaskUserAccount } from "../state/atoms";
+import { userAtom, metaMaskUserAccount, smartContract, supplyAtom } from "../state/atoms";
 
+// Blockchain
 import Web3 from "web3";
+import CryptoArt from "../truffle/truffle/contracts/CryptoArt.json"
+
 
 const App = () => {
   const { isUser } = AuthFunctions();
   const user = useRecoilValue(userAtom);
   const [userWallet, setUserWallet] = useRecoilState(metaMaskUserAccount)
+  const [contract, setContract] = useRecoilState(smartContract)
+  // const [supply, setSupply] = useRecoilState(supplyAtom)
 
   useEffect(() => {
     isUser()
@@ -58,19 +63,21 @@ const App = () => {
     console.log("account: ", accounts[0]);
     setUserWallet({ account: accounts[0] });
     const networkId = await web3.eth.net.getId();
-    // const networkData = Color.networks[networkId];
+    const networkData = CryptoArt.networks[networkId];
+    console.log("-----", networkId)
+    if (!networkData) { // Verifica si existe el contrato
+      window.alert("Smart contract not deployed to detected network.");
+      return;
+    }
 
-    // if (!networkData) { // Verifica si existe el contrato
-    //   window.alert("Smart contract not deployed to detected network.");
-    //   return;
-    // }
-
-    // const abi = Color.abi;                          // Abi del contrato
-    // const address = networkData.address;            // Adress del contrato
-    // const contract = new web3.eth.Contract(abi, address);
-    // this.setState({ contract });
+    const abi = CryptoArt.abi;                          // Abi del contrato
+    const address = networkData.address;            // Adress del contrato
+    const smartContract = await new web3.eth.Contract(abi, address);
+    console.log("smart contract address", abi)
+    console.log("smart contract", smartContract)
+    // setContract({ smartContract }); 
     // const totalSupply = await contract.methods.totalSupply().call();
-    // this.setState({ totalSupply });
+    // setSupply({ totalSupply });
   }
 
   return (

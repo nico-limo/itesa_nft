@@ -77,3 +77,17 @@ export const metaMaskUserAccount = atom({
         type: 'log'
     }
 })
+export const smartContract = atom({
+    key: 'smartContract',
+    default: {},
+    persistence_UNSTABLE: {
+        type: 'log'
+    }
+}) 
+export const supplyAtom = atom({
+    key: 'supplyAtom',
+    default: {},
+    persistence_UNSTABLE: {
+        type: 'log'
+    }
+})
