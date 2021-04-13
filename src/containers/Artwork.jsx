@@ -28,6 +28,10 @@ const Artwork = ({ id }) => {
     return setSinglePieceAtom("")
   }, [])
 
+  const Buy = () => {
+    
+  }
+
   return singlePiece ? (
     <>
       <div className={styles.artworkTitle}>
@@ -60,7 +64,10 @@ const Artwork = ({ id }) => {
           <div className={styles.artworkPrice}>
             Price: {singlePiece?.price} ETH
           </div>
-          <button className={styles.buyButton}>Buy Now</button>
+          <button 
+          className={styles.buyButton}
+          onClick={Buy}
+          >Buy Now</button>
         </div>
       </div>
       <div className={styles.artistTitle}>Creator</div>

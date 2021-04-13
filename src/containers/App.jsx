@@ -16,16 +16,69 @@ import ResetPassword from "./ResetPassword";
 import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
 //utils
 import { AuthFunctions } from "../utils/firebase/auth/authEmail";
-import { useRecoilValue } from "recoil";
-import { userAtom } from "../state/atoms";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { userAtom, metaMaskUserAccount, smartContract, supplyAtom } from "../state/atoms";
+
+// Blockchain
+import Web3 from "web3";
+import CryptoArt from "../truffle/truffle/contracts/CryptoArt.json"
+
 
 const App = () => {
   const { isUser } = AuthFunctions();
   const user = useRecoilValue(userAtom);
+  const [userWallet, setUserWallet] = useRecoilState(metaMaskUserAccount)
+  const [contract, setContract] = useRecoilState(smartContract)
+  // const [supply, setSupply] = useRecoilState(supplyAtom)
 
-  useEffect(() => isUser(), []);
+  useEffect(() => {
+    isUser()
+    loadWeb3()
+    loadBlockchainData()
+  }, []);
 
   useEffect(() => {}, [user])
+
+
+  // Verifica Metamask
+  async function loadWeb3() {
+    if (window.ethereum) {
+      // current web3 providers
+      window.web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+    } else if (window.web3) {
+      // fallback for older web3 providers
+      window.web3 = new Web3(window.web3.currentProvider);
+    } else {
+      // no web3 provider, user needs to install one in their browser
+      window.alert("No injected web3 provider detected");
+    }
+    console.log(window.web3.currentProvider);
+  }
+  // ------------DATA
+  async function loadBlockchainData() {
+    const web3 = window.web3;
+    // Load account
+    const accounts = await web3.eth.getAccounts();
+    console.log("account: ", accounts[0]);
+    setUserWallet({ account: accounts[0] });
+    const networkId = await web3.eth.net.getId();
+    const networkData = CryptoArt.networks[networkId];
+    console.log("-----", networkId)
+    if (!networkData) { // Verifica si existe el contrato
+      window.alert("Smart contract not deployed to detected network.");
+      return;
+    }
+
+    const abi = CryptoArt.abi;                          // Abi del contrato
+    const address = networkData.address;            // Adress del contrato
+    const smartContract = await new web3.eth.Contract(abi, address);
+    console.log("smart contract address", abi)
+    console.log("smart contract", smartContract)
+    // setContract({ smartContract }); 
+    // const totalSupply = await contract.methods.totalSupply().call();
+    // setSupply({ totalSupply });
+  }
 
   return (
     <div>
