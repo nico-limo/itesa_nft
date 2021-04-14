@@ -14,8 +14,8 @@ contract CryptoArt is ERC721URIStorage {
     
     function createCollectible(string memory tokenURI) public returns (uint256) {
         uint256 newItemId = tokenCounter;
-        _safeMint(msg.sender, newItemId); // crea un nuevo nft pero lo hace seguro, si ya hay un token id no the deja
-        //cialquiera que llame a esta funcion va a ser el duenio, por eso el 1err parameetro
+        _safeMint(msg.sender, newItemId); // crea un nuevo nft de manera segura, si ya hay un token con ese id no te deja mintearlo.
+        //cualquiera que llame a esta funcion va a ser el dueño, por eso el 1err parametro
         _setTokenURI(newItemId, tokenURI);
         // le seteas el uri de la imagen al token(al NFT)
         tokenCounter = tokenCounter + 1;
