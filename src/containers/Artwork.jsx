@@ -15,7 +15,7 @@ import BigSpinner from "../components/BigSpinner"
 
 // Blockchain
 import CryptoArt from "../truffle/truffle/contracts/CryptoArt.json"
-import loadWeb3 from "../utils/hooks/metaMask"
+import { loadWeb3 } from "../utils/hooks/metaMask"
 
 const Artwork = ({ id }) => {
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)

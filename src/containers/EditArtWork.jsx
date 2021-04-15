@@ -13,6 +13,10 @@ import { useRecoilState, useRecoilValue } from "recoil"
 import FormButtonSpinner from "../components/FormButtonSpinner"
 import BigSpinner from "../components/BigSpinner"
 
+// Blockchain
+import CryptoArt from "../truffle/truffle/contracts/CryptoArt.json"
+import { loadWeb3 } from "../utils/hooks/metaMask"
+
 const EditArtWork = ({ id }) => {
   const { getSinglePiece, updatePiece } = ArtFunctions()
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)

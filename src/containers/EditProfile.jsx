@@ -12,6 +12,11 @@ import { useRecoilValue } from "recoil";
 // Spinner
 import FormButtonSpinner from "../components/FormButtonSpinner";
 
+// Blockchain
+import CryptoArt from "../truffle/truffle/contracts/CryptoArt.json"
+import { loadWeb3 } from "../utils/hooks/metaMask"
+
+
 const EditProfile = ({ id }) => {
   const { updateUser } = UserFunctions();
   const user = useRecoilValue(userAtom);
