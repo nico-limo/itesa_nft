@@ -17,6 +17,7 @@ import BigSpinner from "../components/BigSpinner"
 import CryptoArt from "../truffle/truffle/contracts/CryptoArt.json"
 import { loadWeb3 } from "../utils/hooks/metaMask"
 
+
 const EditArtWork = ({ id }) => {
   const { getSinglePiece, updatePiece } = ArtFunctions()
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)
@@ -27,6 +28,9 @@ const EditArtWork = ({ id }) => {
   const onSale = useInput("onSale", singlePiece.onSale)
   const history = useHistory()
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false)
+  
+  // Metamask
+  const userWallet = useRecoilvalue(metaMaskUserAccount)
 
   useEffect(() => {
     title.setValue(singlePiece.title)
@@ -48,13 +52,17 @@ const EditArtWork = ({ id }) => {
     }
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setShowLoadingSpinner(true)
+    await loadWeb3()
     updatePiece(title.value, description.value, price.value, id, onSale.value)
+      // .then(() => )
       .then(() => history.push(`/artwork/${id}`))
       .catch(() => setShowLoadingSpinner(false))
   }
+
+
 
   return singlePiece ? (
     singlePiece.authorId === user.uid ? (

@@ -1,5 +1,8 @@
 
 import Web3 from "web3";
+//Recoil
+import { useRecoilState } from "recoil"
+import { metaMaskUserAccount, smartContract } from "../state/atoms"
 
 // Verifica Metamask --------------
 export async function loadWeb3() {
@@ -17,28 +20,34 @@ export async function loadWeb3() {
     console.log(window.web3.currentProvider);
   }
 
+  export const useBlockchainData = (name, incomingValue = "") => {
+    // Metamask
+  const [userWallet, setUserWallet] = useRecoilState(metaMaskUserAccount)
+  // const [contract, setContract] = useRecoilState(smartContract)
+  // const [supply, setSupply] = useRecoilState(supplyAtom)
 
-  // // const [userWallet, setUserWallet] = useRecoilState(metaMaskUserAccount)
-
-  // // ------------DATA
-  // export async function loadBlockchainData() {
-  //   const web3 = window.web3;
-  //   // Load account
-  //   const accounts = await web3.eth.getAccounts();
-  //   setUserWallet({ account: accounts[0] });
-  //   const networkId = await web3.eth.net.getId();
-  //   const networkData = CryptoArt.networks[networkId];
-  //   console.log("-----", networkId)
-  //   if (!networkData) { // Verifica si existe el contrato
-  //     window.alert("Smart contract not deployed to detected network.");
-  //     return;
-  //   }
-
-  //   const abi = CryptoArt.abi;                          // Abi del contrato
-  //   const address = networkData.address;            // Adress del contrato
-  //   const smartContract = await new web3.eth.Contract(abi, address);
-  //   console.log("abi ----", abi)
-  //   console.log("networkdata address", address)
-  //   // console.log("smart contract", smartContract.methods.createCollectible)
-
-  // }
+  // ------------DATA
+  export async function loadBlockchainData() {
+    const web3 = window.web3;
+    // Load account
+    const accounts = await web3.eth.getAccounts();
+    setUserWallet({ account: accounts[0] });
+    const networkId = await web3.eth.net.getId();
+    const networkData = CryptoArt.networks[networkId];
+    console.log("-----", networkId)
+    if (!networkData) { // Verifica si existe el contrato
+      window.alert("Smart contract not deployed to detected network.");
+      return;
+    }
+  
+    const abi = CryptoArt.abi;                          // Abi del contrato
+    const address = networkData.address;            // Adress del contrato
+    const smartContract = await new web3.eth.Contract(abi, address);
+    console.log("abi ----", abi)
+    console.log("networkdata address", address)
+    console.log("smart contract", smartContract.methods.createCollectible)
+  
+  }
+    
+    // return { value, onChange, name, setValue };
+};
