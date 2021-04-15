@@ -10,6 +10,7 @@ import styles from "../styles/EditProfile.module.css";
 //Components
 import FormButtonSpinner from "../components/FormButtonSpinner";
 
+
 const NewArtwork = () => {
   const { newPiece, updateImgURI } = ArtFunctions();
   const { artWorkFileUpload } = ArtUpdateFunctions();

@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-// import "./Ownable.sol"
+// import "./Ownable.sol";
 
 contract CryptoArt is ERC721URIStorage {
     uint256 public tokenCounter;
@@ -12,10 +12,10 @@ contract CryptoArt is ERC721URIStorage {
         tokenCounter = 1;
     }
     
-    function createCollectible(string memory tokenURI, uint price) public returns (uint256) {
+    function createCollectible(string memory tokenURI) public returns (uint256) {
         uint256 newItemId = tokenCounter;
-        _safeMint(msg.sender, newItemId); // crea un nuevo nft pero lo hace seguro, si ya hay un token id no the deja
-        //cialquiera que llame a esta funcion va a ser el duenio, por eso el 1err parameetro
+        _safeMint(msg.sender, newItemId); // crea un nuevo nft de manera segura, si ya hay un token con ese id no te deja mintearlo.
+        //cualquiera que llame a esta funcion va a ser el dueño, por eso el 1err parametro
         _setTokenURI(newItemId, tokenURI);
         // le seteas el uri de la imagen al token(al NFT)
         tokenCounter = tokenCounter + 1;
@@ -25,9 +25,19 @@ contract CryptoArt is ERC721URIStorage {
 
 }
 
-// contract CryptoArt is ERC721("CryptoArt", "CRA"), Ownable {
-//     // constructor() ERC721("CryptoArt", "CRA") {
-//     // }
+// contract CryptoArt is ERC721("CryptoArt", "CRA") {
+
+//     address public owner;
+
+//     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+//     function ownable() public {
+//         owner = msg.sender;
+//     }
+//     modifier onlyOwner() {
+//         require(msg.sender == owner);
+//         _;
+//     }
+
 //     mapping(string => uint) ipfsHashToToken;
 //     mapping(uint => string) tokenToIpfsHash;
 //     mapping(uint => uint) tokenToPrice;
