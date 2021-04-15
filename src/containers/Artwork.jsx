@@ -14,9 +14,8 @@ import index from "../styles/index.module.css"
 import BigSpinner from "../components/BigSpinner"
 
 // Blockchain
-import Web3 from "web3";
 import CryptoArt from "../truffle/truffle/contracts/CryptoArt.json"
-
+import loadWeb3 from "../utils/hooks/metaMask"
 
 const Artwork = ({ id }) => {
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)
@@ -45,21 +44,6 @@ const Artwork = ({ id }) => {
     await loadBlockchainData()
   }
 
-  // Verifica Metamask --------------
-  async function loadWeb3() {
-    if (window.ethereum) {
-      // current web3 providers
-      window.web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
-    } else if (window.web3) {
-      // fallback for older web3 providers
-      window.web3 = new Web3(window.web3.currentProvider);
-    } else {
-      // no web3 provider, user needs to install one in their browser
-      window.alert("No injected web3 provider detected");
-    }
-    console.log(window.web3.currentProvider);
-  }
     // ------------DATA
     async function loadBlockchainData() {
       const web3 = window.web3;
@@ -76,19 +60,36 @@ const Artwork = ({ id }) => {
   
       const abi = CryptoArt.abi;                          // Abi del contrato
       const address = networkData.address;            // Adress del contrato
-      const smartContract = new web3.eth.Contract(abi, address);
+      const smartContract = await new web3.eth.Contract(abi, address);
       console.log("abi ----", abi)
       console.log("networkdata address", address)
       // console.log("smart contract", smartContract.methods.createCollectible)
 
-      // setContract({ smartContract }); 
-      // smartContract.methods.createCollectible("pablitouuu").send({from: userWallet})
+      // smartContract.methods.createCollectible("pablitouuu").send({from: "0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD"})
       // .on("receipt", function (receipt) {
       //     console.log("receipt", receipt)
       // }).on("error", function (error, receipt){
       //     console.log("error", error)
       // })
-      // setSupply({ totalSupply });
+      smartContract.methods.balanceOf("0x50dA070f38e7D7b4822CBaD351Da20Bd4E88b607").call()
+      .then(result => console.log(result))
+      // smartContract.methods.ownerOf(2).call()
+      // .then(result => console.log(result))
+
+
+      // smartContract.methods.tokenURI(2).call()
+      // .then(result => console.log(result))
+
+      // transfiere un token
+      // smartContract.methods.transferFrom("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", "0x50dA070f38e7D7b4822CBaD351Da20Bd4E88b607", 2).send({from: "0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD"})
+      // .then(result => console.log(result))
+      
+      // Chequea owner del token
+      smartContract.methods.ownerOf(2).call()
+      .then(result => console.log(result))
+
+      // "0xe4fbc8c0e0715ea0086fc9729ad92bb8616704663093e43bd49b1528b486f4b2"
+      
     }
     
 
