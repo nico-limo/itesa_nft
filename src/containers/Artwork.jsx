@@ -10,7 +10,6 @@ import { UserFunctions } from "../utils/firebase/requests/userRequests"
 //CSS
 import styles from "../styles/artWork.module.css"
 import index from "../styles/index.module.css"
-
 import BigSpinner from "../components/BigSpinner"
 
 // Hooks "Metamask" de Blockchain 
@@ -25,7 +24,6 @@ const Artwork = ({ id }) => {
 
   // Metamask
   const { loadBlockchainData } = useBlockchainData()
-  // const userWallet = useRecoilValue(metaMaskUserAccount)
 
   useEffect(() => {
     getSinglePiece(id).then((res) => {
@@ -41,25 +39,18 @@ const Artwork = ({ id }) => {
     await loadWeb3()
     let {contracts, userWallet} = await loadBlockchainData()
     
-    console.log("contracts", contracts)
-    console.log("userWallet", userWallet)
     contracts.symbol().call().then(res => console.log(res))
     contracts.createCollectible("Pokemon").send({from: userWallet})
-    .then(result => console.log(result))
-    // // Chequea balance
+    .on("receipt", function (receipt) {
+        console.log("receipt", receipt)
+    }).on("error", function (error, receipt){
+          console.log("error", error)
+    })
   }
   
-
-  // smartContract.methods.createCollectible("pablitouuu").send({from: "0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD"})
-      // .on("receipt", function (receipt) {
-      //     console.log("receipt", receipt)
-      // }).on("error", function (error, receipt){
-        //     console.log("error", error)
-      // })
       // smartContract.methods.ownerOf(2).call()
       // .then(result => console.log(result))
       
-
       // smartContract.methods.tokenURI(2).call()
       // .then(result => console.log(result))
 
