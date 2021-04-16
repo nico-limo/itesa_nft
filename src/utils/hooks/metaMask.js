@@ -2,7 +2,8 @@
 import Web3 from "web3";
 //Recoil
 import { useRecoilState } from "recoil"
-import { metaMaskUserAccount, smartContract } from "../state/atoms"
+import { metaMaskUserAccount, smartContract } from "../../state/atoms"
+import CryptoArt from "../../truffle/truffle/contracts/CryptoArt.json"
 
 // Verifica Metamask --------------
 export async function loadWeb3() {
@@ -20,21 +21,21 @@ export async function loadWeb3() {
     console.log(window.web3.currentProvider);
   }
 
-  export const useBlockchainData = (name, incomingValue = "") => {
+  export const useBlockchainData = () => {
     // Metamask
   const [userWallet, setUserWallet] = useRecoilState(metaMaskUserAccount)
-  // const [contract, setContract] = useRecoilState(smartContract)
+  const [contract, setContract] = useRecoilState(smartContract)
   // const [supply, setSupply] = useRecoilState(supplyAtom)
 
-  // ------------DATA
-  export async function loadBlockchainData() {
+  // ----   DATA
+  const loadBlockchainData = async () => {
     const web3 = window.web3;
     // Load account
     const accounts = await web3.eth.getAccounts();
     setUserWallet({ account: accounts[0] });
     const networkId = await web3.eth.net.getId();
     const networkData = CryptoArt.networks[networkId];
-    console.log("-----", networkId)
+    console.log("Network Id", networkId)
     if (!networkData) { // Verifica si existe el contrato
       window.alert("Smart contract not deployed to detected network.");
       return;
@@ -43,11 +44,18 @@ export async function loadWeb3() {
     const abi = CryptoArt.abi;                          // Abi del contrato
     const address = networkData.address;            // Adress del contrato
     const smartContract = await new web3.eth.Contract(abi, address);
+    setContract(smartContract.methods)      // Funciones de nuestros smart contracts guardados en un átomo.
+    // console.log("contract", contract)
     console.log("abi ----", abi)
     console.log("networkdata address", address)
-    console.log("smart contract", smartContract.methods.createCollectible)
-  
+
+    
+    let obj = {
+      contracts: smartContract.methods,
+      userWallet: accounts[0]
+    }
+    return obj;
   }
     
-    // return { value, onChange, name, setValue };
+    return { loadBlockchainData, userWallet };
 };

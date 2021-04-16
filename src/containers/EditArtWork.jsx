@@ -7,16 +7,14 @@ import { useInput } from "../utils/hooks/useInput"
 //styles
 import styles from "../styles/EditProfile.module.css"
 // Recoil
-import { singlePieceAtom, userAtom } from "../state/atoms"
+import { singlePieceAtom, userAtom, metaMaskUserAccount } from "../state/atoms"
 import { useRecoilState, useRecoilValue } from "recoil"
 // Spinner
 import FormButtonSpinner from "../components/FormButtonSpinner"
 import BigSpinner from "../components/BigSpinner"
 
-// Blockchain
-import CryptoArt from "../truffle/truffle/contracts/CryptoArt.json"
-import { loadWeb3 } from "../utils/hooks/metaMask"
-
+// Hooks "Metamask" de Blockchain 
+import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask"
 
 const EditArtWork = ({ id }) => {
   const { getSinglePiece, updatePiece } = ArtFunctions()
@@ -30,7 +28,7 @@ const EditArtWork = ({ id }) => {
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false)
   
   // Metamask
-  const userWallet = useRecoilvalue(metaMaskUserAccount)
+  const { loadBlockchainData } = useBlockchainData()
 
   useEffect(() => {
     title.setValue(singlePiece.title)
@@ -55,9 +53,19 @@ const EditArtWork = ({ id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setShowLoadingSpinner(true)
-    await loadWeb3()
+    await loadWeb3() // Blockchain
+    let {contracts, userWallet} = await loadBlockchainData()  // Blockchain
     updatePiece(title.value, description.value, price.value, id, onSale.value)
-      // .then(() => )
+      .then(() => {
+        if (onSale.value === true) {
+              contracts.createCollectible(id).send({from: userWallet})
+              .on("receipt", function (receipt) {
+                console.log("receipt", receipt)
+            }).on("error", function (error, receipt){
+              console.log("error", error)
+            })
+        }
+      })
       .then(() => history.push(`/artwork/${id}`))
       .catch(() => setShowLoadingSpinner(false))
   }
