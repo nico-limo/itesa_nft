@@ -3,15 +3,17 @@ import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 //Recoil
 import { useRecoilState, useRecoilValue } from "recoil"
-import { singlePieceAtom, userProfile, userAtom } from "../state/atoms"
+import { singlePieceAtom, userProfile, userAtom, metaMaskUserAccount, smartContract, supplyAtom } from "../state/atoms"
 //Utils
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
 import { UserFunctions } from "../utils/firebase/requests/userRequests"
 //CSS
 import styles from "../styles/artWork.module.css"
 import index from "../styles/index.module.css"
-
 import BigSpinner from "../components/BigSpinner"
+
+// Hooks "Metamask" de Blockchain 
+import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask"
 
 const Artwork = ({ id }) => {
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)
@@ -19,6 +21,9 @@ const Artwork = ({ id }) => {
   const user = useRecoilValue(userAtom)
   const { getSinglePiece } = ArtFunctions()
   const { getUser } = UserFunctions()
+
+  // Metamask
+  const { loadBlockchainData } = useBlockchainData()
 
   useEffect(() => {
     getSinglePiece(id).then((res) => {
@@ -28,9 +33,34 @@ const Artwork = ({ id }) => {
     return setSinglePieceAtom("")
   }, [])
 
-  const Buy = () => {
+  // useEffect(() => {}, [userWallet])
+
+  const Buy = async () => {
+    await loadWeb3()
+    let {contracts, userWallet} = await loadBlockchainData()
     
+    contracts.symbol().call().then(res => console.log(res))
+    contracts.createCollectible("Pokemon").send({from: userWallet})
+    .on("receipt", function (receipt) {
+        console.log("receipt", receipt)
+    }).on("error", function (error, receipt){
+          console.log("error", error)
+    })
   }
+  
+      // smartContract.methods.ownerOf(2).call()
+      // .then(result => console.log(result))
+      
+      // smartContract.methods.tokenURI(2).call()
+      // .then(result => console.log(result))
+
+      // transfiere un token
+      // smartContract.methods.transferFrom("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", "0x50dA070f38e7D7b4822CBaD351Da20Bd4E88b607", 2).send({from: "0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD"})
+      // .then(result => console.log(result))
+      
+
+      
+    
 
   return singlePiece ? (
     <>

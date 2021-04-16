@@ -23,12 +23,12 @@ module.exports = {
       port: 7545,
       network_id: "*"
     },//para conectar con una red local: truffle console --network development
-    testnet: {
-      provider: () => new HDWalletProvider(mnemonic, 'https://public-node.testnet.rsk.co/'),
-      network_id: 31,
-      gasPrice: Math.floor(gasPriceTestnet * 1.1),
-      networkCheckTimeout: 1e9
-    },//para conectar con la testnet : truffle console --network testnet
+    // testnet: {
+    //   provider: () => new HDWalletProvider(mnemonic, 'https://public-node.testnet.rsk.co/'),
+    //   network_id: 31,
+    //   gasPrice: Math.floor(gasPriceTestnet * 1.1),
+    //   networkCheckTimeout: 1e9
+    // },//para conectar con la testnet : truffle console --network testnet
   },
 
   contracts_build_directory: path.join(__dirname, "/truffle/contracts"),
