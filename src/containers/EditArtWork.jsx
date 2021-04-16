@@ -7,7 +7,7 @@ import { useInput } from "../utils/hooks/useInput"
 //styles
 import styles from "../styles/EditProfile.module.css"
 // Recoil
-import { singlePieceAtom, userAtom } from "../state/atoms"
+import { singlePieceAtom, userAtom, metaMaskUserAccount } from "../state/atoms"
 import { useRecoilState, useRecoilValue } from "recoil"
 // Spinner
 import FormButtonSpinner from "../components/FormButtonSpinner"
@@ -30,7 +30,7 @@ const EditArtWork = ({ id }) => {
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false)
   
   // Metamask
-  const userWallet = useRecoilvalue(metaMaskUserAccount)
+  const userWallet = useRecoilValue(metaMaskUserAccount)
 
   useEffect(() => {
     title.setValue(singlePiece.title)
