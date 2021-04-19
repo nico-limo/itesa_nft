@@ -10,7 +10,6 @@ import styles from "../styles/EditProfile.module.css";
 //Components
 import FormButtonSpinner from "../components/FormButtonSpinner";
 
-
 const NewArtwork = () => {
   const { newPiece, updateImgURI } = ArtFunctions();
   const { artWorkFileUpload } = ArtUpdateFunctions();
@@ -25,10 +24,10 @@ const NewArtwork = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowLoadingSpinner(true);
-    newPiece(e, title.value, descrpition.value, price.value).then((id) => {
-      artWorkFileUpload(imgURI.file, "artWorks", id)
-        .then((url) => updateImgURI(url, id))
-        .then(() => history.push(`/artwork/${id}`))
+    newPiece(e, title.value, descrpition.value, price.value).then((art) => {
+      artWorkFileUpload(imgURI.file, "artWorks", art.id)
+        .then((url) => updateImgURI(url, art.id))
+        .then(() => history.push(`/artwork/${art.id}`))
         .catch(() => setShowLoadingSpinner(false));
     });
   };
