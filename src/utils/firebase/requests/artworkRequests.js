@@ -20,13 +20,13 @@ export const ArtFunctions = () => {
             imgURI: null,
             description,
             price,
-            onSale: true,
+            onSale: false,
             id: '',
             username: user.username,
             photo_profile: user.photo_profile
         })
         await artWorkRef.doc(`${res.id}`).update({ id: res.id })
-        return res.id;
+        return res;
     }
 
     const updatePiece = async (title, description, price, id, onSale) => {
@@ -36,7 +36,7 @@ export const ArtFunctions = () => {
     }
 
     const updateImgURI = async (imgURI, id) => {
-        await artWorkRef.doc(id).update({imgURI})
+        await artWorkRef.doc(id).update({ imgURI })
     }
 
     const buyPiece = async (ownerId) => {
