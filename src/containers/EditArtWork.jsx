@@ -1,76 +1,79 @@
-import React, { useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 //Utils
-import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
-import { useInput } from "../utils/hooks/useInput"
+import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
+import { useInput } from "../utils/hooks/useInput";
 
 //styles
-import styles from "../styles/EditProfile.module.css"
+import styles from "../styles/EditProfile.module.css";
 // Recoil
-import { singlePieceAtom, userAtom, metaMaskUserAccount } from "../state/atoms"
-import { useRecoilState, useRecoilValue } from "recoil"
+import { singlePieceAtom, userAtom, metaMaskUserAccount } from "../state/atoms";
+import { useRecoilState, useRecoilValue } from "recoil";
 // Spinner
-import FormButtonSpinner from "../components/FormButtonSpinner"
-import BigSpinner from "../components/BigSpinner"
+import FormButtonSpinner from "../components/FormButtonSpinner";
+import BigSpinner from "../components/BigSpinner";
 
-// Hooks "Metamask" de Blockchain 
-import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask"
+// Hooks
+import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask";
+import { pinFileToIPFS } from "../utils/hooks/usePinFileToIPFS";
 
 const EditArtWork = ({ id }) => {
-  const { getSinglePiece, updatePiece } = ArtFunctions()
-  const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)
-  const user = useRecoilValue(userAtom)
-  const title = useInput("title", singlePiece.title)
-  const price = useInput("price", singlePiece.price)
-  const description = useInput("description", singlePiece.description)
-  const onSale = useInput("onSale", singlePiece.onSale)
-  const history = useHistory()
-  const [showLoadingSpinner, setShowLoadingSpinner] = useState(false)
-  
+  const { getSinglePiece, updatePiece } = ArtFunctions();
+  const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom);
+  const user = useRecoilValue(userAtom);
+  const title = useInput("title", singlePiece.title);
+  const price = useInput("price", singlePiece.price);
+  const description = useInput("description", singlePiece.description);
+  const onSale = useInput("onSale", singlePiece.onSale);
+  const history = useHistory();
+  const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
+
   // Metamask
-  const { loadBlockchainData } = useBlockchainData()
+  const { loadBlockchainData } = useBlockchainData();
 
   useEffect(() => {
-    title.setValue(singlePiece.title)
-    price.setValue(singlePiece.price)
-    description.setValue(singlePiece.description)
-    onSale.setValue(singlePiece.onSale)
-  }, [singlePiece])
+    title.setValue(singlePiece.title);
+    price.setValue(singlePiece.price);
+    description.setValue(singlePiece.description);
+    onSale.setValue(singlePiece.onSale);
+  }, [singlePiece]);
 
   useEffect(() => {
-    if (onSale.value === "true") onSale.setValue(true)
-    if (onSale.value === "false") onSale.setValue(false)
-  }, [onSale])
+    if (onSale.value === "true") onSale.setValue(true);
+    if (onSale.value === "false") onSale.setValue(false);
+  }, [onSale]);
 
   useEffect(() => {
     if (!singlePiece) {
       getSinglePiece(id).then((res) => {
-        setSinglePieceAtom(res)
-      })
+        setSinglePieceAtom(res);
+      });
     }
-  }, [])
+  }, []);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setShowLoadingSpinner(true)
-    await loadWeb3() // Blockchain
-    let {contracts, userWallet} = await loadBlockchainData()  // Blockchain
+    e.preventDefault();
+    setShowLoadingSpinner(true);
+    await loadWeb3(); // Blockchain
+    await pinFileToIPFS(singlePiece);
+    let { contracts, userWallet } = await loadBlockchainData(); // Blockchain
     updatePiece(title.value, description.value, price.value, id, onSale.value)
-      .then(() => {
+      .then((res) => {
         if (onSale.value === true) {
-              contracts.createCollectible(id).send({from: userWallet})
-              .on("receipt", function (receipt) {
-                console.log("receipt", receipt)
-            }).on("error", function (error, receipt){
-              console.log("error", error)
+          contracts
+            .createCollectible(id)
+            .send({ from: userWallet })
+            .on("receipt", function (receipt) {
+              console.log("receipt", receipt);
             })
+            .on("error", function (error, receipt) {
+              console.log("error", error);
+            });
         }
       })
       .then(() => history.push(`/artwork/${id}`))
-      .catch(() => setShowLoadingSpinner(false))
-  }
-
-
+      .catch(() => setShowLoadingSpinner(false));
+  };
 
   return singlePiece ? (
     singlePiece.authorId === user.uid ? (
@@ -153,13 +156,17 @@ const EditArtWork = ({ id }) => {
       </>
     ) : (
       <>
-      <div className={styles.title}>Access Denied</div>
-      <img className={styles.deniedIcon} src="/denied.png" alt="Access Denied" />
+        <div className={styles.title}>Access Denied</div>
+        <img
+          className={styles.deniedIcon}
+          src="/denied.png"
+          alt="Access Denied"
+        />
       </>
     )
   ) : (
     <BigSpinner />
-  )
-}
+  );
+};
 
-export default EditArtWork
+export default EditArtWork;

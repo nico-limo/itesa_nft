@@ -11,7 +11,6 @@ contract CryptoArt is ERC721URIStorage {
     constructor () ERC721 ("CryptoArt", "CRA"){
         tokenCounter = 1;
     }
-    
     function createCollectible(string memory tokenURI) public returns (uint256) {
         uint256 newItemId = tokenCounter;
         _safeMint(msg.sender, newItemId); // crea un nuevo nft de manera segura, si ya hay un token con ese id no te deja mintearlo.
