@@ -66,7 +66,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 3% 1.5% 0 1.5%;
+  margin: 3% 1.5% 15vw 1.5%;
 }
 
 .singleArtworkContainer {
