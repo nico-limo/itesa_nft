@@ -24,12 +24,10 @@ const NewArtwork = () => {
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
   const [cancelImg, setCancelImg] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false)
-  const [nftData, setNftData] = useState({
-    name: "otra",
-    keyvalues: {
-      description: "values"
-    }
- })
+  const [nftData, setNftData] = useState({ 
+    name: title.value, 
+    keyvalues: { description: description.value }})
+
    // Metamask
   const { loadBlockchainData } = useBlockchainData();
 
@@ -38,28 +36,24 @@ const NewArtwork = () => {
     setShowLoadingSpinner(true);
     await loadWeb3(); // Blockchain
     let { contracts, userWallet } = await loadBlockchainData(); // Blockchain
-    newPiece(e, title.value, description.value, price.value, userWallet).then((art) => {
-      setNftData({ 
-        name: title.value, 
-        keyvalues: { description: description.value }})
-      pinFileToIPFS(imgURI.file, nftData).then(res => {
+    pinFileToIPFS(imgURI.file, nftData).then(res => {
         console.log("res", res)
-        contracts.createCollectible(res)
-          .send({ from: userWallet })
-          .on("receipt", function (receipt) {
-            console.log("receipt", receipt);
+        contracts.createCollectible(res).send({ from: userWallet })
+        .then((res) => {
+          let tokenId = res.events.Transfer.returnValues.tokenId
+          console.log("res", tokenId)
+          newPiece(e, title.value, description.value, price.value, userWallet, tokenId)
+          .then(art => {
+              artWorkFileUpload(imgURI.file, "artWorks", art.id)
+            .then((url) => updateImgURI(url, art.id))
+            .then(() => history.push(`/artwork/${art.id}`))
+            .catch(() => setShowLoadingSpinner(false));
           })
-          .on("error", function (error, receipt) {
-            console.log("error", error);
-          }).then(() => {
-            artWorkFileUpload(imgURI.file, "artWorks", art.id)
-          .then((url) => updateImgURI(url, art.id))
-          .then(() => history.push(`/artwork/${art.id}`))
-          .catch(() => setShowLoadingSpinner(false));
+          
         })
-      })
     });
   };
+
   const clearFile = (e) => {
     setCancelImg(!cancelImg)
     imgURI.setFile(null)
