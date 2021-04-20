@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 //utils
-import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
-import { useInput, useHandleFile } from "../utils/hooks/useInput";
-import { ArtUpdateFunctions } from "../utils/firebase/storage/artfileUpdate";
+import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
+import { useInput, useHandleFile } from "../utils/hooks/useInput"
+import { ArtUpdateFunctions } from "../utils/firebase/storage/artfileUpdate"
 //styles
-import form from "../styles/Form.module.css";
-import styles from "../styles/EditProfile.module.css";
+import form from "../styles/Form.module.css"
+import styles from "../styles/EditProfile.module.css"
 //Components
 import FormButtonSpinner from "../components/FormButtonSpinner";
 // Hooks
@@ -60,14 +60,14 @@ const NewArtwork = () => {
     });
   };
   const clearFile = (e) => {
-    setCancelImg(!cancelImg);
-    imgURI.setFile(null);
-  };
+    setCancelImg(!cancelImg)
+    imgURI.setFile(null)
+  }
   return (
     <div>
       <div className={form.title}>Create new art piece</div>
       <div className={styles.editProfileContainer}>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form}>
           <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="title">
               Add a title for your new piece:
@@ -136,13 +136,45 @@ const NewArtwork = () => {
             </div>
           </div>
 
-          <button className={styles.submit} type="submit">
+          <button
+            className={styles.submit}
+            onClick={(e) => {
+              e.preventDefault()
+              setShowConfirmation(true)
+            }}
+          >
             {showLoadingSpinner ? <FormButtonSpinner /> : <div>Add piece</div>}
           </button>
         </form>
       </div>
+      {showConfirmation && (
+        <div className={styles.confirmationContainer}>
+          <div className={styles.confirmation}>
+            <div className={styles.confirmationText}>
+              Are you sure you want to create this token? Once you you've done
+              it, you won't be able to modify it.
+            </div>
+            <div>
+              <hr />
+              <div className={styles.confirmationButtons}>
+                <div onClick={handleSubmit}>
+                  Confirm
+                </div>
+                <div
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setShowConfirmation(false)
+                  }}
+                >
+                  Cancel
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default NewArtwork;
+export default NewArtwork
