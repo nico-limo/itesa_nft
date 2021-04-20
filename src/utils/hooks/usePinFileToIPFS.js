@@ -28,7 +28,8 @@ export const pinFileToIPFS = (file, nftData) => {
             }})
             .then(function (response) {
                 console.log('se subio correctamente', response.data.IpfsHash)
-                return response.data.IpfsHash
+                let image_uri = `https://ipfs.io/ipfs/${response.data.IpfsHash}?filename=${nftData.name}`
+                return image_uri
                 // SUBIR A BLOCKCHAIN
             })
             .catch(function (error) {

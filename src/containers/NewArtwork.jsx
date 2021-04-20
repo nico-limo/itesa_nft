@@ -37,29 +37,26 @@ const NewArtwork = () => {
     setShowLoadingSpinner(true);
     await loadWeb3(); // Blockchain
     let { contracts, userWallet } = await loadBlockchainData(); // Blockchain
-    newPiece(e, title.value, description.value, price.value).then((art) => {
+    newPiece(e, title.value, description.value, price.value, userWallet).then((art) => {
       setNftData({ 
         name: title.value, 
         keyvalues: { description: description.value }})
       pinFileToIPFS(imgURI.file, nftData).then(res => {
         console.log("res", res)
-        contracts
-          .createCollectible(res)
+        contracts.createCollectible(res)
           .send({ from: userWallet })
           .on("receipt", function (receipt) {
             console.log("receipt", receipt);
           })
           .on("error", function (error, receipt) {
             console.log("error", error);
-          });
+          }).then(() => {
+            artWorkFileUpload(imgURI.file, "artWorks", art.id)
+          .then((url) => updateImgURI(url, art.id))
+          .then(() => history.push(`/artwork/${art.id}`))
+          .catch(() => setShowLoadingSpinner(false));
+        })
       })
-      
-            
-      // artWorkFileUpload(imgURI.file, "artWorks", art.id)
-      // console.log("img", imgURI.file)
-        // .then((url) => updateImgURI(url, art.id))
-        // .then(() => history.push(`/artwork/${art.id}`))
-        // .catch(() => setShowLoadingSpinner(false));
     });
   };
   const clearFile = (e) => {
