@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSetRecoilState } from "recoil"
 import { formErrorAtom } from "../../state/atoms"
+import { pinFileToIPFS } from "./usePinFileToIPFS"
 
 export const useInput = (name, incomingValue = "") => {
     const setFormError = useSetRecoilState(formErrorAtom)
@@ -24,5 +25,13 @@ export const useHandleFile = (name) => {
     const key = name
     return { file, onChange, name, setFile };
 };
+// export const useHandleFileToIPFS = (name) => {
+//     const [file, setFile] = useState("");
 
+//     const onChange = ({ target: { files } }) => {
+//         setFile(files[0])
+//     };
+//     const key = name
+//     return { file, onChange, name, setFile };
+// }
 

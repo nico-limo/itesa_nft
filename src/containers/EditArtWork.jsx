@@ -14,8 +14,8 @@ import FormButtonSpinner from "../components/FormButtonSpinner";
 import BigSpinner from "../components/BigSpinner";
 
 // Hooks
-import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask";
-import { pinFileToIPFS } from "../utils/hooks/usePinFileToIPFS";
+// import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask";
+// import { pinFileToIPFS } from "../utils/hooks/usePinFileToIPFS";
 
 const EditArtWork = ({ id }) => {
   const { getSinglePiece, updatePiece } = ArtFunctions();
@@ -28,8 +28,8 @@ const EditArtWork = ({ id }) => {
   const history = useHistory();
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
 
-  // Metamask
-  const { loadBlockchainData } = useBlockchainData();
+  // // Metamask
+  // const { loadBlockchainData } = useBlockchainData();
 
   useEffect(() => {
     title.setValue(singlePiece.title);
@@ -54,23 +54,7 @@ const EditArtWork = ({ id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setShowLoadingSpinner(true);
-    await loadWeb3(); // Blockchain
-    await pinFileToIPFS(singlePiece);
-    let { contracts, userWallet } = await loadBlockchainData(); // Blockchain
     updatePiece(title.value, description.value, price.value, id, onSale.value)
-      .then((res) => {
-        if (onSale.value === true) {
-          contracts
-            .createCollectible(id)
-            .send({ from: userWallet })
-            .on("receipt", function (receipt) {
-              console.log("receipt", receipt);
-            })
-            .on("error", function (error, receipt) {
-              console.log("error", error);
-            });
-        }
-      })
       .then(() => history.push(`/artwork/${id}`))
       .catch(() => setShowLoadingSpinner(false));
   };

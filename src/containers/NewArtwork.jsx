@@ -9,26 +9,57 @@ import form from "../styles/Form.module.css";
 import styles from "../styles/EditProfile.module.css";
 //Components
 import FormButtonSpinner from "../components/FormButtonSpinner";
+// Hooks
+import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask";
+import { pinFileToIPFS } from "../utils/hooks/usePinFileToIPFS"
 
 const NewArtwork = () => {
   const { newPiece, updateImgURI } = ArtFunctions();
   const { artWorkFileUpload } = ArtUpdateFunctions();
   const history = useHistory();
   const title = useInput("title");
-  const descrpition = useInput("description");
+  const description = useInput("description");
   const price = useInput("price");
   const imgURI = useHandleFile("imgURI");
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
   const [cancelImg, setCancelImg] = useState(false);
+  const [nftData, setNftData] = useState({
+    name: "otra",
+    keyvalues: {
+      description: "values"
+    }
+ })
+   // Metamask
+  const { loadBlockchainData } = useBlockchainData();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setShowLoadingSpinner(true);
-    newPiece(e, title.value, descrpition.value, price.value).then((art) => {
-      artWorkFileUpload(imgURI.file, "artWorks", art.id)
-        .then((url) => updateImgURI(url, art.id))
-        .then(() => history.push(`/artwork/${art.id}`))
-        .catch(() => setShowLoadingSpinner(false));
+    await loadWeb3(); // Blockchain
+    let { contracts, userWallet } = await loadBlockchainData(); // Blockchain
+    newPiece(e, title.value, description.value, price.value).then((art) => {
+      setNftData({ 
+        name: title.value, 
+        keyvalues: { description: description.value }})
+      pinFileToIPFS(imgURI.file, nftData).then(res => {
+        console.log("res", res)
+        contracts
+          .createCollectible(res)
+          .send({ from: userWallet })
+          .on("receipt", function (receipt) {
+            console.log("receipt", receipt);
+          })
+          .on("error", function (error, receipt) {
+            console.log("error", error);
+          });
+      })
+      
+            
+      // artWorkFileUpload(imgURI.file, "artWorks", art.id)
+      // console.log("img", imgURI.file)
+        // .then((url) => updateImgURI(url, art.id))
+        // .then(() => history.push(`/artwork/${art.id}`))
+        // .catch(() => setShowLoadingSpinner(false));
     });
   };
   const clearFile = (e) => {
@@ -61,9 +92,9 @@ const NewArtwork = () => {
             <textarea
               className={`${styles.input} ${styles.description}`}
               type="text"
-              name={descrpition.name}
-              value={descrpition.value}
-              onChange={descrpition.onChange}
+              name={description.name}
+              value={description.value}
+              onChange={description.onChange}
               placeholder="description"
             />
           </div>
