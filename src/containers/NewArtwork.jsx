@@ -23,6 +23,7 @@ const NewArtwork = () => {
   const imgURI = useHandleFile("imgURI");
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
   const [cancelImg, setCancelImg] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false)
   const [nftData, setNftData] = useState({
     name: "otra",
     keyvalues: {
