@@ -40,23 +40,22 @@ const Artwork = ({ id }) => {
     let {contracts, userWallet} = await loadBlockchainData()
     
     contracts.symbol().call().then(res => console.log(res))
-    contracts.createCollectible("Pokemon").send({from: userWallet})
-    .on("receipt", function (receipt) {
-        console.log("receipt", receipt)
-    }).on("error", function (error, receipt){
-          console.log("error", error)
-    })
+    console.log("billetera", userWallet)
+    contracts.ownerOf(singlePiece.tokenId).call().then(result => console.log(result))
+
+    // aprobar al comprador
+    // contracts.approve("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", singlePiece.tokenId).send({from: userWallet}).then(result => console.log(result))
+    // contracts.getApproved(singlePiece.tokenId).send({from: userWallet})
+    // .then(res => console.log("res", res))
+    // transfiere un token
+    // contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
+    // .then(result => console.log("result", result))
   }
   
-      // smartContract.methods.ownerOf(2).call()
-      // .then(result => console.log(result))
       
       // smartContract.methods.tokenURI(2).call()
       // .then(result => console.log(result))
 
-      // transfiere un token
-      // smartContract.methods.transferFrom("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", "0x50dA070f38e7D7b4822CBaD351Da20Bd4E88b607", 2).send({from: "0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD"})
-      // .then(result => console.log(result))
       
 
       
