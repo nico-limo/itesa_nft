@@ -24,7 +24,7 @@ const Creators = () => {
     <>
       <div className={styles.title}>Creators</div>
       <div className={styles.container}>
-        {creators.length ? (
+        {creators?.length ? (
           creators.map((user) => <CreatorsCard key={user.uid} user={user} />)
         ) : (
           <BigSpinner />
