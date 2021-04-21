@@ -9,7 +9,7 @@ import { userAtom, formErrorAtom } from "../../../state/atoms"
 import { useHistory } from "react-router-dom"
 export const AuthFunctions = () => {
   const setUser = useSetRecoilState(userAtom)
-  const [formError, setFormError] = useRecoilState(formErrorAtom);
+  const [formError, setFormError] = useRecoilState(formErrorAtom)
   const { getUser, newUser } = UserFunctions()
   const history = useHistory()
 
@@ -28,14 +28,16 @@ export const AuthFunctions = () => {
               main_picture: res.main_picture,
               description: res.description,
             })
-            localStorage.setItem('logged', JSON.stringify({ "uid": res.uid, "photo_profile": res.photo_profile }))
+            localStorage.setItem(
+              "logged",
+              JSON.stringify({ uid: res.uid, photo_profile: res.photo_profile })
+            )
           })
           .then(() => history.push("/"))
       })
       .catch((e) => {
         if (!formError) setFormError(e.message)
       })
-
   }
 
   const register = (event, email, password, username) => {
@@ -44,6 +46,22 @@ export const AuthFunctions = () => {
       .createUserWithEmailAndPassword(email, password)
       .then((userAuth) => {
         newUser(userAuth, username)
+        return userAuth.user.uid
+      })
+      .then((uid) => getUser(uid))
+      .then((res) => {
+        setUser({
+          email: res.email,
+          uid: res.uid,
+          username: res.username,
+          photo_profile: res.photo_profile,
+          main_picture: res.main_picture,
+          description: res.description,
+        })
+        localStorage.setItem(
+          "logged",
+          JSON.stringify({ uid: res.uid, photo_profile: res.photo_profile })
+        )
       })
       .then(() => history.push("/me/edit"))
       .catch((e) => setFormError(e.message))
@@ -71,7 +89,7 @@ export const AuthFunctions = () => {
   const logOut = () => {
     auth.signOut()
     setUser({})
-    localStorage.removeItem('logged')
+    localStorage.removeItem("logged")
     history.push("/")
   }
 

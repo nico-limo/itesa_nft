@@ -34,9 +34,13 @@ export const UserFunctions = () => {
         [key]: value,
       });
       if (key === "photo_profile" || key === "description") {
-        getUser(user.uid).then((user) => setUser(user))
+        getUser(user.uid).then((user) => {
+          localStorage.setItem(
+            "logged",
+            JSON.stringify({ uid: user.uid, photo_profile: user.photo_profile })
+          )
+          return setUser(user)})
       }
-
     });
     const snapshot2 = await artWorkRef.where("authorId", "==", user.uid).get();
     if (key === 'photo_profile') {
