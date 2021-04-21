@@ -15643,13 +15643,8 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 52,
-<<<<<<< HEAD
-        "sourceUnit": 866,
-        "src": "60:57:0",
-=======
         "sourceUnit": 875,
         "src": "57:57:0",
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -15660,13 +15655,8 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 52,
-<<<<<<< HEAD
-        "sourceUnit": 1128,
-        "src": "119:78:0",
-=======
         "sourceUnit": 1137,
         "src": "115:78:0",
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -15678,13 +15668,8 @@
               "id": 4,
               "name": "ERC721URIStorage",
               "nodeType": "IdentifierPath",
-<<<<<<< HEAD
-              "referencedDeclaration": 1127,
-              "src": "253:16:0"
-=======
               "referencedDeclaration": 1136,
               "src": "245:16:0"
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
             },
             "id": 5,
             "nodeType": "InheritanceSpecifier",
@@ -15844,13 +15829,8 @@
                   "id": 9,
                   "name": "ERC721",
                   "nodeType": "IdentifierPath",
-<<<<<<< HEAD
-                  "referencedDeclaration": 865,
-                  "src": "326:6:0"
-=======
                   "referencedDeclaration": 874,
                   "src": "316:6:0"
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
                 },
                 "nodeType": "ModifierInvocation",
                 "src": "316:27:0"
@@ -15992,13 +15972,8 @@
                         559,
                         588
                       ],
-<<<<<<< HEAD
-                      "referencedDeclaration": 559,
-                      "src": "524:9:0",
-=======
                       "referencedDeclaration": 568,
                       "src": "509:9:0",
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
@@ -16066,13 +16041,8 @@
                       "name": "_setTokenURI",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
-                      "referencedDeclaration": 1096,
-                      "src": "751:12:0",
-=======
                       "referencedDeclaration": 1105,
                       "src": "734:12:0",
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (uint256,string memory)"
@@ -16345,13 +16315,8 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 52,
-<<<<<<< HEAD
-        "sourceUnit": 866,
-        "src": "60:57:0",
-=======
         "sourceUnit": 875,
         "src": "57:57:0",
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -16362,13 +16327,8 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 52,
-<<<<<<< HEAD
-        "sourceUnit": 1128,
-        "src": "119:78:0",
-=======
         "sourceUnit": 1137,
         "src": "115:78:0",
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -16380,13 +16340,8 @@
               "id": 4,
               "name": "ERC721URIStorage",
               "nodeType": "IdentifierPath",
-<<<<<<< HEAD
-              "referencedDeclaration": 1127,
-              "src": "253:16:0"
-=======
               "referencedDeclaration": 1136,
               "src": "245:16:0"
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
             },
             "id": 5,
             "nodeType": "InheritanceSpecifier",
@@ -16546,13 +16501,8 @@
                   "id": 9,
                   "name": "ERC721",
                   "nodeType": "IdentifierPath",
-<<<<<<< HEAD
-                  "referencedDeclaration": 865,
-                  "src": "326:6:0"
-=======
                   "referencedDeclaration": 874,
                   "src": "316:6:0"
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
                 },
                 "nodeType": "ModifierInvocation",
                 "src": "316:27:0"
@@ -16694,13 +16644,8 @@
                         559,
                         588
                       ],
-<<<<<<< HEAD
-                      "referencedDeclaration": 559,
-                      "src": "524:9:0",
-=======
                       "referencedDeclaration": 568,
                       "src": "509:9:0",
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,uint256)"
@@ -16768,13 +16713,8 @@
                       "name": "_setTokenURI",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-<<<<<<< HEAD
-                      "referencedDeclaration": 1096,
-                      "src": "751:12:0",
-=======
                       "referencedDeclaration": 1105,
                       "src": "734:12:0",
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_uint256_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (uint256,string memory)"
@@ -17075,21 +17015,12 @@
         }
       },
       "links": {},
-<<<<<<< HEAD
-      "address": "0x74d1848056D940ae1fef71c503685e41EF4505D5",
-      "transactionHash": "0x122e7d129f38278a6affa364da6841ad56896ef8f21129c38f05ba198726fa92"
-    }
-  },
-  "schemaVersion": "3.3.4",
-  "updatedAt": "2021-04-21T22:45:44.237Z",
-=======
       "address": "0x74566AC0AA8cd9098cb3814FDEc197687a6BD32d",
       "transactionHash": "0x388886bd4871933360ab926346de18374189a7a94cc4df636009e344cdf75b81"
     }
   },
   "schemaVersion": "3.2.3",
   "updatedAt": "2021-04-21T14:44:44.918Z",
->>>>>>> fd8d6fee3b324b8262d1cd99831c0ef4fc6c1d08
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
