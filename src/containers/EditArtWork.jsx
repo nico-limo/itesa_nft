@@ -60,7 +60,7 @@ const EditArtWork = ({ id }) => {
   };
 
   return singlePiece ? (
-    singlePiece.authorId === user.uid ? (
+    singlePiece.ownerId === user.uid ? (
       <>
         <div className={styles.title}>Edit your profile</div>
         <div className={styles.editProfileContainer}>
