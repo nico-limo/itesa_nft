@@ -9,11 +9,11 @@ export const ArtFunctions = () => {
     const artWorkRef = db.collection('artWork');
     const user = useRecoilValue(userAtom);
 
-    const newPiece = async (e, title, description, price, userWallet) => {
+    const newPiece = async (e, title, description, price, userWallet, tokenId) => {
         e.preventDefault()
         const res = await artWorkRef.add({
             created: new Date(),
-            token: null,
+            tokenId,
             ownerId: user.uid,
             authorId: user.uid,
             userWallet,

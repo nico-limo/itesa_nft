@@ -40,12 +40,16 @@ const Artwork = ({ id }) => {
     let {contracts, userWallet} = await loadBlockchainData()
     
     contracts.symbol().call().then(res => console.log(res))
+    console.log("billetera", userWallet)
+    contracts.ownerOf(singlePiece.tokenId).call().then(result => console.log(result))
 
-    contracts.ownerOf(2).call().then(result => console.log(result))
-    console.log("singlePiece", singlePiece.userWallet)
+    // aprobar al comprador
+    // contracts.approve("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", singlePiece.tokenId).send({from: userWallet}).then(result => console.log(result))
+    // contracts.getApproved(singlePiece.tokenId).send({from: userWallet})
+    // .then(res => console.log("res", res))
     // transfiere un token
-    // smartContract.methods.transferFrom(singlePiece.userWallet, userWallet, 2).send({from: "0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD"})
-    // .then(result => console.log(result))
+    // contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
+    // .then(result => console.log("result", result))
   }
   
       
