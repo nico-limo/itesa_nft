@@ -1,5 +1,5 @@
 import { selector } from "recoil";
-import { artWorkAtom, artStatusAtom,/* singlePieceIdAtom, userUrl, usersArrAtom, userProfile */} from "./atoms";
+import { artWorkAtom, artStatusAtom,/* singlePieceIdAtom, userUrl, usersArrAtom, userProfile */ } from "./atoms";
 //import { ArtFunctions } from '../utils/firebase/requests/artworkRequests';
 
 export const onSaleOrSoldState = selector({

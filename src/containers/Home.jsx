@@ -1,26 +1,26 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 //CSS
-import styles from "../styles/Home.module.css"
+import styles from "../styles/Home.module.css";
 //Recoil
-import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil"
-import { artWorkAtom, artStatusAtom } from "../state/atoms"
-import { onSaleOrSoldState } from "../state/selectors"
+import { useSetRecoilState, useRecoilValue, useRecoilState } from "recoil";
+import { artWorkAtom, artStatusAtom } from "../state/atoms";
+import { onSaleOrSoldState } from "../state/selectors";
 //Utils
-import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
+import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
 //Components
-import ArtCard from "../components/ArtCard"
-import BigSpinner from "../components/BigSpinner"
+import ArtCard from "../components/ArtCard";
+import BigSpinner from "../components/BigSpinner";
 
 const Home = () => {
-  const [showOnSale, setShowOnSale] = useRecoilState(artStatusAtom)
-  const setArtWork = useSetRecoilState(artWorkAtom)
-  const artWork = useRecoilValue(onSaleOrSoldState)
+  const [showOnSale, setShowOnSale] = useRecoilState(artStatusAtom);
+  const setArtWork = useSetRecoilState(artWorkAtom);
+  const artWork = useRecoilValue(onSaleOrSoldState);
 
-  const { getAllPieces } = ArtFunctions()
+  const { getAllPieces } = ArtFunctions();
 
   useEffect(() => {
-    getAllPieces().then((res) => setArtWork(res))
-  }, [])
+    getAllPieces().then((res) => setArtWork(res));
+  }, []);
 
   return (
     <>
@@ -47,7 +47,7 @@ const Home = () => {
         )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
