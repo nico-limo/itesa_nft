@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 //React-router
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 //Recoil
 import { useRecoilState, useRecoilValue } from "recoil"
 import { singlePieceAtom, userProfile, userAtom, metaMaskUserAccount, smartContract, supplyAtom } from "../state/atoms"
@@ -16,10 +16,11 @@ import BigSpinner from "../components/BigSpinner"
 import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask"
 
 const Artwork = ({ id }) => {
+  const history = useHistory()
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)
   const [author, setAuthor] = useRecoilState(userProfile)
   const user = useRecoilValue(userAtom)
-  const { getSinglePiece } = ArtFunctions()
+  const { getSinglePiece, buyPiece } = ArtFunctions()
   const { getUser } = UserFunctions()
 
   // Metamask
@@ -40,16 +41,22 @@ const Artwork = ({ id }) => {
     let {contracts, userWallet} = await loadBlockchainData()
     
     contracts.symbol().call().then(res => console.log(res))
-    console.log("billetera", userWallet)
+    // console.log("billetera", userWallet)
     contracts.ownerOf(singlePiece.tokenId).call().then(result => console.log(result))
 
     // aprobar al comprador
     // contracts.approve("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", singlePiece.tokenId).send({from: userWallet}).then(result => console.log(result))
     // contracts.getApproved(singlePiece.tokenId).send({from: userWallet})
     // .then(res => console.log("res", res))
+
     // transfiere un token
-    // contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
-    // .then(result => console.log("result", result))
+    contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
+    .then(result => console.log("result", result))
+    .then(() => buyPiece(singlePiece.id, user.uid, userWallet))
+    .then(() => {
+      history.push("/me")
+      console.log("update obra de arte")
+    })
   }
   
       
