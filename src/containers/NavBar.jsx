@@ -22,7 +22,7 @@ const NavBar = () => {
       <Link className={styles.navbarLink} to="/creators">
         <div>Creators</div>
       </Link>
-      {local?.uid ? (
+      {local?.uid || user?.uid ? (
         <>
           <Link className={styles.navbarLink} to="/artwork/create">
             <div>Create</div>
