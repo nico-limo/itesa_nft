@@ -40,11 +40,13 @@ export const ArtFunctions = () => {
         await artWorkRef.doc(id).update({ imgURI })
     }
 
-    const buyPiece = async (ownerId) => {
-        await artWorkRef.doc().update({
+    const buyPiece = async (id, ownerId, userWallet) => {
+        await artWorkRef.doc(id).update({
             ownerId,
+            userWallet,
             onSale: false
         })
+        return "algo"
     }
 
     const getAllPieces = async () => {

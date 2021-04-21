@@ -40,7 +40,7 @@ const Home = () => {
         </button>
       </div>
       <div className={styles.homeGalleryContainer}>
-        {artWork.length ? (
+        {artWork?.length ? (
           artWork.map((piece) => <ArtCard key={piece.id} piece={piece} />)
         ) : (
           <BigSpinner />
