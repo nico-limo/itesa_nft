@@ -72,8 +72,7 @@ const Artwork = ({ id }) => {
     <>
       <div className={styles.artworkTitle}>
         {singlePiece?.title}
-        {user.uid === singlePiece.authorId &&
-          user.uid === singlePiece.ownerId ? (
+        { user.uid === singlePiece.ownerId ? (
             <Link to={`/artwork/${id}/edit`}>
               <img className={styles.editIcon} src="/edit.png" alt="Edit Icon" />
             </Link>
