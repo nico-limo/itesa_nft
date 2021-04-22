@@ -1,9 +1,15 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 //React-router
 import { Link, useHistory } from "react-router-dom"
 //Recoil
 import { useRecoilState, useRecoilValue } from "recoil"
-import { singlePieceAtom, userProfile, userAtom, metaMaskUserAccount, smartContract } from "../state/atoms"
+import {
+  singlePieceAtom,
+  userProfile,
+  userAtom,
+  metaMaskUserAccount,
+  smartContract,
+} from "../state/atoms"
 //Utils
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
 import { UserFunctions } from "../utils/firebase/requests/userRequests"
@@ -11,8 +17,9 @@ import { UserFunctions } from "../utils/firebase/requests/userRequests"
 import styles from "../styles/artWork.module.css"
 import index from "../styles/index.module.css"
 import BigSpinner from "../components/BigSpinner"
+import TransactionSpinner from "../components/TransactionSpinner"
 
-// Hooks "Metamask" de Blockchain 
+// Hooks "Metamask" de Blockchain
 import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask"
 
 const Artwork = ({ id }) => {
@@ -22,6 +29,10 @@ const Artwork = ({ id }) => {
   const user = useRecoilValue(userAtom)
   const { getSinglePiece, buyPiece } = ArtFunctions()
   const { getUser } = UserFunctions()
+  const [showWait, setShowWait] = useState(false)
+  const [transactionMessage, setTransactionMessage] = useState(
+    "Please confirm the transaction on Metamask"
+  )
 
   // Metamask
   const { loadBlockchainData } = useBlockchainData()
@@ -35,29 +46,49 @@ const Artwork = ({ id }) => {
   }, [])
 
   const Buy = async () => {
+    setShowWait(true)
     await loadWeb3()
-    let {contracts, userWallet} = await loadBlockchainData()
-    
+    let { contracts, userWallet } = await loadBlockchainData()
     if (contracts !== "sin contrato") {
-      contracts.symbol().call().then(res => console.log(res))
+      contracts
+        .symbol()
+        .call()
+        .then((res) => console.log(res))
       // console.log("billetera", userWallet)
-      contracts.ownerOf(singlePiece.tokenId).call().then(result => console.log(result))
-  
+      contracts
+        .ownerOf(singlePiece.tokenId)
+        .call()
+        .then((result) => console.log(result))
+
       // aprobar al comprador
       // contracts.approve("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", singlePiece.tokenId).send({from: userWallet}).then(result => console.log(result))
       // contracts.getApproved(singlePiece.tokenId).send({from: userWallet})
       // .then(res => console.log("res", res))
-  
+
       // transfiere un token
-      // contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
-      // .then(result => console.log("result", result))
-      // .then(() => buyPiece(singlePiece.id, user.uid, userWallet))
-      // .then(() => {
-      //   history.push("/me")
-      //   console.log("update obra de arte")
-      // })
-      contracts.tokenURI(singlePiece.tokenId).call()
-      .then(result => console.log(result))
+      contracts
+        .transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId)
+        .send({ from: userWallet })
+        // .then(result => console.log("result", result))
+        .once("transactionHash", function () {
+          setTransactionMessage(
+            "It may take a few minutes for the transaction to be mined."
+          )
+        })
+        .then((result) => {
+          console.log("RESULT")
+          buyPiece(singlePiece.id, user.uid, userWallet)
+          return result
+        })
+        .then((result) => {
+          console.log(result)
+          history.push(`/transaction/${result.transactionHash}`)
+          console.log("update obra de arte")
+        })
+      contracts
+        .tokenURI(singlePiece.tokenId)
+        .call()
+        .then((result) => console.log(result))
     }
   }
 
@@ -65,11 +96,11 @@ const Artwork = ({ id }) => {
     <>
       <div className={styles.artworkTitle}>
         {singlePiece?.title}
-        { user.uid === singlePiece.ownerId ? (
-            <Link to={`/artwork/${id}/edit`}>
-              <img className={styles.editIcon} src="/edit.png" alt="Edit Icon" />
-            </Link>
-          ) : null}
+        {user.uid === singlePiece.ownerId ? (
+          <Link to={`/artwork/${id}/edit`}>
+            <img className={styles.editIcon} src="/edit.png" alt="Edit Icon" />
+          </Link>
+        ) : null}
       </div>
       <img
         className={styles.singleArtworkImage}
@@ -92,10 +123,9 @@ const Artwork = ({ id }) => {
           <div className={styles.artworkPrice}>
             Price: {singlePiece?.price} ETH
           </div>
-          <button 
-          className={styles.buyButton}
-          onClick={Buy}
-          >Buy Now</button>
+          <button className={styles.buyButton} onClick={Buy}>
+            Buy Now
+          </button>
         </div>
       </div>
       <div className={styles.artistTitle}>Creator</div>
@@ -111,6 +141,14 @@ const Artwork = ({ id }) => {
           <div className={styles.artistDescription}>{author.description}</div>
         </div>
       </div>
+      {showWait && (
+        <div className={styles.waitContainer}>
+          <div className={styles.wait}>
+            <div className={styles.waitText}>{transactionMessage}</div>
+            <TransactionSpinner />
+          </div>
+        </div>
+      )}
     </>
   ) : (
     <BigSpinner />
