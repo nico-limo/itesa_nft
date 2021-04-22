@@ -35,7 +35,7 @@ const Home = () => {
           className={`${showOnSale ? "" : styles.selected}`}
           onClick={() => setShowOnSale(false)}
         >
-          Sold
+          Not On Sale
         </button>
       </div>
       <div className={styles.homeGalleryContainer}>
