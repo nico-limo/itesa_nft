@@ -1,17 +1,17 @@
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 //utils
-import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
-import { useInput, useHandleFile } from "../utils/hooks/useInput"
-import { ArtUpdateFunctions } from "../utils/firebase/storage/artfileUpdate"
+import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
+import { useInput, useHandleFile } from "../utils/hooks/useInput";
+import { ArtUpdateFunctions } from "../utils/firebase/storage/artfileUpdate";
 //styles
-import form from "../styles/Form.module.css"
-import styles from "../styles/EditProfile.module.css"
+import form from "../styles/Form.module.css";
+import styles from "../styles/EditProfile.module.css";
 //Components
 import FormButtonSpinner from "../components/FormButtonSpinner";
 // Hooks
 import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask";
-import { pinFileToIPFS } from "../utils/hooks/usePinFileToIPFS"
+import { pinFileToIPFS } from "../utils/hooks/usePinFileToIPFS";
 
 const NewArtwork = () => {
   const { newPiece, updateImgURI } = ArtFunctions();
@@ -23,12 +23,13 @@ const NewArtwork = () => {
   const imgURI = useHandleFile("imgURI");
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
   const [cancelImg, setCancelImg] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false)
-  const [nftData, setNftData] = useState({ 
-    name: title.value, 
-    keyvalues: { description: description.value }})
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [nftData] = useState({
+    name: title.value,
+    keyvalues: { description: description.value },
+  });
 
-   // Metamask
+  // Metamask
   const { loadBlockchainData } = useBlockchainData();
 
   const handleSubmit = async (e) => {
@@ -36,28 +37,35 @@ const NewArtwork = () => {
     setShowLoadingSpinner(true);
     await loadWeb3(); // Blockchain
     let { contracts, userWallet } = await loadBlockchainData(); // Blockchain
-    pinFileToIPFS(imgURI.file, nftData).then(res => {
-        console.log("res", res)
-        contracts.createCollectible(res).send({ from: userWallet })
+    pinFileToIPFS(imgURI.file, nftData).then((res) => {
+      console.log("res", res);
+      contracts
+        .createCollectible(res)
+        .send({ from: userWallet })
         .then((res) => {
-          let tokenId = res.events.Transfer.returnValues.tokenId
-          console.log("res", tokenId)
-          newPiece(e, title.value, description.value, price.value, userWallet, tokenId)
-          .then(art => {
-              artWorkFileUpload(imgURI.file, "artWorks", art.id)
-            .then((url) => updateImgURI(url, art.id))
-            .then(() => history.push(`/artwork/${art.id}`))
-            .catch(() => setShowLoadingSpinner(false));
-          })
-          
-        })
+          let tokenId = res.events.Transfer.returnValues.tokenId;
+          console.log("res", tokenId);
+          newPiece(
+            e,
+            title.value,
+            description.value,
+            price.value,
+            userWallet,
+            tokenId
+          ).then((art) => {
+            artWorkFileUpload(imgURI.file, "artWorks", art.id)
+              .then((url) => updateImgURI(url, art.id))
+              .then(() => history.push(`/artwork/${art.id}`))
+              .catch(() => setShowLoadingSpinner(false));
+          });
+        });
     });
   };
 
   const clearFile = (e) => {
-    setCancelImg(!cancelImg)
-    imgURI.setFile(null)
-  }
+    setCancelImg(!cancelImg);
+    imgURI.setFile(null);
+  };
   return (
     <div>
       <div className={form.title}>Create new art piece</div>
@@ -119,14 +127,9 @@ const NewArtwork = () => {
                 key={cancelImg}
               />
               {imgURI.file ? (
-                <a
-                  className={styles.clear}
-                  href="#"
-                  onClick={clearFile}
-                  id="clear"
-                >
+                <p className={styles.clear} onClick={clearFile} id="clear">
                   cancel
-                </a>
+                </p>
               ) : null}
             </div>
           </div>
@@ -134,8 +137,8 @@ const NewArtwork = () => {
           <button
             className={styles.submit}
             onClick={(e) => {
-              e.preventDefault()
-              setShowConfirmation(true)
+              e.preventDefault();
+              setShowConfirmation(true);
             }}
           >
             {showLoadingSpinner ? <FormButtonSpinner /> : <div>Add piece</div>}
@@ -152,13 +155,11 @@ const NewArtwork = () => {
             <div>
               <hr />
               <div className={styles.confirmationButtons}>
-                <div onClick={handleSubmit}>
-                  Confirm
-                </div>
+                <div onClick={handleSubmit}>Confirm</div>
                 <div
                   onClick={(e) => {
-                    e.preventDefault()
-                    setShowConfirmation(false)
+                    e.preventDefault();
+                    setShowConfirmation(false);
                   }}
                 >
                   Cancel
@@ -169,7 +170,7 @@ const NewArtwork = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default NewArtwork
+export default NewArtwork;

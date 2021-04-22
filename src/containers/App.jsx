@@ -15,25 +15,22 @@ import NewArtwork from "./NewArtwork";
 import ResetPassword from "./ResetPassword";
 import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
 //utils
+import { useWeb3 } from "@openzeppelin/network/react";
 import { AuthFunctions } from "../utils/firebase/auth/authEmail";
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../state/atoms";
 
 const App = () => {
-  const { isUser } = AuthFunctions();
   const user = useRecoilValue(userAtom);
-  
+  const { isUser } = AuthFunctions();
+  const web3Context = useWeb3("https://public-node.testnet.rsk.co/");
+  const { networkId, accounts } = web3Context;
 
   useEffect(() => {
-    isUser()
+    isUser();
   }, []);
 
-  useEffect(() => {}, [user])
-
-  // setTimeout(() => {
-  //   loadWeb3();
-  //   loadBlockchainData(); 
-  // }, 10000);
+  useEffect(() => {}, [user, networkId, accounts]);
 
   return (
     <div>
@@ -47,8 +44,9 @@ const App = () => {
           render={({ match }) => <Profile match={match} />}
         />
         <Route path={"/artwork/create"} component={NewArtwork} />
-        <Route path={"/artwork/:id/edit"} 
-         render={({ match }) => <EditArtWork id={match.params.id} />}
+        <Route
+          path={"/artwork/:id/edit"}
+          render={({ match }) => <EditArtWork id={match.params.id} />}
         />
         <Route
           path={"/artwork/:id"}
@@ -57,7 +55,11 @@ const App = () => {
         <Route exact path={"/me"} component={Profile} />
         <Route exact path={"/me/edit"} component={EditProfile} />
         <Route exact path={"/reset"} component={ResetPassword} />
-        <Route exact path={"/reset/confirmation"} component={ResetPasswordConfirmation} />
+        <Route
+          exact
+          path={"/reset/confirmation"}
+          component={ResetPasswordConfirmation}
+        />
       </Switch>
       <NavBar />
     </div>

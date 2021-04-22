@@ -45,7 +45,7 @@
   flex-direction: row;
 }
 
-.radioContainer input[type=radio] {
+.radioContainer input[type="radio"] {
   margin-right: 1.5vw;
   margin-bottom: 0.5vw;
   width: 3vw;
@@ -83,7 +83,7 @@
 }
 .clear {
   color: #845fa1;
-  font-size: 0.7rem;
+  font-size: 1.3rem;
 }
 
 .description {

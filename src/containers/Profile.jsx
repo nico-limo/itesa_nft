@@ -1,48 +1,42 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
 //Components
-import ArtCard from "../components/ArtCard"
-import BigSpinner from "../components/BigSpinner"
+import ArtCard from "../components/ArtCard";
+import BigSpinner from "../components/BigSpinner";
 //Utils
-import { AuthFunctions } from "../utils/firebase/auth/authEmail"
 //Recoil
-import { useRecoilState, useRecoilValue } from "recoil"
-import { userAtom, artStatusAtom } from "../state/atoms"
-import { UserFunctions } from "../utils/firebase/requests/userRequests"
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userAtom, artStatusAtom } from "../state/atoms";
+import { UserFunctions } from "../utils/firebase/requests/userRequests";
 //styles
-import styles from "../styles/Profile.module.css"
-import form from "../styles/Form.module.css"
-import spinners from "../styles/Spinners.module.css"
-
+import styles from "../styles/Profile.module.css";
 const Profile = ({ match }) => {
-  const user = useRecoilValue(userAtom) // usuario logueado
-  const { getUser } = UserFunctions() // busca usuario de la url
-  const { getUserCreations, getUserCollections } = UserFunctions() // busca creations y collections
-  const local = JSON.parse(localStorage.getItem("logged"));
-  const [urlUser, setUrlUser] = useState("") // variable usuario clickeado o logueado
-  const [showArt, setShowArt] = useRecoilState(artStatusAtom) // click art true or false
+  const user = useRecoilValue(userAtom); // usuario logueado
+  const { getUser } = UserFunctions(); // busca usuario de la url
+  const { getUserCreations, getUserCollections } = UserFunctions(); // busca creations y collections
+  const [urlUser, setUrlUser] = useState(""); // variable usuario clickeado o logueado
+  const [showArt, setShowArt] = useRecoilState(artStatusAtom); // click art true or false
 
   useEffect(() => {
     if (match.params.id)
-      getUser(match.params.id).then((user) => setUrlUser(user))
-    else if (user.uid) getUser(user.uid).then((user) => setUrlUser(user))
-    return () => setUrlUser("")
-  }, [match, user])
+      getUser(match.params.id).then((user) => setUrlUser(user));
+    else if (user.uid) getUser(user.uid).then((user) => setUrlUser(user));
+    return () => setUrlUser("");
+  }, [match, user]);
 
-  
-  const [userArtWork, setUserArtWork] = useState("loading")
+  const [userArtWork, setUserArtWork] = useState("loading");
   useEffect(() => {
     if (urlUser.uid) {
       // Collections - Creations
       if (showArt)
         getUserCreations(urlUser.uid).then((creation) =>
           setUserArtWork(creation)
-        )
+        );
       else
         getUserCollections(urlUser.uid).then((collection) =>
           setUserArtWork(collection)
-        )
+        );
     }
-  }, [showArt, urlUser])
+  }, [showArt, urlUser]);
 
   return (
     <>
@@ -93,7 +87,7 @@ const Profile = ({ match }) => {
         <BigSpinner />
       )}
     </>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

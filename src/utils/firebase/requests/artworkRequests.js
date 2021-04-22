@@ -21,7 +21,7 @@ export const ArtFunctions = () => {
             imgURI: null,
             description,
             price,
-            onSale: false,
+            onSale: true,
             id: '',
             username: user.username,
             photo_profile: user.photo_profile

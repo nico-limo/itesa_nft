@@ -1,75 +1,85 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 //React-router
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom";
 //Recoil
-import { useRecoilState, useRecoilValue } from "recoil"
-import { singlePieceAtom, userProfile, userAtom, metaMaskUserAccount, smartContract } from "../state/atoms"
+import { useRecoilState, useRecoilValue } from "recoil";
+import { singlePieceAtom, userProfile, userAtom } from "../state/atoms";
 //Utils
-import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
-import { UserFunctions } from "../utils/firebase/requests/userRequests"
+import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
+import { UserFunctions } from "../utils/firebase/requests/userRequests";
 //CSS
-import styles from "../styles/artWork.module.css"
-import index from "../styles/index.module.css"
-import BigSpinner from "../components/BigSpinner"
+import styles from "../styles/artWork.module.css";
+import index from "../styles/index.module.css";
+import BigSpinner from "../components/BigSpinner";
 
-// Hooks "Metamask" de Blockchain 
-import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask"
+// Hooks "Metamask" de Blockchain
+import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask";
 
 const Artwork = ({ id }) => {
-  const history = useHistory()
-  const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom)
-  const [author, setAuthor] = useRecoilState(userProfile)
-  const user = useRecoilValue(userAtom)
-  const { getSinglePiece, buyPiece } = ArtFunctions()
-  const { getUser } = UserFunctions()
+  const history = useHistory();
+  const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom);
+  const [author, setAuthor] = useRecoilState(userProfile);
+  const user = useRecoilValue(userAtom);
+  const { getSinglePiece, buyPiece } = ArtFunctions();
+  const { getUser } = UserFunctions();
 
   // Metamask
-  const { loadBlockchainData } = useBlockchainData()
+  const { loadBlockchainData } = useBlockchainData();
 
   useEffect(() => {
     getSinglePiece(id).then((res) => {
-      setSinglePieceAtom(res)
-      getUser(res.authorId).then((res) => setAuthor(res))
-    })
-    return setSinglePieceAtom("")
-  }, [])
+      setSinglePieceAtom(res);
+      getUser(res.authorId).then((res) => setAuthor(res));
+    });
+    return setSinglePieceAtom("");
+  }, []);
 
   const Buy = async () => {
-    await loadWeb3()
-    let {contracts, userWallet} = await loadBlockchainData()
-    
+    await loadWeb3();
+    let { contracts, userWallet } = await loadBlockchainData();
+
     if (contracts !== "sin contrato") {
-      contracts.symbol().call().then(res => console.log(res))
+      contracts
+        .symbol()
+        .call()
+        .then((res) => console.log(res));
       // console.log("billetera", userWallet)
-      contracts.ownerOf(singlePiece.tokenId).call().then(result => console.log(result))
-  
+      contracts
+        .ownerOf(singlePiece.tokenId)
+        .call()
+        .then((result) => console.log(result));
+
       // aprobar al comprador
       // contracts.approve("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", singlePiece.tokenId).send({from: userWallet}).then(result => console.log(result))
       // contracts.getApproved(singlePiece.tokenId).send({from: userWallet})
       // .then(res => console.log("res", res))
-  
+
       // transfiere un token
-      contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
-      .then(result => console.log("result", result))
-      .then(() => buyPiece(singlePiece.id, user.uid, userWallet))
-      .then(() => {
-        history.push("/me")
-        console.log("update obra de arte")
-      })
-      contracts.tokenURI(singlePiece.tokenId).call()
-      .then(result => console.log(result))
+      contracts
+        .transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId)
+        .send({ from: userWallet })
+        .then((result) => console.log("result", result))
+        .then(() => buyPiece(singlePiece.id, user.uid, userWallet))
+        .then(() => {
+          history.push("/me");
+          console.log("update obra de arte");
+        });
+      contracts
+        .tokenURI(singlePiece.tokenId)
+        .call()
+        .then((result) => console.log(result));
     }
-  }
+  };
 
   return singlePiece ? (
     <>
       <div className={styles.artworkTitle}>
         {singlePiece?.title}
-        { user.uid === singlePiece.ownerId ? (
-            <Link to={`/artwork/${id}/edit`}>
-              <img className={styles.editIcon} src="/edit.png" alt="Edit Icon" />
-            </Link>
-          ) : null}
+        {user.uid === singlePiece.ownerId ? (
+          <Link to={`/artwork/${id}/edit`}>
+            <img className={styles.editIcon} src="/edit.png" alt="Edit Icon" />
+          </Link>
+        ) : null}
       </div>
       <img
         className={styles.singleArtworkImage}
@@ -92,11 +102,11 @@ const Artwork = ({ id }) => {
           <div className={styles.artworkPrice}>
             Price: {singlePiece?.price} ETH
           </div>
-          { user.uid !== singlePiece.ownerId ? (<button 
-          className={styles.buyButton}
-          onClick={Buy}
-          >Buy Now</button>) : (null)}
-          
+          {user.uid !== singlePiece.ownerId ? (
+            <button className={styles.buyButton} onClick={Buy}>
+              Buy Now
+            </button>
+          ) : null}
         </div>
       </div>
       <div className={styles.artistTitle}>Creator</div>
@@ -115,7 +125,7 @@ const Artwork = ({ id }) => {
     </>
   ) : (
     <BigSpinner />
-  )
-}
+  );
+};
 
-export default Artwork
+export default Artwork;

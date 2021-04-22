@@ -10,7 +10,6 @@ import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
 //Components
 import ArtCard from "../components/ArtCard";
 import BigSpinner from "../components/BigSpinner";
-import Web3 from "../components/Pruebaweb3";
 const Home = () => {
   const [showOnSale, setShowOnSale] = useRecoilState(artStatusAtom);
   const setArtWork = useSetRecoilState(artWorkAtom);
@@ -39,7 +38,6 @@ const Home = () => {
           Sold
         </button>
       </div>
-      <Web3></Web3>
       <div className={styles.homeGalleryContainer}>
         {artWork?.length ? (
           artWork.map((piece) => <ArtCard key={piece.id} piece={piece} />)
