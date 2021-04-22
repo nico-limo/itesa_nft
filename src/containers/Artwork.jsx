@@ -36,7 +36,10 @@ const Artwork = ({ id }) => {
       setSinglePieceAtom(res);
       getUser(res.authorId).then((res) => setAuthor(res));
     });
-    return setSinglePieceAtom("");
+    return () => {
+      setSinglePieceAtom("");
+      setAuthor({});
+    };
   }, []);
 
   const Buy = async () => {
