@@ -3,7 +3,7 @@ import React, { useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 //Recoil
 import { useRecoilState, useRecoilValue } from "recoil"
-import { singlePieceAtom, userProfile, userAtom, metaMaskUserAccount, smartContract, supplyAtom } from "../state/atoms"
+import { singlePieceAtom, userProfile, userAtom, metaMaskUserAccount, smartContract } from "../state/atoms"
 //Utils
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests"
 import { UserFunctions } from "../utils/firebase/requests/userRequests"
@@ -34,39 +34,32 @@ const Artwork = ({ id }) => {
     return setSinglePieceAtom("")
   }, [])
 
-  // useEffect(() => {}, [userWallet])
-
   const Buy = async () => {
     await loadWeb3()
     let {contracts, userWallet} = await loadBlockchainData()
     
-    contracts.symbol().call().then(res => console.log(res))
-    // console.log("billetera", userWallet)
-    contracts.ownerOf(singlePiece.tokenId).call().then(result => console.log(result))
-
-    // aprobar al comprador
-    // contracts.approve("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", singlePiece.tokenId).send({from: userWallet}).then(result => console.log(result))
-    // contracts.getApproved(singlePiece.tokenId).send({from: userWallet})
-    // .then(res => console.log("res", res))
-
-    // transfiere un token
-    contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
-    .then(result => console.log("result", result))
-    .then(() => buyPiece(singlePiece.id, user.uid, userWallet))
-    .then(() => {
-      history.push("/me")
-      console.log("update obra de arte")
-    })
-  }
+    if (contracts !== "sin contrato") {
+      contracts.symbol().call().then(res => console.log(res))
+      // console.log("billetera", userWallet)
+      contracts.ownerOf(singlePiece.tokenId).call().then(result => console.log(result))
   
-      
-      // smartContract.methods.tokenURI(2).call()
-      // .then(result => console.log(result))
-
-      
-
-      
-    
+      // aprobar al comprador
+      // contracts.approve("0x4395Df2b939D11F98b42C2Ad84548C8d83F1FaAD", singlePiece.tokenId).send({from: userWallet}).then(result => console.log(result))
+      // contracts.getApproved(singlePiece.tokenId).send({from: userWallet})
+      // .then(res => console.log("res", res))
+  
+      // transfiere un token
+      // contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
+      // .then(result => console.log("result", result))
+      // .then(() => buyPiece(singlePiece.id, user.uid, userWallet))
+      // .then(() => {
+      //   history.push("/me")
+      //   console.log("update obra de arte")
+      // })
+      contracts.tokenURI(singlePiece.tokenId).call()
+      .then(result => console.log(result))
+    }
+  }
 
   return singlePiece ? (
     <>

@@ -16,7 +16,7 @@ export async function loadWeb3() {
     window.web3 = new Web3(window.web3.currentProvider);
   } else {
     // no web3 provider, user needs to install one in their browser
-    window.alert("No injected web3 provider detected");
+    window.alert("Please download a Wallet. We recommend Metamask, https://metamask.io/");
   }
   console.log(window.web3.currentProvider);
 }
@@ -25,7 +25,6 @@ export const useBlockchainData = () => {
   // Metamask
   const [userWallet, setUserWallet] = useRecoilState(metaMaskUserAccount)
   const [contract, setContract] = useRecoilState(smartContract)
-  // const [supply, setSupply] = useRecoilState(supplyAtom)
 
   // ----   DATA
   const loadBlockchainData = async () => {
@@ -37,9 +36,13 @@ export const useBlockchainData = () => {
     const networkData = CryptoArt.networks[networkId];
     console.log("Network Id", networkId)
     console.log("Network Id", CryptoArt.networks)
+    let obj;
     if (!networkData) { // Verifica si existe el contrato
-      window.alert("Smart contract not deployed to detected network.");
-      return;
+      window.alert("Please change to RSK Network to interact");
+      return obj = {
+        contracts: "sin contrato",
+        userWallet: accounts[0]
+      }
     }
 
     const abi = CryptoArt.abi;                  // Abi del contrato
@@ -50,12 +53,10 @@ export const useBlockchainData = () => {
     console.log("abi ----", abi)
     console.log("networkdata address", address)
 
-
-    let obj = {
+    return obj = {
       contracts: smartContract.methods,
       userWallet: accounts[0]
     }
-    return obj;
   }
 
   return { loadBlockchainData, userWallet };
