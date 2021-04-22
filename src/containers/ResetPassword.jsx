@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 //styles
 import form from "../styles/Form.module.css";
 //utils
@@ -10,7 +9,6 @@ import { useRecoilState } from "recoil";
 import { formErrorAtom } from "../state/atoms";
 //Components
 import FormButtonSpinner from "../components/FormButtonSpinner";
-
 
 const ResetPassword = () => {
   const email = useInput("email");
@@ -32,20 +30,21 @@ const ResetPassword = () => {
           Enter your email and we'll send you a link to reset your password and
           get back into your account.
         </div>
-        <form onSubmit={(event) => {
-              event.preventDefault();
-              setShowLoadingSpinner(true);
-              forgotPassword(event, email.value)}} 
-              className={form.form}>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            setShowLoadingSpinner(true);
+            forgotPassword(event, email.value);
+          }}
+          className={form.form}
+        >
           <input
             className={form.input}
             placeholder="Enter your email"
             type="email"
             {...email}
           />
-          <button
-            type="submit"
-          >
+          <button type="submit">
             {showLoadingSpinner ? (
               <FormButtonSpinner />
             ) : (

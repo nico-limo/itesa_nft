@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 //CSS
 import styles from "../styles/Creators.module.css";
-import spinners from "../styles/Spinners.module.css";
 //Components
 import CreatorsCard from "../components/CreatorsCard";
 import BigSpinner from "../components/BigSpinner";

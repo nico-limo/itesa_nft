@@ -12,11 +12,6 @@ import { useRecoilValue } from "recoil";
 // Spinner
 import FormButtonSpinner from "../components/FormButtonSpinner";
 
-// Blockchain
-import CryptoArt from "../truffle/truffle/contracts/CryptoArt.json"
-import { loadWeb3 } from "../utils/hooks/metaMask"
-
-
 const EditProfile = ({ id }) => {
   const { updateUser } = UserFunctions();
   const user = useRecoilValue(userAtom);
@@ -50,14 +45,13 @@ const EditProfile = ({ id }) => {
       .catch(() => setShowLoadingSpinner(false));
   };
   const clearFile = (e) => {
-    if (e.target.name === "avatar") {
+    if (e.target.id === "avatar") {
       setCancelAvatar(!cancelAvatar);
       avatar.setFile(null);
-    } else {
+    } else if (e.target.id === "main_picture") {
       setCancelMain(!cancelMain);
       main_picture.setFile(null);
     }
-    console.log(e.target.name);
   };
 
   return (
@@ -92,15 +86,9 @@ const EditProfile = ({ id }) => {
                 key={cancelAvatar}
               />
               {avatar.file ? (
-                <a
-                  name="avatar"
-                  className={styles.clear}
-                  href="#"
-                  onClick={clearFile}
-                  id="clear"
-                >
+                <p className={styles.clear} onClick={clearFile} id="avatar">
                   cancel
-                </a>
+                </p>
               ) : null}
             </div>
           </div>
@@ -118,15 +106,13 @@ const EditProfile = ({ id }) => {
                 key={cancelMain}
               />
               {main_picture.file ? (
-                <a
+                <p
                   className={styles.clear}
-                  name="main_picture"
-                  href="#"
                   onClick={clearFile}
-                  id="clear"
+                  id="main_picture"
                 >
                   cancel
-                </a>
+                </p>
               ) : null}
             </div>
           </div>

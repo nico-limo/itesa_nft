@@ -1,39 +1,37 @@
-import React, { useEffect } from "react"
+import React, { useEffect } from "react";
 //React-router-dom
-import { Route, Switch } from "react-router-dom"
+import { Route, Switch } from "react-router-dom";
 //Components
-import Login from "./Login"
-import Register from "./Register"
-import Home from "./Home"
-import NavBar from "./NavBar"
-import Creators from "./Creators"
-import Artwork from "./Artwork"
-import Profile from "./Profile"
-import EditProfile from "./EditProfile"
-import EditArtWork from "./EditArtWork"
-import NewArtwork from "./NewArtwork"
-import ResetPassword from "./ResetPassword"
-import Transaction from "./Transaction"
-import ResetPasswordConfirmation from "./ResetPasswordConfirmation"
+import Login from "./Login";
+import Register from "./Register";
+import Home from "./Home";
+import NavBar from "./NavBar";
+import Creators from "./Creators";
+import Artwork from "./Artwork";
+import Profile from "./Profile";
+import EditProfile from "./EditProfile";
+import EditArtWork from "./EditArtWork";
+import NewArtwork from "./NewArtwork";
+import ResetPassword from "./ResetPassword";
+import Transaction from "./Transaction";
+import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
 //utils
-import { AuthFunctions } from "../utils/firebase/auth/authEmail"
-import { useRecoilValue } from "recoil"
-import { userAtom } from "../state/atoms"
+import { useWeb3 } from "@openzeppelin/network/react";
+import { AuthFunctions } from "../utils/firebase/auth/authEmail";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "../state/atoms";
 
 const App = () => {
-  const { isUser } = AuthFunctions()
-  const user = useRecoilValue(userAtom)
+  const user = useRecoilValue(userAtom);
+  const { isUser } = AuthFunctions();
+  const web3Context = useWeb3("https://public-node.testnet.rsk.co/");
+  const { networkId, accounts } = web3Context;
 
   useEffect(() => {
-    isUser()
-  }, [])
+    isUser();
+  }, []);
 
-  useEffect(() => {}, [user])
-
-  // setTimeout(() => {
-  //   loadWeb3();
-  //   loadBlockchainData();
-  // }, 10000);
+  useEffect(() => {}, [user, networkId, accounts]);
 
   return (
     <div>
@@ -70,7 +68,7 @@ const App = () => {
       </Switch>
       <NavBar />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

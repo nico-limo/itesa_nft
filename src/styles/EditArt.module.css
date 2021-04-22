@@ -1,7 +1,6 @@
 .editProfileContainer {
   background-color: rgb(255, 255, 255);
   border-radius: 4%;
-  margin: 0 2% 4%;
   box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
@@ -38,6 +37,7 @@
   display: flex;
   flex-direction: column;
   align-items: space-around;
+  margin: 3% 0;
 }
 
 .radioContainer {
@@ -45,7 +45,7 @@
   flex-direction: row;
 }
 
-.radioContainer input[type="radio"] {
+.radioContainer input[type=radio] {
   margin-right: 1.5vw;
   margin-bottom: 0.5vw;
   width: 3vw;
@@ -83,7 +83,7 @@
 }
 .clear {
   color: #845fa1;
-  font-size: 1.3rem;
+  font-size: 0.7rem;
 }
 
 .description {
