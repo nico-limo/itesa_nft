@@ -155,3 +155,35 @@ body {
     width: 90vw;
     margin: 0 5vw 5vw;
 }
+
+
+.waitContainer {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.281);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .wait {
+    background-image: linear-gradient(to top left, #845fa1, #34283e);
+    width: 52vw;
+    height: 27vw;
+    border-radius: 4vw;
+    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 4vw 0;
+    font-size: 3vw;
+  }
+  
+  .waitText {
+    text-align: center;
+    padding: 0 5vw;
+  }

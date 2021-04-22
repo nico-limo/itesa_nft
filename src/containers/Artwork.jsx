@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 //React-router
 import { Link, useHistory } from "react-router-dom";
 //Recoil
@@ -11,6 +11,7 @@ import { UserFunctions } from "../utils/firebase/requests/userRequests";
 import styles from "../styles/artWork.module.css";
 import index from "../styles/index.module.css";
 import BigSpinner from "../components/BigSpinner";
+import TransactionSpinner from "../components/TransactionSpinner";
 
 // Hooks "Metamask" de Blockchain
 import { loadWeb3, useBlockchainData } from "../utils/hooks/metaMask";
@@ -22,6 +23,10 @@ const Artwork = ({ id }) => {
   const user = useRecoilValue(userAtom);
   const { getSinglePiece, buyPiece } = ArtFunctions();
   const { getUser } = UserFunctions();
+  const [showWait, setShowWait] = useState(false);
+  const [transactionMessage, setTransactionMessage] = useState(
+    "Please confirm the transaction on Metamask"
+  );
 
   // Metamask
   const { loadBlockchainData } = useBlockchainData();
@@ -35,9 +40,9 @@ const Artwork = ({ id }) => {
   }, []);
 
   const Buy = async () => {
+    setShowWait(true);
     await loadWeb3();
     let { contracts, userWallet } = await loadBlockchainData();
-
     if (contracts !== "sin contrato") {
       contracts
         .symbol()
@@ -58,10 +63,20 @@ const Artwork = ({ id }) => {
       contracts
         .transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId)
         .send({ from: userWallet })
-        .then((result) => console.log("result", result))
-        .then(() => buyPiece(singlePiece.id, user.uid, userWallet))
-        .then(() => {
-          history.push("/me");
+        // .then(result => console.log("result", result))
+        .once("transactionHash", function () {
+          setTransactionMessage(
+            "It may take a few minutes for the transaction to be mined."
+          );
+        })
+        .then((result) => {
+          console.log("RESULT");
+          buyPiece(singlePiece.id, user.uid, userWallet);
+          return result;
+        })
+        .then((result) => {
+          console.log(result);
+          history.push(`/transaction/${result.transactionHash}`);
           console.log("update obra de arte");
         });
       contracts
@@ -122,6 +137,14 @@ const Artwork = ({ id }) => {
           <div className={styles.artistDescription}>{author.description}</div>
         </div>
       </div>
+      {showWait && (
+        <div className={styles.waitContainer}>
+          <div className={styles.wait}>
+            <div className={styles.waitText}>{transactionMessage}</div>
+            <TransactionSpinner />
+          </div>
+        </div>
+      )}
     </>
   ) : (
     <BigSpinner />

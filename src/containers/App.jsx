@@ -13,6 +13,7 @@ import EditProfile from "./EditProfile";
 import EditArtWork from "./EditArtWork";
 import NewArtwork from "./NewArtwork";
 import ResetPassword from "./ResetPassword";
+import Transaction from "./Transaction";
 import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
 //utils
 import { useWeb3 } from "@openzeppelin/network/react";
@@ -59,6 +60,10 @@ const App = () => {
           exact
           path={"/reset/confirmation"}
           component={ResetPasswordConfirmation}
+        />
+        <Route
+          path={"/transaction/:hash"}
+          render={({ match }) => <Transaction hash={match.params.hash} />}
         />
       </Switch>
       <NavBar />

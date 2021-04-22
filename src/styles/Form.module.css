@@ -130,13 +130,22 @@
   margin-top: 1vw;
 }
 
-.emailIcon {
+.icon {
   height: 30vw;
   margin: 15vw 35vw 8vw;
 }
 
-.emailMessage {
+.message {
   font-size: 3.5vw;
   text-align: center;
   width: 70vw;
+}
+
+.transactionLink {
+  font-size: 3.5vw;
+  text-align: center;
+  width: 70vw;
+  margin-top: 3vw;
+  color: #845fa1;
+  font-weight: 600;
 }
