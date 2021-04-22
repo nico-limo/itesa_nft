@@ -30,6 +30,10 @@ const App = () => {
 
   useEffect(() => {}, [user])
 
+  // setTimeout(() => {
+  //   loadWeb3();
+  //   loadBlockchainData(); 
+  // }, 10000);
 
   return (
     <div>

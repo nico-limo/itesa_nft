@@ -83,7 +83,8 @@ export const smartContract = atom({
     persistence_UNSTABLE: {
         type: 'log'
     }
-}) 
+})
+
 export const supplyAtom = atom({
     key: 'supplyAtom',
     default: {},
