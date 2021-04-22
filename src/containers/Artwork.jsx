@@ -120,7 +120,7 @@ const Artwork = ({ id }) => {
           <div className={styles.artworkPrice}>
             Price: {singlePiece?.price} ETH
           </div>
-          {user.uid !== singlePiece.ownerId ? (
+          {user.uid && user.uid !== singlePiece.ownerId ? (
             <button className={styles.buyButton} onClick={Buy}>
               Buy Now
             </button>
