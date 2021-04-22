@@ -49,13 +49,13 @@ const Artwork = ({ id }) => {
       // .then(res => console.log("res", res))
   
       // transfiere un token
-      // contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
-      // .then(result => console.log("result", result))
-      // .then(() => buyPiece(singlePiece.id, user.uid, userWallet))
-      // .then(() => {
-      //   history.push("/me")
-      //   console.log("update obra de arte")
-      // })
+      contracts.transferFrom(singlePiece.userWallet, userWallet, singlePiece.tokenId).send({from: userWallet})
+      .then(result => console.log("result", result))
+      .then(() => buyPiece(singlePiece.id, user.uid, userWallet))
+      .then(() => {
+        history.push("/me")
+        console.log("update obra de arte")
+      })
       contracts.tokenURI(singlePiece.tokenId).call()
       .then(result => console.log(result))
     }
@@ -92,10 +92,11 @@ const Artwork = ({ id }) => {
           <div className={styles.artworkPrice}>
             Price: {singlePiece?.price} ETH
           </div>
-          <button 
+          { user.uid !== singlePiece.ownerId ? (<button 
           className={styles.buyButton}
           onClick={Buy}
-          >Buy Now</button>
+          >Buy Now</button>) : (null)}
+          
         </div>
       </div>
       <div className={styles.artistTitle}>Creator</div>

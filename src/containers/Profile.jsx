@@ -17,7 +17,7 @@ const Profile = ({ match }) => {
   const user = useRecoilValue(userAtom) // usuario logueado
   const { getUser } = UserFunctions() // busca usuario de la url
   const { getUserCreations, getUserCollections } = UserFunctions() // busca creations y collections
-
+  const local = JSON.parse(localStorage.getItem("logged"));
   const [urlUser, setUrlUser] = useState("") // variable usuario clickeado o logueado
   const [showArt, setShowArt] = useRecoilState(artStatusAtom) // click art true or false
 
@@ -28,7 +28,7 @@ const Profile = ({ match }) => {
     return () => setUrlUser("")
   }, [match, user])
 
-  //
+  
   const [userArtWork, setUserArtWork] = useState("loading")
   useEffect(() => {
     if (urlUser.uid) {

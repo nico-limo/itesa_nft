@@ -30,9 +30,9 @@ export const ArtFunctions = () => {
         return res;
     }
 
-    const updatePiece = async (title, description, price, id, onSale) => {
+    const updatePiece = async (price, id, onSale) => {
         await artWorkRef.doc(id).update({
-            title, description, price, onSale
+            price, onSale
         })
     }
 

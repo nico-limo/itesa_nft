@@ -29,12 +29,12 @@ export const UserFunctions = () => {
     let key = Object.keys(data)[0];
     let value = Object.values(data)[0];
     const snapshot = await usersReference.where("uid", "==", user.uid).get();
-    snapshot.forEach((doc) => {
-      doc.ref.update({
+    snapshot.forEach(async (doc) => {
+     await doc.ref.update({
         [key]: value,
       });
       if (key === "photo_profile" || key === "description") {
-        getUser(user.uid).then((user) => {
+       getUser(user.uid).then((user) => {
           localStorage.setItem(
             "logged",
             JSON.stringify({ uid: user.uid, photo_profile: user.photo_profile })

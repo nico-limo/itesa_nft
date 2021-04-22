@@ -3,11 +3,10 @@ import { useHistory } from "react-router-dom";
 //Utils
 import { ArtFunctions } from "../utils/firebase/requests/artworkRequests";
 import { useInput } from "../utils/hooks/useInput";
-
 //styles
-import styles from "../styles/EditProfile.module.css";
+import styles from "../styles/EditArt.module.css";
 // Recoil
-import { singlePieceAtom, userAtom, metaMaskUserAccount } from "../state/atoms";
+import { singlePieceAtom, userAtom } from "../state/atoms";
 import { useRecoilState, useRecoilValue } from "recoil";
 // Spinner
 import FormButtonSpinner from "../components/FormButtonSpinner";
@@ -21,20 +20,13 @@ const EditArtWork = ({ id }) => {
   const { getSinglePiece, updatePiece } = ArtFunctions();
   const [singlePiece, setSinglePieceAtom] = useRecoilState(singlePieceAtom);
   const user = useRecoilValue(userAtom);
-  const title = useInput("title", singlePiece.title);
   const price = useInput("price", singlePiece.price);
-  const description = useInput("description", singlePiece.description);
   const onSale = useInput("onSale", singlePiece.onSale);
   const history = useHistory();
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
 
-  // // Metamask
-  // const { loadBlockchainData } = useBlockchainData();
-
   useEffect(() => {
-    title.setValue(singlePiece.title);
     price.setValue(singlePiece.price);
-    description.setValue(singlePiece.description);
     onSale.setValue(singlePiece.onSale);
   }, [singlePiece]);
 
@@ -54,7 +46,7 @@ const EditArtWork = ({ id }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setShowLoadingSpinner(true);
-    updatePiece(title.value, description.value, price.value, id, onSale.value)
+    updatePiece(price.value, id, onSale.value)
       .then(() => history.push(`/artwork/${id}`))
       .catch(() => setShowLoadingSpinner(false));
   };
@@ -65,18 +57,7 @@ const EditArtWork = ({ id }) => {
         <div className={styles.title}>Edit your profile</div>
         <div className={styles.editProfileContainer}>
           <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.inputContainer}>
-              <label className={styles.label} htmlFor="title">
-                Edit your Title:
-              </label>
-              <input
-                className={`${styles.input}`}
-                type="text"
-                name={title.name}
-                value={title.value ? title.value : ""}
-                onChange={title.onChange}
-              />
-            </div>
+
             <div className={styles.inputContainer}>
               <label className={styles.label} htmlFor="price">
                 Edit your Price:
@@ -87,19 +68,6 @@ const EditArtWork = ({ id }) => {
                 name={price.name}
                 value={price.value ? price.value : ""}
                 onChange={price.onChange}
-              />
-            </div>
-            <div className={styles.inputContainer}>
-              <label className={styles.label} htmlFor="description">
-                Add a short description:
-              </label>
-              <textarea
-                className={`${styles.input} ${styles.description}`}
-                type="text"
-                name={description.name}
-                value={description.value ? description.value : ""}
-                onChange={description.onChange}
-                placeholder="Your description"
               />
             </div>
             <div className={styles.inputContainer}>
