@@ -1,38 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
 //React-router-dom
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom"
 //Components
-import Login from "./Login";
-import Register from "./Register";
-import Home from "./Home";
-import NavBar from "./NavBar";
-import Creators from "./Creators";
-import Artwork from "./Artwork";
-import Profile from "./Profile";
-import EditProfile from "./EditProfile";
-import EditArtWork from "./EditArtWork";
-import NewArtwork from "./NewArtwork";
-import ResetPassword from "./ResetPassword";
-import ResetPasswordConfirmation from "./ResetPasswordConfirmation";
+import Login from "./Login"
+import Register from "./Register"
+import Home from "./Home"
+import NavBar from "./NavBar"
+import Creators from "./Creators"
+import Artwork from "./Artwork"
+import Profile from "./Profile"
+import EditProfile from "./EditProfile"
+import EditArtWork from "./EditArtWork"
+import NewArtwork from "./NewArtwork"
+import ResetPassword from "./ResetPassword"
+import Transaction from "./Transaction"
+import ResetPasswordConfirmation from "./ResetPasswordConfirmation"
 //utils
-import { AuthFunctions } from "../utils/firebase/auth/authEmail";
-import { useRecoilValue } from "recoil";
-import { userAtom } from "../state/atoms";
+import { AuthFunctions } from "../utils/firebase/auth/authEmail"
+import { useRecoilValue } from "recoil"
+import { userAtom } from "../state/atoms"
 
 const App = () => {
-  const { isUser } = AuthFunctions();
-  const user = useRecoilValue(userAtom);
-  
+  const { isUser } = AuthFunctions()
+  const user = useRecoilValue(userAtom)
 
   useEffect(() => {
     isUser()
-  }, []);
+  }, [])
 
   useEffect(() => {}, [user])
 
   // setTimeout(() => {
   //   loadWeb3();
-  //   loadBlockchainData(); 
+  //   loadBlockchainData();
   // }, 10000);
 
   return (
@@ -47,8 +47,9 @@ const App = () => {
           render={({ match }) => <Profile match={match} />}
         />
         <Route path={"/artwork/create"} component={NewArtwork} />
-        <Route path={"/artwork/:id/edit"} 
-         render={({ match }) => <EditArtWork id={match.params.id} />}
+        <Route
+          path={"/artwork/:id/edit"}
+          render={({ match }) => <EditArtWork id={match.params.id} />}
         />
         <Route
           path={"/artwork/:id"}
@@ -57,11 +58,19 @@ const App = () => {
         <Route exact path={"/me"} component={Profile} />
         <Route exact path={"/me/edit"} component={EditProfile} />
         <Route exact path={"/reset"} component={ResetPassword} />
-        <Route exact path={"/reset/confirmation"} component={ResetPasswordConfirmation} />
+        <Route
+          exact
+          path={"/reset/confirmation"}
+          component={ResetPasswordConfirmation}
+        />
+        <Route
+          path={"/transaction/:hash"}
+          render={({ match }) => <Transaction hash={match.params.hash} />}
+        />
       </Switch>
       <NavBar />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
