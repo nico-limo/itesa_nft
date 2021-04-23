@@ -69,7 +69,6 @@ const EditProfile = ({ id }) => {
               name={description.name}
               value={description.value}
               onChange={description.onChange}
-              placeholder="Your description"
             />
           </div>
           <div className={styles.inputContainer}>
