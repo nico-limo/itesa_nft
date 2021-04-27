@@ -23,6 +23,7 @@ const Home = () => {
 
   return (
     <>
+    <div>
       <div className={styles.homeTitle}>Explore</div>
       <div className={styles.homeOnSaleOrSold}>
         <button
@@ -44,6 +45,7 @@ const Home = () => {
         ) : (
           <BigSpinner />
         )}
+      </div>
       </div>
     </>
   );

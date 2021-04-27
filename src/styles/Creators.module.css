@@ -13,6 +13,10 @@
   box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
 }
 
+.titleHr {
+  display: none;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -67,4 +71,75 @@
   padding: 1vw;
   margin-right: 6%;
   margin-left: 6%;
+}
+
+@media screen and (min-width: 1200px) {
+  .title {
+    background: none;
+    color: rgb(124, 124, 124);
+    height: 3vw;
+    margin-bottom: 0;
+    margin-top: 2vw;
+    padding-left: 3vw;
+    font-size: 1.5vw;
+    box-shadow: none;
+  }
+
+  .container {
+    margin: 2vw 2vw 1vw 2vw;
+  }
+
+  .singleCreatorContainer {
+    width: 17.15vw;
+    margin: 0 0.9vw 1.8vw;
+    border-radius: 1vw;
+    height: 26vw;
+    /* background-color: rgb(255, 255, 255);
+    margin: 0 2% 4%;
+    box-shadow: 0.3vw 0.3vw 0.6vw 0px rgba(0, 0, 0, 0.2);
+    position: relative;
+    */
+  }
+
+  .singleCreatorArtwork {
+    /* width: 100%; */
+    height: 10.8vw;
+    object-fit: cover;
+    border-radius: 1vw 1vw 0 0;
+  }
+
+  .singleCreatorAvatar {
+    width: 4vw;
+    height: 4vw;
+    margin-right: 1vw;
+    border: rgb(255, 255, 255) 0.5vw solid;
+    top: 8.4vw;
+    left: 1vw;
+  }
+
+  .singleCreatorName {
+    margin-left: 1.25vw;
+    /* margin-top: 14%;
+    margin-bottom: 1%; */
+    font-size: 1.2vw;
+    /* font-weight: 600;
+    text-align: left;
+    color: black; */
+  }
+  .singleCreatorDescription {
+    font-size: 0.9vw;
+    margin-left: 0.75vw;
+    /* padding: 1vw;
+    margin-right: 6%;
+    margin-left: 6%; */
+  }
+  .titleHr {
+    display: block;
+    margin-top: 0;
+    /* margin-bottom: 2vw; */
+    margin-left: 3vw;
+    margin-right: 3vw;
+    border: none;
+    border-top: 2px solid rgb(218, 218, 218);
+  }
 }

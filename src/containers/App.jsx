@@ -20,6 +20,8 @@ import { useWeb3 } from "@openzeppelin/network/react";
 import { AuthFunctions } from "../utils/firebase/auth/authEmail";
 import { useRecoilValue } from "recoil";
 import { userAtom } from "../state/atoms";
+//CSS
+import styles from "../styles/index.module.css";
 
 const App = () => {
   const user = useRecoilValue(userAtom);
@@ -34,7 +36,7 @@ const App = () => {
   useEffect(() => {}, [user, networkId, accounts]);
 
   return (
-    <div>
+    <div className={styles.mainContainer}>
       <Switch>
         <Route exact path={"/"} component={Home} />
         <Route path={"/login"} component={Login} />
