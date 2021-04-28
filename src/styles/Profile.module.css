@@ -17,7 +17,6 @@
   width: 100%;
   object-fit: cover;
   border-bottom: rgb(244, 246, 244) 1vw solid;
-  /* border-top: rgb(244,246,244) 2vw solid; */
 }
 
 .creatorAvatar {
@@ -124,4 +123,72 @@
   margin-left: 3.5%;
   font-weight: 600;
   color: #8f8f8f;
+}
+
+@media screen and (min-width: 1200px) {
+  .creatorCoverContainer {
+    height: 20vw;
+    margin-bottom: 2.5vw;
+    /* background-image: linear-gradient(to left, #c9c9c9, #9b9b9b); */
+    /* background-color: black;
+    display: flex;
+    flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: flex-start; */
+    /* padding-left: 5vw; */
+    /* position: relative;
+    box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.4); */
+  }
+
+  .creatorCover {
+    height: 15vw;
+    /* width: 100%;
+    object-fit: cover; */
+    border-bottom: rgb(244, 246, 244) 0.5vw solid;
+  }
+
+  .creatorAvatar {
+    width: 10vw;
+    height: 10vw;
+    /* object-fit: cover;
+    border-radius: 100%;
+    background-color: rgb(244, 246, 244);  */
+    border: rgb(244, 246, 244) 0.5vw solid;
+    /* position: absolute; */
+    top: 7.5vw;
+    right: 2vw;
+  }
+
+  .creatorName {
+    margin-top: 1vw;
+    margin-left: 3vw;
+    font-size: 1.75vw;
+    font-weight: 400;
+    
+  }
+
+  .creationsOrCollection button {
+    font-size: 1vw;
+    border-radius: 0.75vw;
+    padding: 0.5vw 1vw;
+    margin-right: 0.5vw;
+  }
+
+  .creationsOrCollection {
+    margin-top: 2vw;
+    margin-left: 3vw;
+    margin-bottom: 0%;
+  }
+
+  .galleryContainer {
+    margin: 2vw 2vw 1vw 2vw;
+  }
+
+  .empty {
+    font-size: 2vw;
+    margin-left: 1.5vw;
+    font-weight: 600;
+
+  }
+
 }

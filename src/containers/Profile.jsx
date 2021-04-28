@@ -40,6 +40,7 @@ const Profile = ({ match }) => {
 
   return (
     <>
+    <div>
       {urlUser && userArtWork !== "loading" ? (
         <>
           <div className={styles.creatorCoverContainer}>
@@ -86,6 +87,7 @@ const Profile = ({ match }) => {
       ) : (
         <BigSpinner />
       )}
+      </div>
     </>
   );
 };

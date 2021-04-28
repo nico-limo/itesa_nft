@@ -96,3 +96,49 @@
   background-color: #654b7a;
   border-radius: 50%;
 }
+@media screen and (min-width: 1200px) {
+  .spinnerBox {
+    margin-top: 18vh;
+  }
+  .circleBorder {
+    width: 10vw;
+    height: 10vw;
+    padding: 0.25vw;
+  }
+
+  .smallSpinnerBox {
+    width: 4vw;
+    height: 4vw;
+    margin: 0.35vw auto 0.35vw;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+     */
+  }
+  
+  .smallCircleBorder {
+    width: 3vw;
+    height: 3vw;
+    padding: 0.2vw;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: rgb(201, 201, 201);
+    background: linear-gradient(0deg, #dabfee 33%, rgb(255, 255, 255) 100%);
+    animation: spin 0.8s linear 0s infinite; */
+  }
+
+  .transactionSpinnerBox {
+    width: 6vw;
+    height: 6vw;
+    margin: 0.35vw auto 0.35vw;
+  }
+  
+  .transactionCircleBorder {
+    width: 5vw;
+    height: 5vw;
+    padding: 0.3vw;
+  }
+}

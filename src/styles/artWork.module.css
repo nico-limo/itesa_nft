@@ -1,189 +1,331 @@
 body {
-    background-color: #f4f3f4;
+  background-color: #f4f3f4;
 }
 
 .artworkTitle {
-    background-image: linear-gradient(to right,#845fa1,#34283e);
-    height: 17vw;
-    border-bottom-right-radius: 15vw;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 5vw;
-    font-size: 4vw;
-    font-weight: 600;
-    margin-bottom: 1.5vw;
-    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
-    position: relative;
+  background-image: linear-gradient(to right, #845fa1, #34283e);
+  height: 17vw;
+  border-bottom-right-radius: 15vw;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 5vw;
+  font-size: 4vw;
+  font-weight: 600;
+  margin-bottom: 1.5vw;
+  box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
+  position: relative;
 }
 
 .editIcon {
-    height: 7vw;
-    position: absolute;
-    top: 26vw;
-    right: 9vw;
+  height: 7vw;
+  position: absolute;
+  top: 8vw;
+  right: 9vw;
 }
 
 .singleArtworkImage {
-    width: 90vw;
-    height: auto;
-    border-radius: 5vw;
-    margin: 4vw 5vw 8vw 5vw;
+  width: 90vw;
+  height: auto;
+  border-radius: 5vw;
+  margin: 4vw 5vw 8vw 5vw;
+}
+
+.singleArtworkImageContainer {
+  position: relative;
 }
 
 .divButtons {
-    position: absolute;
-    top: -4vw;
-    left: 5vw;
+  position: absolute;
+  top: -4vw;
+  left: 5vw;
 }
 
 .divButtons button {
-    background-image: white;
-    border: none;
-    outline: none;
-    height: 60%;
-    border-radius: 150px;
-    font-size: 2.8vw;
-    padding: 2.2vw;
-    font-weight: 500;
-    background-color: white;
-    margin-right: 1vw;
-    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
+  background-image: white;
+  border: none;
+  outline: none;
+  height: 60%;
+  border-radius: 150px;
+  font-size: 2.8vw;
+  padding: 2.2vw;
+  font-weight: 500;
+  background-color: white;
+  margin-right: 1vw;
+  box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
 }
 
 .ArtFeaturesContainer {
-    position: relative;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
-    padding-bottom: 0.5vw;
+  position: relative;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
+  padding-bottom: 0.5vw;
 }
 
 .artDescription {
-    align-items:flex-start;
-    margin-top: 6vw;
-    margin-left: 6vw;
-    margin-right: 6vw;
-    margin-bottom: 1%;
-    font-size: 2.25vw;
-    padding-top: 1vw;
-    padding-bottom: 1vw;
+  align-items: flex-start;
+  margin-top: 6vw;
+  margin-left: 6vw;
+  margin-right: 6vw;
+  margin-bottom: 1%;
+  font-size: 2.25vw;
+  padding-top: 1vw;
+  padding-bottom: 1vw;
 }
 
 .priceSubtitle {
-    margin-top: 3%;
-    margin-right: 6%;
-    margin-bottom: 1%;
-    font-size: 2vw;
-    font-weight: 600;
+  margin-top: 3%;
+  margin-right: 6%;
+  margin-bottom: 1%;
+  font-size: 2vw;
+  font-weight: 600;
 }
 
 .priceAndButtonContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 6vw;
-    margin-right: 6vw;
-    margin-top: 2vw;
-    margin-bottom: 2vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 6vw;
+  margin-right: 6vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
 }
 
 .artworkPrice {
-    margin-top: 3%;
-    margin-right: 6%;
-    margin-bottom: 1%;
-    font-size: 3vw;
-    font-weight: 600;
+  margin-top: 3%;
+  margin-right: 6%;
+  margin-bottom: 1%;
+  font-size: 3vw;
+  font-weight: 600;
 }
 
 .buyButton {
-    background: rgb(231, 202, 127);
-    border: none;
-    outline: none;
-    width: 30vw;
-    height: 7vw;
-    font-size: 2.5vw;
-    font-weight: 400;
-    border-radius: 1vw;
-    font-weight: 600;
-    color: white;
+  background: rgb(231, 202, 127);
+  border: none;
+  outline: none;
+  width: 30vw;
+  height: 7vw;
+  font-size: 2.5vw;
+  border-radius: 1vw;
+  font-weight: 600;
+  color: white;
 }
 
 .artistTitle {
-    margin-top: 5.5vw;
-    margin-bottom: 1vw;
-    padding-left: 5vw;
-    font-size: 3vw;
-    font-weight: 600;
+  margin-top: 5.5vw;
+  margin-bottom: 1vw;
+  padding-left: 5vw;
+  font-size: 3vw;
+  font-weight: 600;
 }
 
 .artistContainer {
-    padding: 0 5vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 18.5vw;
+  padding: 0 5vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 18.5vw;
 }
 
-
 .artistDescription {
-    width:65vw;
-    font-size: 2.5vw;
+  width: 65vw;
+  font-size: 2.5vw;
 }
 
 .profilePicture {
-    width: 20vw;
-    height: 20vw;
-    object-fit: cover;
-    border-radius: 100%;
-    margin-right: 1vw;
-    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
+  width: 20vw;
+  height: 20vw;
+  object-fit: cover;
+  border-radius: 100%;
+  margin-right: 1vw;
+  box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
 }
 
 .artistName {
-    margin-bottom: 1vw;
-    font-size: 4vw;
-    font-weight: 600;
+  margin-bottom: 1vw;
+  font-size: 4vw;
+  font-weight: 600;
 }
 
 .artistHr {
-    border-top: rgb(0, 0, 0) 1px solid;
-    width: 90vw;
-    margin: 0 5vw 5vw;
+  border-top: rgb(114, 114, 114) 1px solid;
+  width: 90vw;
+  margin: 0 5vw 5vw;
 }
 
+.artworkTitleHr {
+  display: none;
+}
 
 .waitContainer {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.281);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.281);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wait {
+  background-image: linear-gradient(to top left, #845fa1, #34283e);
+  width: 52vw;
+  height: 27vw;
+  border-radius: 4vw;
+  box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 4vw 0;
+  font-size: 3vw;
+}
+
+.waitText {
+  text-align: center;
+  padding: 0 5vw;
+}
+
+@media screen and (min-width: 1200px) {
+  .artworkTitle {
+    background: none;
+    color: rgb(124, 124, 124);
+    height: 5vw;
+    font-size: 2vw;
+    /* justify-content: center; */
+    box-shadow: none;
+    align-items: left;
+    padding-left: 0;
+    width: 42vw;
+    margin: 2vw auto 0;
+    padding-bottom: 0;
+    /* 
+        border-bottom-right-radius: 15vw;
+        display: flex;
+        font-weight: 600;
+        box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
+        position: relative; */
+  }
+
+  .singleArtworkImage {
+    width: 42vw;
+    border-radius: 2vw;
+    margin: 0 auto;
+    /* margin: 0; */
+  }
+
+  .singleArtworkImageContainer {
+    width: 50vw;
+    /* background-color: blue; */
+    margin: 0 auto 3vw;
     display: flex;
-    justify-content: center;
     align-items: center;
   }
-  
-  .wait {
-    background-image: linear-gradient(to top left, #845fa1, #34283e);
-    width: 52vw;
-    height: 27vw;
-    border-radius: 4vw;
-    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.4);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 4vw 0;
-    font-size: 3vw;
+
+  .editIcon {
+    height: 3vw;
+    top: 2vw;
+    right: 6vw;
   }
-  
-  .waitText {
-    text-align: center;
-    padding: 0 5vw;
+
+  .artworkTitleHr {
+    width: 42vw;
+    display: block;
+    margin: -0.75vw auto 2vw;
+    border: none;
+    border-top: 2px solid rgb(185, 185, 185);
   }
+
+  .artworkPrice {
+    font-size: 1.25vw;
+    align-self: flex-end;
+    /* margin-top: 3%;
+        margin-right: 6%;
+        margin-bottom: 1%;
+        font-weight: 600; */
+  }
+
+  .ArtFeaturesContainer {
+    width: 45vw;
+    margin: 0 auto;
+    /* box-shadow: none */
+    /* flex-direction: row; */
+    box-shadow: 0.15vw 0.15vw 0.3vw 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .buyButton {
+    font-size: 1.25vw;
+    width: 15vw;
+    height: 4vw;
+    border-radius: 1vw;
+  }
+
+  .profilePicture {
+    width: 8vw;
+    height: 8vw;
+    margin-right: 1vw;
+    box-shadow: 0.15vw 0.15vw 0.3vw 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .artDescription {
+    font-size: 1vw;
+    margin: 1.5vw 3vw 0.5vw;
+  }
+
+  .artistDescription {
+    font-size: 1vw;
+    width: 30vw;
+  }
+
+  .artistName {
+    font-size: 1.75vw;
+    
+  }
+
+  .artistContainer {
+    /* padding: 0 5vw; */
+    margin-bottom: 4vw;
+    /* width: 48vw; */
+  }
+
+  .artistTitle {
+    /* padding-left: 5vw; */
+    /* margin-top: 5.5vw;
+    margin-bottom: 1vw; */
+    font-size: 1.3vw;
+    margin-top: 3vw;
+  }
+
+  .artistHr {
+    width: 40vw;
+    /* border-top: rgb(0, 0, 0) 1px solid; */
+    margin: -0.5vw 5vw 2vw;
+  }
+
+  .divButtons {
+    display: none;
+  }
+
+  .priceAndButtonContainer {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+    margin-left: 3vw;
+    margin-right: 3vw;
+    margin-top: 1vw;
+    margin-bottom: 1.75vw;
+  }
+
+  .creatorContainer {
+    width: 50vw;
+    margin: 0 auto;
+    /* background-color: green; */
+  }
+}

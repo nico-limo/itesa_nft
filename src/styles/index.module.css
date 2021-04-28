@@ -23,3 +23,9 @@ body {
 .link:link {
   color: black;
 }
+
+.mainContainer{
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+}

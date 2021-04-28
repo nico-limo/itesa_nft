@@ -79,7 +79,8 @@ const NewArtwork = () => {
   }
   return (
     <div>
-      <div className={form.title}>Create new art piece</div>
+      <div className={styles.title}>Create new art piece</div>
+      <hr className={styles.titleHr} />
       <div className={styles.editProfileContainer}>
         <form className={styles.form}>
           <div className={styles.inputContainer}>

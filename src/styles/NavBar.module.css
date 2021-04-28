@@ -17,7 +17,15 @@
   padding-right: 5vw;
   font-size: 3.2vw;
   font-weight: 300;
-  outline: rgba(255, 255, 255, 0.2) 2px solid;
+  box-shadow: 0 0 2vw 0 rgba(255, 255, 255, 0.4);
+}
+
+.navbarOptions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 a {
@@ -61,6 +69,7 @@ a {
 .hidden {
   bottom: 14.5vw;
   right: -30.5vw;
+  /* margin-right: -32vw; */
 }
 
 .dropdown hr {
@@ -74,13 +83,75 @@ a {
   padding: 0.25vw 4vw;
   color: white;
   font-size: 3vw;
-  font-weight: 400;
+}
+
+.navbarTitle {
+  display: none;
 }
 
 @media screen and (min-width: 1200px) {
   .navbarContainer {
-    font-size: 1.5vw;
+    font-size: 1.25vw;
     padding-top: 2%;
     padding-bottom: 2%;
+    width: 88.9%;
+    padding-right: 3%;
+    height: 1.5vw;
+    background-color: red;
+    position: static;
+    align-self: flex-start;
+    border-radius: 0vw 0vw 0vw 0vw;
+    box-shadow: 0.2vw 0.2vw 0.4vw 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .navbarTitle {
+    display: inline;
+    font-weight: 600;
+    margin-left: -5vw;
+    /* margin-right: 55vw; */
+  }
+
+  .profilePicture {
+    width: 2.8vw;
+    height: 2.8vw;
+    margin-right: -1vw;
+    border: 2px solid white;
+  }
+
+  .dropdown {
+    display: block;
+    position: absolute;
+    top: 6.5vw;
+    right: 1vw;
+    padding-top: 1vw;
+    padding-bottom: 0.75vw;
+    width: 12vw;
+    height: 6.5vw;
+    border-radius: 1vw;
+    box-shadow: 0.3vw 0.3vw 0.3vw 0 rgba(0, 0, 0, 0.3);
+    transition: all 350ms ease;
+  }
+  
+  .hidden {
+    bottom: 14.5vw;
+    right: -30.5vw;
+  }
+
+  .dropdownOptions {
+    padding: 0.2vw 1.5vw;
+    font-size: 1.2vw;
+    font-weight: 400;
+  }
+
+  .navbarOptions {
+    width: 24vw;
+  }
+
+  .lastButton {
+    padding-right: 0vw;
+  }
+
+  .hidden {
+    display: none;
   }
 }
