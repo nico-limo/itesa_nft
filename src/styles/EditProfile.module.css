@@ -1,13 +1,13 @@
 .editProfileContainer {
   background-color: rgb(255, 255, 255);
-  border-radius: 4%;
-  margin: 0 2% 4%;
+  border-radius: 4vw;
   box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 6vw 4vw;
+  margin: 6vw auto;
+  width: 92vw;
   /* height: 70vw; */
 }
 
@@ -96,8 +96,8 @@
 }
 .label {
   font-size: 3.5vw;
-  font-weight: 500;
-  margin-top: 1.5vw;
+  font-weight: 400;
+  margin-top: 2.25vw;
 }
 .form input:hover {
   transition: 0.5s ease;
@@ -233,4 +233,120 @@
   border-radius: 1.5vw;
   padding: 1vw;
   /* margin: 0 1vw; */
+}
+
+.titleHr {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .title {
+    background: none;
+    color: rgb(124, 124, 124);
+    height: 5vw;
+    font-size: 2vw;
+    box-shadow: none;
+    align-items: left;
+    padding-left: 0;
+    width: 42vw;
+    margin: 2vw auto 0;
+    padding-bottom: 0;
+  }
+
+  .titleHr {
+    width: 42vw;
+    display: block;
+    margin: -0.75vw auto 2vw;
+    border: none;
+    border-top: 2px solid rgb(185, 185, 185);
+  }
+
+  .editProfileContainer {
+    width: 42vw;
+    border-radius: 2vw;
+    margin-top: 1vw;
+    /* background-color: rgb(255, 255, 255);
+    border-radius: 4%;
+    margin: 0 2% 4%;
+    box-shadow: 0.3vw 0.3vw 0.6vw 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 6vw 4vw; */
+  }
+
+  .form {
+    width: 36vw;
+    margin: 2vw 0 3.5vw 0;
+  }
+
+  .form input,
+  .form textarea {
+    padding: 1.5vw 2vw;
+    margin-top: 1vw;
+    /* 
+  margin-bottom: 1.5vw;
+   */
+    font-size: 1vw;
+
+    /* font-weight: 400;
+  color: #000;
+  background-color: #e8eaf6;
+  border: none;
+  border-radius: 0.5vw;
+  resize: none; */
+  }
+
+  .form input[type="file"] {
+    margin: 0;
+  }
+
+  .label {
+    margin-top: 1vw;
+    font-size: 1.4vw;
+  }
+
+  .uploadContainer {
+    margin-top: 1vw;
+  }
+
+  .submit {
+    margin-top: 1vw;
+    font-size: 1.5vw;
+    height: 5vw;
+  }
+
+  .clear {
+    margin-bottom: 1.75vw;
+    font-size: 1vw;
+    margin-right: 0;
+    /* font-weight: 600;
+    align-self: flex-end; */
+  }
+
+  .confirmation {
+    width: 26vw;
+    height: 13.5vw;
+    border-radius: 2vw;
+    box-shadow: 0.15vw 0.15vw 0.3vw 0 rgba(0, 0, 0, 0.4);
+    padding: 2vw 0;
+    font-size: 1.5vw;
+    /* box-shadow: 1vw 1vw 2vw rgba(104, 104, 104, 0.61); */
+    /* border: 1px solid #ffffff; */
+  }
+  
+  .confirmation hr {
+    width: 19vw;
+  }
+  
+  .confirmationText {
+    padding: 0 2.5vw;
+  }
+  
+  
+  .confirmationButtons div {
+    border-radius: 0.75vw;
+    padding: 0.5vw;
+  }
 }

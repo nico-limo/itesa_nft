@@ -7,6 +7,7 @@ const ResetPasswordConfirmation = () => {
     <>
     <div>
       <div className={form.title}>Password Reset Email Sent</div>
+      <hr className={form.titleHr} />
       <div className={form.container}>
         <img className={form.icon} src="/email.png" alt="Email Sent" />
         <div className={form.message}>

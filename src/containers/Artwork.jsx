@@ -139,7 +139,7 @@ const Artwork = ({ id }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className={styles.creatorContainer}>
           <div className={styles.artistTitle}>Creator</div>
           <hr className={styles.artistHr} />
           <div className={styles.artistContainer}>

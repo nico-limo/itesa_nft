@@ -58,6 +58,7 @@ const EditProfile = ({ id }) => {
     <>
       <div>
         <div className={styles.title}>Edit your profile</div>
+        <hr className={styles.titleHr} />
         <div className={styles.editProfileContainer}>
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.inputContainer}>
@@ -78,7 +79,6 @@ const EditProfile = ({ id }) => {
               </label>
               <div className={styles.uploadContainer}>
                 <input
-                  className={`${styles.input}`}
                   type="file"
                   name={avatar.name}
                   file={avatar.file}
@@ -98,7 +98,6 @@ const EditProfile = ({ id }) => {
               </label>
               <div className={styles.uploadContainer}>
                 <input
-                  className={styles.input}
                   type="file"
                   name={main_picture.name}
                   file={main_picture.file}

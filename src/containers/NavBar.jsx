@@ -16,7 +16,11 @@ const NavBar = () => {
   const toggleDropdown = () => setShowDropdown(!showDropdown)
   return (
     <div className={styles.navbarContainer}>
-      <div className={styles.navbarTitle}>Crypto Art Market</div>
+      <div className={styles.navbarTitle}>
+        <Link className={styles.navbarLink} to="/">
+          Crypto Art Market
+        </Link>
+      </div>
       <div className={styles.navbarOptions}>
         <Link className={styles.navbarLink} to="/">
           <div>Home</div>

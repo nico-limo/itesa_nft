@@ -22,58 +22,61 @@ const Register = () => {
   useEffect(() => setFormError(""), [])
 
   useEffect(() => {
-    if (formError) setShowLoadingSpinner(false);
-  }, [formError]);
+    if (formError) setShowLoadingSpinner(false)
+  }, [formError])
 
   return (
     <>
-      <div className={form.title}>Sign Up</div>
-      <div className={form.container}>
-        <form
-          onSubmit={(event) => {
-            setShowLoadingSpinner(true)
-            register(event, email.value, password.value, username.value)
-          }}
-          className={form.form}
-        >
-          <input
-            className={form.input}
-            placeholder="Enter a username"
-            type="text"
-            name={username.name}
-            value={username.value}
-            onChange={username.onChange}
-          />
-          <input
-            className={form.input}
-            placeholder="Enter your email"
-            type="email"
-            name={email.name}
-            value={email.value}
-            onChange={email.onChange}
-          />
-          <input
-            className={form.input}
-            placeholder="Set a new password"
-            type="password"
-            name={password.name}
-            value={password.value}
-            onChange={password.onChange}
-          />
-          <button type="submit">
-            {showLoadingSpinner ? (
-              <FormButtonSpinner />
-            ) : (
-              <div>Create an Account</div>
-            )}
-          </button>
-        </form>
-        {formError && <div className={form.error}>{formError}</div>}
-        <div className={form.forgotAndSignUpContainer}>
-          <div>
-            <Link className={form.link} to="/login">
-              Already have an account? Sign In
-            </Link>
+      <div>
+        <div className={form.title}>Sign Up</div>
+        <hr className={form.titleHr} />
+        <div className={form.container}>
+          <form
+            onSubmit={(event) => {
+              setShowLoadingSpinner(true)
+              register(event, email.value, password.value, username.value)
+            }}
+            className={form.form}
+          >
+            <input
+              className={form.input}
+              placeholder="Enter a username"
+              type="text"
+              name={username.name}
+              value={username.value}
+              onChange={username.onChange}
+            />
+            <input
+              className={form.input}
+              placeholder="Enter your email"
+              type="email"
+              name={email.name}
+              value={email.value}
+              onChange={email.onChange}
+            />
+            <input
+              className={form.input}
+              placeholder="Set a new password"
+              type="password"
+              name={password.name}
+              value={password.value}
+              onChange={password.onChange}
+            />
+            <button type="submit">
+              {showLoadingSpinner ? (
+                <FormButtonSpinner />
+              ) : (
+                <div>Create an Account</div>
+              )}
+            </button>
+          </form>
+          {formError && <div className={form.error}>{formError}</div>}
+          <div className={form.forgotAndSignUpContainer}>
+            <div>
+              <Link className={form.link} to="/login">
+                Already have an account? Sign In
+              </Link>
+            </div>
           </div>
         </div>
       </div>

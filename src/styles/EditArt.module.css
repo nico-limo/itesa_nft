@@ -231,3 +231,36 @@
   padding: 1vw;
   /* margin: 0 1vw; */
 }
+
+.titleHr {
+display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .title {
+    background: none;
+    color: rgb(124, 124, 124);
+    height: 5vw;
+    font-size: 2vw;
+    box-shadow: none;
+    align-items: left;
+    padding-left: 0;
+    width: 42vw;
+    margin: 2vw auto 0;
+    padding-bottom: 0;
+  }
+
+  .titleHr {
+    width: 42vw;
+    display: block;
+    margin: -0.75vw auto 2vw;
+    border: none;
+    border-top: 2px solid rgb(185, 185, 185);
+  }
+
+  .deniedIcon {
+    padding-right: 0.75vw ;
+    height: 14vw;
+    margin: 2vw 43vw 2.5vw;
+  }
+}

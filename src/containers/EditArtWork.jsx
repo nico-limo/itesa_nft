@@ -108,12 +108,15 @@ const EditArtWork = ({ id }) => {
       </>
     ) : (
       <>
+      <div>
         <div className={styles.title}>Access Denied</div>
+        <hr className={styles.titleHr} />
         <img
           className={styles.deniedIcon}
           src="/denied.png"
           alt="Access Denied"
         />
+        </div>
       </>
     )
   ) : (
