@@ -37,7 +37,7 @@ const Artwork = ({ id }) => {
       getUser(res.authorId).then((res) => setAuthor(res))
     })
     return () => {
-      setSinglePieceAtom("")
+      setSinglePieceAtom("");
       setAuthor({})
     }
   }, [])

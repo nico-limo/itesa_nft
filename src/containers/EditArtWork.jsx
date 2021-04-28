@@ -36,11 +36,11 @@ const EditArtWork = ({ id }) => {
   }, [onSale]);
 
   useEffect(() => {
-    if (!singlePiece) {
+    
       getSinglePiece(id).then((res) => {
         setSinglePieceAtom(res);
       });
-    }
+    
   }, []);
 
   const handleSubmit = async (e) => {
